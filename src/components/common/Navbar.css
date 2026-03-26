@@ -1,0 +1,211 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: var(--navbar-height);
+  background: transparent;
+  backdrop-filter: none;
+  box-shadow: none;
+  transition: background 0.4s ease, box-shadow 0.4s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+}
+
+.navbar.scrolled {
+  background: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 1px 24px rgba(0, 0, 0, 0.08);
+}
+
+
+.nav-link {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #ffffff;
+  white-space: nowrap;
+  transition: color 0.3s ease;
+  text-decoration: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.navbar.scrolled .nav-link {
+  color: var(--black);
+}
+
+.nav-link:hover {
+  color: var(--gold) !important;
+}
+
+.nav-chevron {
+  font-size: 8px;
+  opacity: 0.7;
+  transition: transform 0.2s ease;
+}
+
+.nav-item:hover .nav-chevron {
+  transform: rotate(180deg);
+}
+
+
+.nav-item {
+  position: relative;
+  line-height: 1;
+}
+
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  transform: translateY(8px);
+  width: 580px;
+  max-width: 93vw;
+  max-height: 82vh;
+  overflow-y: auto;
+  background: #ffffff;
+  border: 1px solid rgba(20, 28, 43, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.14);
+  padding: 16px 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 1050;
+}
+
+
+.dropdown-right {
+  left: 0;
+  right: auto;
+}
+
+
+.dropdown-left {
+  right: 0;
+  left: auto;
+}
+
+
+.dropdown-bridge {
+  position: absolute;
+  top: -16px;
+  left: 0;
+  right: 0;
+  height: 16px;
+  background: transparent;
+}
+
+.nav-item:hover .dropdown-menu,
+.nav-item:focus-within .dropdown-menu {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+
+.dropdown-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(20, 28, 43, 0.06);
+}
+
+.dropdown-title {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #ac6d04;
+  white-space: nowrap;
+}
+
+.dropdown-divider {
+  flex: 1;
+  height: 1px;
+  background: rgba(172, 109, 4, 0.2);
+  border-radius: 1px;
+}
+
+
+.dropdown-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background: rgba(20, 28, 43, 0.08);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+
+.dropdown-card {
+  display: flex;
+  align-items: center;
+  padding: 14px 18px;
+  text-decoration: none;
+  background: #ffffff;
+  border: none;
+  transition: background 0.15s ease;
+}
+
+.dropdown-card:hover {
+  background: rgba(254, 228, 178, 0.45);
+}
+
+.dropdown-label {
+  color: #101828;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dropdown-card:hover .dropdown-label {
+  color: #ac6d04;
+  font-weight: 500;
+}
+
+
+.nav-full {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+
+.whatsapp-fab {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  z-index: 999;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #25D366;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.whatsapp-fab:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 28px rgba(37, 211, 102, 0.55);
+}
