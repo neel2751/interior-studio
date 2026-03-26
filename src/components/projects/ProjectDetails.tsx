@@ -58,7 +58,7 @@ const ProjectDetails = ({ project }: ProjectDetailsProps) => {
             <ul className="space-y-2">
               {project.scopeOfWork.map((item, index) => (
                 <li key={index} className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-gray-900 rounded-full mt-2 flex-shrink-0"></div>
+                  <div className="w-2 h-2 bg-gray-900 rounded-full mt-2 shrink-0"></div>
                   <span className="text-gray-600">{item}</span>
                 </li>
               ))}
@@ -139,7 +139,7 @@ const ProjectDetails = ({ project }: ProjectDetailsProps) => {
           Transform Your Space Like This
         </h2>
         <p className="text-gray-300 max-w-2xl mx-auto">
-          Let's create something extraordinary together. Schedule a consultation to discuss your vision.
+          Let&apos;s create something extraordinary together. Schedule a consultation to discuss your vision.
         </p>
         <Button href="/contact" className="bg-white text-gray-900 hover:bg-gray-100" size="lg">
           Book Consultation

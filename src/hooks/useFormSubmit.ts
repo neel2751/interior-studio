@@ -149,34 +149,33 @@ export function useFormSubmitWithTimeout<T = any, E = string>( // eslint-disable
   };
 }
 
-export function useFormSubmitWithRetry<T = any, E = string>(
+export function useFormSubmitWithRetry<T = unknown, E = string>(
   maxRetries: number = 3,
   options: UseFormSubmitOptions<T, E> = {}
 ) {
   const formSubmit = useFormSubmit<T, E>(options);
-  const retryCountRef = useRef(0);
+  const [retryCount, setRetryCount] = useState(0);
 
   const submitWithRetry = useCallback(
-    async (data: T) => {
-      try {
-        await formSubmit.submit(data);
-        retryCountRef.current = 0; // Reset retry count on success
-      } catch (error) {
-        retryCountRef.current += 1;
-        
-        if (retryCountRef.current < maxRetries) {
-          console.log(`Retrying... Attempt ${retryCountRef.current + 1} of ${maxRetries}`);
-          
-          // Exponential backoff
-          const delay = Math.pow(2, retryCountRef.current) * 1000;
-          await new Promise(resolve => setTimeout(resolve, delay));
-          
-          return submitWithRetry(data);
-        } else {
-          console.error('Max retries reached');
-          throw error;
+    async (data: T): Promise<void> => {
+      const execute = async (attempt: number, nextData: T): Promise<void> => {
+        try {
+          await formSubmit.submit(nextData);
+          setRetryCount(0);
+        } catch (error) {
+          if (attempt < maxRetries) {
+            setRetryCount(attempt);
+            const delay = Math.pow(2, attempt) * 1000;
+            await new Promise((resolve) => setTimeout(resolve, delay));
+            await execute(attempt + 1, nextData);
+          } else {
+            console.error('Max retries reached');
+            throw error;
+          }
         }
-      }
+      };
+
+      return execute(1, data);
     },
     [formSubmit, maxRetries]
   );
@@ -184,8 +183,8 @@ export function useFormSubmitWithRetry<T = any, E = string>(
   return {
     ...formSubmit,
     submit: submitWithRetry,
-    retryCount: retryCountRef.current,
-    canRetry: retryCountRef.current < maxRetries,
+    retryCount,
+    canRetry: retryCount < maxRetries,
   };
 }
 

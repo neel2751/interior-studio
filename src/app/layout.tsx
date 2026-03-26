@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Jost } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/common/Navbar";
+import NavbarClient from "@/components/common/NavbarClient";
 import Footer from "@/components/common/Footer";
 import FloatingElements from "@/components/common/FloatingElements";
 
@@ -64,11 +64,10 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${cormorant.variable} ${jost.variable} h-full antialiased`}
-      suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col" style={{ fontFamily: "var(--font-body)" }} suppressHydrationWarning>
-        <div suppressHydrationWarning>
-          <Navbar />
+      <body className="min-h-full flex flex-col" style={{ fontFamily: "var(--font-body)" }}>
+        <div>
+          <NavbarClient />
           {/* Placeholder for browser extension WhatsApp FAB */}
           <a
             href="https://wa.me/1234567890"
@@ -76,10 +75,9 @@ export default function RootLayout({
             rel="noopener noreferrer"
             aria-label="Chat on WhatsApp"
             className="whatsapp-fab"
-            style={{ display: 'none' }}
-            suppressHydrationWarning
+            style={{ display: "none" }}
           ></a>
-          <main className="grow" suppressHydrationWarning>
+          <main className="grow">
             {children}
           </main>
           <Footer />

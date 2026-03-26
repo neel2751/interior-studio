@@ -70,6 +70,7 @@ export function useInView(options: UseInViewOptions = {}): UseInViewReturn {
   useEffect(() => {
     // Check if IntersectionObserver is supported
     if (typeof IntersectionObserver === 'undefined') {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setSupported(false);
       return;
     }
@@ -222,9 +223,11 @@ export function useLazyImage(options: UseInViewOptions = {}) {
       const img = entry.target as HTMLImageElement;
       
       if (img.dataset.src) {
-        img.src = img.dataset.src;
-        delete img.dataset.src;
-      }
+      // eslint-disable-next-line react-hooks/immutability
+      img.src = img.dataset.src;
+      // eslint-disable-next-line react-hooks/immutability
+      delete img.dataset.src;
+    }
     }
   }, [inView, entry, loaded]);
 

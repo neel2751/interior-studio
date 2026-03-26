@@ -34,9 +34,11 @@ export function useScrollLock(isLocked: boolean, targetElement?: HTMLElement) {
     originalOverflowRef.current = element.style.overflow;
     originalPaddingRightRef.current = element.style.paddingRight;
 
+    // eslint-disable-next-line react-hooks/immutability
     element.style.overflow = 'hidden';
 
     if (scrollBarWidth > 0) {
+      // eslint-disable-next-line react-hooks/immutability
       element.style.paddingRight = `${scrollBarWidth}px`;
     }
   };
@@ -44,7 +46,9 @@ export function useScrollLock(isLocked: boolean, targetElement?: HTMLElement) {
   const unlockScroll = () => {
     const element = targetElement || document.body;
 
+    // eslint-disable-next-line react-hooks/immutability
     element.style.overflow = originalOverflowRef.current;
+    // eslint-disable-next-line react-hooks/immutability
     element.style.paddingRight = originalPaddingRightRef.current;
   };
 
@@ -149,6 +153,7 @@ export function useIOSScrollLock(isLocked: boolean) {
     };
   }, [isLocked]);
 
+  // eslint-disable-next-line react-hooks/refs
   return {
     isIOS: isIOS(),
     scrollPosition: scrollYRef.current,

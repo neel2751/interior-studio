@@ -15,13 +15,23 @@ const ProjectGallery = ({ project }: ProjectGalleryProps) => {
   const openLightbox = (index: number) => {
     setCurrentImageIndex(index);
     setIsLightboxOpen(true);
-    document.body.style.overflow = 'hidden';
   };
 
   const closeLightbox = () => {
     setIsLightboxOpen(false);
-    document.body.style.overflow = 'unset';
   };
+
+  useEffect(() => {
+    if (isLightboxOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isLightboxOpen]);
 
   const navigateImage = (direction: 'prev' | 'next') => {
     if (direction === 'prev') {
@@ -59,7 +69,7 @@ const ProjectGallery = ({ project }: ProjectGalleryProps) => {
           {project.images.slice(0, 4).map((image, index) => (
             <div
               key={index}
-              className={`aspect-[4/3] bg-gray-200 rounded-lg overflow-hidden cursor-pointer hover:opacity-90 transition-opacity duration-200 ${
+              className={`aspect-4/3 bg-gray-200 rounded-lg overflow-hidden cursor-pointer hover:opacity-90 transition-opacity duration-200 ${
                 index === 0 && project.images.length > 4 ? 'lg:col-span-2 lg:row-span-2' : ''
               }`}
               onClick={() => openLightbox(index)}
