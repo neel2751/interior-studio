@@ -22,7 +22,6 @@ export const PROCESS_STAGES: ProcessStage[] = [
       'Initial mood board'
     ],
     icon: '/icons/consultation.svg',
-    image: '/images/process/consultation.jpg'
   },
   {
     id: '2',
@@ -36,7 +35,6 @@ export const PROCESS_STAGES: ProcessStage[] = [
       'Material palette'
     ],
     icon: '/icons/concept.svg',
-    image: '/images/process/concept.jpg'
   },
   {
     id: '3',
@@ -50,7 +48,6 @@ export const PROCESS_STAGES: ProcessStage[] = [
       'Furniture layout'
     ],
     icon: '/icons/planning.svg',
-    image: '/images/process/planning.jpg'
   },
   {
     id: '4',
@@ -64,7 +61,6 @@ export const PROCESS_STAGES: ProcessStage[] = [
       'Procurement plan'
     ],
     icon: '/icons/materials.svg',
-    image: '/images/process/materials.jpg'
   },
   {
     id: '5',
@@ -78,7 +74,6 @@ export const PROCESS_STAGES: ProcessStage[] = [
       'Quality checks'
     ],
     icon: '/icons/execution.svg',
-    image: '/images/process/execution.jpg'
   },
   {
     id: '6',
@@ -92,7 +87,6 @@ export const PROCESS_STAGES: ProcessStage[] = [
       'Project handover'
     ],
     icon: '/icons/handover.svg',
-    image: '/images/process/handover.jpg'
   }
 ];
 

@@ -345,15 +345,6 @@ const NavItem = ({ item }: { item: (typeof NAV_ITEMS)[number] }) => {
 };
 
 const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState<boolean | null>(null);
-
-  useEffect(() => {
-    const onScroll = () => setIsScrolled(window.scrollY > 80);
-    onScroll();
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
   useEffect(() => {
     const clean = () =>
       document.querySelectorAll(".whatsapp-fab").forEach((el) => {
@@ -373,11 +364,11 @@ const Navbar = () => {
         left:       0,
         right:      0,
         zIndex:     1000,
-        backgroundColor: isScrolled === true ? "rgba(0,0,0,0.85)" : "transparent",
+        backgroundColor: "transparent",
         backgroundImage: "none",
-        backdropFilter:  isScrolled === true ? "blur(8px)" : "none",
-        borderBottom:    isScrolled === true ? "1px solid rgba(255,255,255,0.08)" : "none",
-        boxShadow:       isScrolled === true ? "0 2px 20px rgba(0,0,0,0.4)" : "none",
+        backdropFilter:  "none",
+        borderBottom:    "none",
+        boxShadow:       "none",
         transition:      "background-color 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease",
       }}
     >

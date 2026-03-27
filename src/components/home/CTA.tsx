@@ -18,7 +18,7 @@ const CTA = () => {
         }}
       >
         <img
-          src="/images/hero/hero-bg.jpg"
+          src="/images/hero/ChatGPT Image Mar 26, 2026, 09_27_00 PM.png"
           alt=""
           aria-hidden
           style={{

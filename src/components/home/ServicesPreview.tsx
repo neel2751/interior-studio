@@ -1,13 +1,13 @@
 'use client';
 import Link from 'next/link';
-import { useState } from 'react';
+import FadeInSection from '@/components/common/FadeInSection';
 
 const services = [
   {
     slug:        'residential-interior-design',
     title:       'Residential Interior Design',
     number:      '01',
-    image:       '/images/services/residential.jpg',
+    image:       '/images/projects/modern-villa-ahmedabad/ChatGPT Image Mar 26, 2026, 09_14_47 PM.png',
     fallback:    'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&q=80',
     description: 'From heritage bungalows to modern villas, we create timeless spaces that reflect elegance, individuality, and impeccable taste.',
   },
@@ -15,7 +15,7 @@ const services = [
     slug:        'commercial-interior-design',
     title:       'Commercial Interior Design',
     number:      '02',
-    image:       '/images/services/commercial.jpg',
+    image:       '/images/projects/tech-office-bangalore/ChatGPT Image Mar 26, 2026, 09_14_47 PM.png',
     fallback:    'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80',
     description: 'Expert commercial solutions with exceptional quality and seamless project execution that distinguishes us in the luxury design industry.',
   },
@@ -23,7 +23,7 @@ const services = [
     slug:        'office-interior',
     title:       'Office Interior',
     number:      '03',
-    image:       '/images/services/office.jpg',
+    image:       '/images/projects/sky-penthouse-mumbai/ChatGPT Image Mar 26, 2026, 09_14_47 PM.png',
     fallback:    'https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&q=80',
     description: 'Full-scale office interior design — from concept to final delivery, executed with precision and in alignment with design standards.',
   },
@@ -31,7 +31,7 @@ const services = [
     slug:        'hospitality-space',
     title:       'Hospitality Space',
     number:      '04',
-    image:       '/images/services/hospitality.jpg',
+    image:       '/images/projects/boutique-hotel-goa/ChatGPT Image Mar 26, 2026, 09_14_47 PM.png',
     fallback:    'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80',
     description: 'End-to-end hospitality design — from boutique hotels to restaurants, creating harmonious environments that elevate guest experience.',
   },
@@ -45,66 +45,70 @@ const ServicesPreview = () => {
         background: '#0f0f0f',
       }}
     >
-      <div
-        style={{
-          maxWidth:     1200,
-          margin:       '0 auto',
-          marginBottom: 56,
-          display:      'flex',
-          alignItems:   'flex-end',
-          justifyContent: 'space-between',
-          flexWrap:     'wrap',
-          gap:          24,
-        }}
-      >
-        <div>
-          <p
-            style={{
-              fontFamily:    'var(--font-body)',
-              fontSize:      10,
-              fontWeight:    600,
-              letterSpacing: 3,
-              textTransform: 'uppercase',
-              color:         'var(--gold)',
-              marginBottom:  12,
-            }}
-          >
-            What We Do
-          </p>
-          <h2
-            style={{
-              fontFamily:    'var(--font-display)',
-              fontSize:      'clamp(28px, 3.5vw, 48px)',
-              fontWeight:    300,
-              color:         '#ffffff',
-              letterSpacing: 1,
-            }}
-          >
-            Our Services
-          </h2>
-        </div>
-
-        <p
+      <FadeInSection direction="up" delay={0}>
+        <div
           style={{
-            fontFamily: 'var(--font-body)',
-            fontSize:   13,
-            color:      'rgba(255,255,255,0.45)',
-            maxWidth:   380,
-            lineHeight: 1.8,
-            textAlign:  'right',
+            maxWidth:     1200,
+            margin:       '0 auto',
+            marginBottom: 56,
+            display:      'flex',
+            alignItems:   'flex-end',
+            justifyContent: 'space-between',
+            flexWrap:     'wrap',
+            gap:          24,
           }}
         >
-          Full-service interior design for residential &amp; commercial
-          projects — providing design, planning and fit-out solutions across India.
-        </p>
-      </div>
+          <div>
+            <p
+              style={{
+                fontFamily:    'var(--font-body)',
+                fontSize:      10,
+                fontWeight:    600,
+                letterSpacing: 3,
+                textTransform: 'uppercase',
+                color:         'var(--gold)',
+                marginBottom:  12,
+              }}
+            >
+              What We Do
+            </p>
+            <h2
+              style={{
+                fontFamily:    'var(--font-display)',
+                fontSize:      'clamp(28px, 3.5vw, 48px)',
+                fontWeight:    300,
+                color:         '#ffffff',
+                letterSpacing: 1,
+              }}
+            >
+              Our Services
+            </h2>
+          </div>
+
+          <p
+            style={{
+              fontFamily: 'var(--font-body)',
+              fontSize:   13,
+              color:      'rgba(255,255,255,0.45)',
+              maxWidth:   380,
+              lineHeight: 1.8,
+              textAlign:  'right',
+            }}
+          >
+            Full-service interior design for residential &amp; commercial
+            projects — providing design, planning and fit-out solutions across India.
+          </p>
+        </div>
+      </FadeInSection>
 
       <div
         className="sp-grid"
         style={{ maxWidth: 1200, margin: '0 auto' }}
       >
-        {services.map((service) => (
-          <ServiceTile key={service.slug} service={service} />
+        {services.map((service, index) => (
+          <FadeInSection key={service.slug} direction="up" delay={index * 0.12} duration={0.7}>
+            <ServiceTile service={service} />
+          </FadeInSection>
         ))}
       </div>
 

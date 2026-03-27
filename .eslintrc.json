@@ -33,7 +33,6 @@
     "unused-imports"
   ],
   "rules": {
-    // TypeScript rules
     "@typescript-eslint/no-unused-vars": [
       "error",
       {
@@ -56,7 +55,6 @@
     "@typescript-eslint/no-unnecessary-type-constraint": "error",
     "@typescript-eslint/no-confusing-void-expression": "error",
 
-    // React rules
     "react/react-in-jsx-scope": "off",
     "react/prop-types": "off",
     "react/display-name": "off",
@@ -90,11 +88,9 @@
     "react/jsx-wrap-multilines": "error",
     "react/hook-use-state": "error",
 
-    // React Hooks rules
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
 
-    // Import/Export rules
     "import/order": [
       "error",
       {
@@ -126,7 +122,6 @@
     "import/prefer-default-export": "off",
     "import/no-anonymous-default-export": "warn",
 
-    // Unused imports
     "unused-imports/no-unused-imports": "error",
     "unused-imports/no-unused-vars": [
       "error",
@@ -138,7 +133,6 @@
       }
     ],
 
-    // Accessibility rules
     "jsx-a11y/anchor-is-valid": "warn",
     "jsx-a11y/alt-text": "error",
     "jsx-a11y/anchor-has-content": "warn",
@@ -166,7 +160,6 @@
     "jsx-a11y/scope": "error",
     "jsx-a11y/tabindex-no-positive": "error",
 
-    // General rules
     "no-console": ["warn", { "allow": ["warn", "error"] }],
     "no-debugger": "error",
     "no-alert": "error",

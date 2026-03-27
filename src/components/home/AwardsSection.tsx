@@ -60,6 +60,7 @@ const AwardsSection = () => {
             ].map(({ year, scale }) => (
               <div
                 key={year}
+                className="award-badge"
                 style={{
                   background: 'var(--black)',
                   color: '#fff',
@@ -72,7 +73,16 @@ const AwardsSection = () => {
                   clipPath: 'polygon(0 0, 100% 0, 100% 86%, 50% 100%, 0 86%)',
                   transform: scale ? 'scale(1.10)' : 'scale(1)',
                   opacity: scale ? 1 : 0.75,
-                  transition: 'transform var(--transition)',
+                  transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                  cursor: 'pointer',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'scale(1.15)';
+                  e.currentTarget.style.opacity = '1';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = scale ? 'scale(1.10)' : 'scale(1)';
+                  e.currentTarget.style.opacity = scale ? '1' : '0.75';
                 }}
               >
                 <div style={{ display: 'flex', gap: 2, marginBottom: 8 }}>
@@ -183,6 +193,7 @@ const AwardsSection = () => {
             {['Interior Studio Ltd', 'IS Construction LLC'].map((name) => (
               <div
                 key={name}
+                className="certificate-card"
                 style={{
                   width: 168,
                   height: 224,
@@ -196,6 +207,16 @@ const AwardsSection = () => {
                   justifyContent: 'center',
                   padding: '20px 16px',
                   gap: 10,
+                  transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                  cursor: 'pointer',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-8px)';
+                  e.currentTarget.style.boxShadow = '0 20px 40px rgba(0,0,0,0.15)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = 'var(--shadow-md)';
                 }}
               >
                 <div

@@ -254,14 +254,14 @@ const Footer = () => {
               <p
                 style={{
                   fontFamily:    'var(--font-display)',
-                  fontSize:      11,
+                  fontSize:      14,
                   fontWeight:    300,
-                  letterSpacing: 3,
+                  letterSpacing: 4,
                   textTransform: 'uppercase',
-                  color:         'rgba(255,255,255,0.8)',
+                  color:         'rgba(255,255,255,0.9)',
                 }}
               >
-                Lumi XII
+                Interior Studio
               </p>
               <p
                 style={{
@@ -271,10 +271,10 @@ const Footer = () => {
                   textTransform: 'uppercase',
                   color:         'var(--gold)',
                   marginTop:     3,
-                  opacity:       0.8,
+                  opacity:       0.9,
                 }}
               >
-                Interior Studio
+                Luxury Design
               </p>
             </div>
           </Link>
@@ -288,7 +288,7 @@ const Footer = () => {
               letterSpacing: 0.5,
             }}
           >
-            © {new Date().getFullYear()} Lumi XII Interior Studio — All rights reserved
+            © {new Date().getFullYear()} Interior Studio — All rights reserved
           </p>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>

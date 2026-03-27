@@ -232,14 +232,14 @@ const ContactCallback = () => {
           >
             <div style={{ position: 'relative', width: '100%', height: 360 }}>
               <Image
-                src="/images/hero/hero-bg.jpg"
+                src="/images/hero/ChatGPT Image Mar 26, 2026, 09_27_00 PM.png"
                 alt="Interior Studio — Design Studio"
                 fill
                 className="object-contain object-center"
                 sizes="(max-width: 768px) 0vw, 50vw"
                 onError={(e) => {
                   (e.currentTarget as HTMLImageElement).src =
-                    '/images/projects/modern-villa-ahmedabad/cover.jpg';
+                    '/images/projects/modern-villa-ahmedabad/ChatGPT Image Mar 26, 2026, 09_14_47 PM.png';
                 }}
               />
             </div>

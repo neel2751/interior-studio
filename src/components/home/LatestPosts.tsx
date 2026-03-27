@@ -1,6 +1,7 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
+import FadeInSection from '@/components/common/FadeInSection';
 import HydrationSuppressor from '@/components/common/HydrationSuppressor';
 
 const posts = [
@@ -9,50 +10,50 @@ const posts = [
     date: '25.03.26',
     excerpt: 'Custom Interior Design, Precision Construction, and Bespoke Living Spaces Crafted to Perfection.',
     href: '/blog/modern-villa-ahmedabad',
-    image: '/images/projects/modern-villa-ahmedabad/cover.jpg',
+    image: '/images/projects/modern-villa-ahmedabad/ChatGPT Image Mar 26, 2026, 09_14_47 PM.png',
   },
   {
     title: 'The Highest Standard in Turnkey Interior Design by Interior Studio',
     date: '25.03.26',
     excerpt: 'Complete Villa Design, Renovation, and Fit-Out Delivered with Precision and Elegance.',
     href: '/blog/turnkey-interior-design',
-    image: '/images/projects/sky-penthouse-mumbai/cover.jpg',
+    image: '/images/projects/sky-penthouse-mumbai/ChatGPT Image Mar 26, 2026, 09_14_47 PM.png',
   },
   {
     title: 'Mastering Luxury Commercial Interiors with Iconic Design',
     date: '25.03.26',
     excerpt: 'Delivering Complete Outdoor Elegance Through Expert Execution and Bespoke Design.',
     href: '/blog/luxury-commercial-interiors',
-    image: '/images/projects/heritage-bungalow-pune/cover.jpg',
+    image: '/images/projects/heritage-bungalow-pune/ChatGPT Image Mar 26, 2026, 09_14_47 PM.png',
   },
   {
     title: 'Interior Studio: Redefining Excellence as the Top Design Firm',
     date: '25.03.26',
     excerpt: 'Delivering Bespoke Luxury, Precision Engineering, and Full-Service Turnkey Solutions.',
     href: '/blog/top-design-firm',
-    image: '/images/projects/boutique-hotel-goa/cover.jpg',
+    image: '/images/projects/boutique-hotel-goa/ChatGPT Image Mar 26, 2026, 09_14_47 PM.png',
   },
 ];
 
 const videos = [
   {
     title: 'Modern Villa Ahmedabad — Before & After | Ultra-Luxury Living',
-    thumbnail: '/images/projects/modern-villa-ahmedabad/cover.jpg',
+    thumbnail: '/images/projects/modern-villa-ahmedabad/ChatGPT Image Mar 26, 2026, 09_14_47 PM.png',
     href: '#',
   },
   {
     title: 'World Class Penthouse Interiors | Full Renovation & Fit-Out',
-    thumbnail: '/images/projects/sky-penthouse-mumbai/cover.jpg',
+    thumbnail: '/images/projects/sky-penthouse-mumbai/ChatGPT Image Mar 26, 2026, 09_14_47 PM.png',
     href: '#',
   },
   {
     title: 'Full Luxury Villa Renovation & Project Showcase — Pune',
-    thumbnail: '/images/projects/heritage-bungalow-pune/cover.jpg',
+    thumbnail: '/images/projects/heritage-bungalow-pune/ChatGPT Image Mar 26, 2026, 09_14_47 PM.png',
     href: '#',
   },
   {
     title: 'Boutique Hotel Goa — Interior Design Reveal',
-    thumbnail: '/images/projects/boutique-hotel-goa/cover.jpg',
+    thumbnail: '/images/projects/boutique-hotel-goa/ChatGPT Image Mar 26, 2026, 09_14_47 PM.png',
     href: '#',
   },
 ];
@@ -140,86 +141,86 @@ const LatestPosts = () => {
             className="posts-grid-responsive"
           >
             {posts.map((post, i) => (
-              <Link
-                key={i}
-                href={post.href}
-                className="group"
-                style={{ display: 'block', textDecoration: 'none' }}
-              >
-
-                <div
-                  style={{
-                    position: 'relative',
-                    width: '100%',
-                    aspectRatio: '4/3',
-                    overflow: 'hidden',
-                    borderRadius: 4,
-                    marginBottom: 14,
-                  }}
+              <FadeInSection key={i} direction="up" delay={i * 0.08} duration={0.6}>
+                <Link
+                  href={post.href}
+                  className="group"
+                  style={{ display: 'block', textDecoration: 'none' }}
                 >
-                  <Image
-                    src={post.image}
-                    alt={post.title}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                  />
-                </div>
+                  <div
+                    style={{
+                      position: 'relative',
+                      width: '100%',
+                      aspectRatio: '4/3',
+                      overflow: 'hidden',
+                      borderRadius: 4,
+                      marginBottom: 14,
+                    }}
+                  >
+                    <Image
+                      src={post.image}
+                      alt={post.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    />
+                  </div>
 
-                <p
-                  style={{
-                    fontFamily: 'var(--font-body)',
-                    fontSize: 11,
-                    color: 'var(--grey-text)',
-                    marginBottom: 8,
-                  }}
-                >
-                  {post.date}
-                </p>
+                  <p
+                    style={{
+                      fontFamily: 'var(--font-body)',
+                      fontSize: 11,
+                      color: 'var(--grey-text)',
+                      marginBottom: 8,
+                    }}
+                  >
+                    {post.date}
+                  </p>
 
-                <h3
-                  style={{
-                    fontFamily: 'var(--font-body)',
-                    fontSize: 13,
-                    fontWeight: 500,
-                    color: 'var(--black)',
-                    lineHeight: 1.55,
-                    marginBottom: 8,
-                    transition: 'color var(--transition)',
-                  }}
-                  className="group-hover:text-gold-hover"
-                >
-                  {post.title}
-                </h3>
+                  <h3
+                    style={{
+                      fontFamily: 'var(--font-body)',
+                      fontSize: 13,
+                      fontWeight: 500,
+                      color: 'var(--black)',
+                      lineHeight: 1.55,
+                      marginBottom: 8,
+                      transition: 'color var(--transition)',
+                    }}
+                    className="group-hover:text-gold-hover"
+                  >
+                    {post.title}
+                  </h3>
 
-                <p
-                  className="line-clamp-2"
-                  style={{
-                    fontFamily: 'var(--font-body)',
-                    fontSize: 12,
-                    color: 'var(--grey-text)',
-                    lineHeight: 1.7,
-                    marginBottom: 12,
-                  }}
-                >
-                  {post.excerpt}
-                </p>
+                  <p
+                    className="line-clamp-2"
+                    style={{
+                      fontFamily: 'var(--font-body)',
+                      fontSize: 12,
+                      color: 'var(--grey-text)',
+                      lineHeight: 1.7,
+                      marginBottom: 12,
+                    }}
+                  >
+                    {post.excerpt}
+                  </p>
 
-                <span
-                  style={{
-                    fontFamily: 'var(--font-body)',
-                    fontSize: 10,
-                    fontWeight: 600,
-                    letterSpacing: 2,
-                    textTransform: 'uppercase',
-                    color: 'var(--gold)',
-                    borderBottom: '1px solid var(--gold)',
-                    paddingBottom: 2,
-                  }}
-                >
-                  Read More →
-                </span>
-              </Link>
+                  <span
+                    style={{
+                      fontFamily: 'var(--font-body)',
+                      fontSize: 10,
+                      fontWeight: 600,
+                      letterSpacing: 2,
+                      textTransform: 'uppercase',
+                      color: 'var(--gold)',
+                      borderBottom: '1px solid var(--gold)',
+                      paddingBottom: 2,
+                    }}
+                  >
+                    Read More →
+                  </span>
+                </Link>
+              </FadeInSection>
             ))}
           </div>
         </div>
@@ -259,105 +260,106 @@ const LatestPosts = () => {
             className="posts-grid-responsive"
           >
             {videos.map((video, i) => (
-              <Link
-                key={i}
-                href={video.href}
-                className="group"
-                style={{ display: 'block', textDecoration: 'none' }}
-              >
-                <div
-                  style={{
-                    position: 'relative',
-                    width: '100%',
-                    aspectRatio: '16/9',
-                    overflow: 'hidden',
-                    borderRadius: 4,
-                    marginBottom: 12,
-                  }}
+              <FadeInSection key={i} direction="up" delay={i * 0.08} duration={0.6}>
+                <Link
+                  href={video.href}
+                  className="group"
+                  style={{ display: 'block', textDecoration: 'none' }}
                 >
-                  <Image
-                    src={video.thumbnail}
-                    alt={video.title}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                  />
-
                   <div
                     style={{
-                      position: 'absolute',
-                      inset: 0,
-                      background: 'rgba(0,0,0,0.30)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      transition: 'background var(--transition)',
+                      position: 'relative',
+                      width: '100%',
+                      aspectRatio: '16/9',
+                      overflow: 'hidden',
+                      borderRadius: 4,
+                      marginBottom: 12,
                     }}
-                    className="group-hover:bg-overlay-dark"
                   >
+                    <Image
+                      src={video.thumbnail}
+                      alt={video.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    />
 
                     <div
                       style={{
-                        width: 48,
-                        height: 48,
-                        borderRadius: '50%',
-                        background: 'rgba(255,255,255,0.18)',
-                        backdropFilter: 'blur(4px)',
-                        border: '1.5px solid rgba(255,255,255,0.5)',
+                        position: 'absolute',
+                        inset: 0,
+                        background: 'rgba(0,0,0,0.30)',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
                         transition: 'background var(--transition)',
                       }}
+                      className="group-hover:bg-overlay-dark"
                     >
+
                       <div
                         style={{
-                          width: 0,
-                          height: 0,
-                          borderTop: '8px solid transparent',
-                          borderBottom: '8px solid transparent',
-                          borderLeft: '14px solid #fff',
-                          marginLeft: 3,
+                          width: 48,
+                          height: 48,
+                          borderRadius: '50%',
+                          background: 'rgba(255,255,255,0.18)',
+                          backdropFilter: 'blur(4px)',
+                          border: '1.5px solid rgba(255,255,255,0.5)',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          transition: 'background var(--transition)',
                         }}
-                      />
+                      >
+                        <div
+                          style={{
+                            width: 0,
+                            height: 0,
+                            borderTop: '8px solid transparent',
+                            borderBottom: '8px solid transparent',
+                            borderLeft: '14px solid #fff',
+                            marginLeft: 3,
+                          }}
+                        />
+                      </div>
+                    </div>
+
+                    <div
+                      style={{
+                        position: 'absolute',
+                        top: 10,
+                        left: 12,
+                      }}
+                    >
+                      <span
+                        style={{
+                          fontFamily: 'var(--font-display)',
+                          fontSize: 10,
+                          fontWeight: 700,
+                          letterSpacing: 2,
+                          color: 'rgba(255,255,255,0.8)',
+                          textTransform: 'uppercase',
+                        }}
+                      >
+                        INTERIOR STUDIO
+                      </span>
                     </div>
                   </div>
 
-                  <div
+                  <p
+                    className="line-clamp-2"
                     style={{
-                      position: 'absolute',
-                      top: 10,
-                      left: 12,
+                      fontFamily: 'var(--font-body)',
+                      fontSize: 12,
+                      color: 'var(--grey-dark)',
+                      lineHeight: 1.6,
+                      transition: 'color var(--transition)',
                     }}
                   >
-                    <span
-                      style={{
-                        fontFamily: 'var(--font-display)',
-                        fontSize: 10,
-                        fontWeight: 700,
-                        letterSpacing: 2,
-                        color: 'rgba(255,255,255,0.8)',
-                        textTransform: 'uppercase',
-                      }}
-                    >
-                      INTERIOR STUDIO
-                    </span>
-                  </div>
-                </div>
-
-                <p
-                  className="line-clamp-2"
-                  style={{
-                    fontFamily: 'var(--font-body)',
-                    fontSize: 12,
-                    color: 'var(--grey-dark)',
-                    lineHeight: 1.6,
-                    transition: 'color var(--transition)',
-                  }}
-                >
-                  {video.title}
-                </p>
-              </Link>
+                    {video.title}
+                  </p>
+                </Link>
+              </FadeInSection>
             ))}
           </div>
         </div>

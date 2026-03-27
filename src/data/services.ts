@@ -8,7 +8,7 @@ export const SERVICES: Service[] = [
     description: 'Transform your home into a personalized sanctuary that reflects your lifestyle.',
     detailedDescription: 'Our residential interior design services focus on creating beautiful, functional living spaces that enhance your daily life. From concept to completion, we work closely with you to design homes that are both aesthetically pleasing and perfectly suited to your needs.',
     icon: '/icons/residential.svg',
-    image: '/images/services/residential.jpg',
+    image: '/images/projects/modern-villa-ahmedabad/ChatGPT Image Mar 26, 2026, 09_14_47 PM.png',
     process: [
       'Space planning and layout optimization',
       'Color scheme and material selection',
@@ -39,7 +39,7 @@ export const SERVICES: Service[] = [
     description: 'Create inspiring commercial spaces that enhance productivity and brand identity.',
     detailedDescription: 'We specialize in designing commercial interiors that balance aesthetics with functionality. Our commercial projects include offices, retail spaces, restaurants, and hospitality venues that reflect your brand identity while optimizing for user experience and business efficiency.',
     icon: '/icons/commercial.svg',
-    image: '/images/services/commercial.jpg',
+    image: '/images/projects/tech-office-bangalore/ChatGPT Image Mar 26, 2026, 09_14_47 PM.png',
     process: [
       'Brand analysis and space requirements',
       'Functional layout and workflow optimization',
@@ -70,7 +70,7 @@ export const SERVICES: Service[] = [
     description: 'Design productive work environments that foster collaboration and employee well-being.',
     detailedDescription: 'Our office interior design services create workspaces that boost productivity, enhance employee satisfaction, and reflect your company culture. We design everything from open-plan offices to private executive suites, ensuring optimal functionality and professional aesthetics.',
     icon: '/icons/office.svg',
-    image: '/images/services/office.jpg',
+    image: '/images/projects/sky-penthouse-mumbai/ChatGPT Image Mar 26, 2026, 09_14_47 PM.png',
     process: [
       'Workplace strategy and space analysis',
       'Ergonomic furniture selection',
@@ -101,7 +101,7 @@ export const SERVICES: Service[] = [
     description: 'Create memorable hospitality experiences through thoughtful interior design.',
     detailedDescription: 'We specialize in designing hospitality spaces that create lasting impressions. From hotels and restaurants to cafes and bars, our designs balance aesthetics with functionality, ensuring optimal guest experiences while maintaining operational efficiency.',
     icon: '/icons/hospitality.svg',
-    image: '/images/services/hospitality.jpg',
+    image: '/images/projects/boutique-hotel-goa/ChatGPT Image Mar 26, 2026, 09_14_47 PM.png',
     process: [
       'Guest experience analysis',
       'Concept development and theming',

@@ -48,7 +48,6 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Interior Studio Ltd - Transforming Spaces, Inspiring Lives",
   description: "Interior Studio Ltd creates exceptional living and working environments through thoughtful design, innovative solutions, and exceptional craftsmanship.",
-  // ... more metadata
 };
 
 export default function RootLayout({

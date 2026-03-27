@@ -8,6 +8,7 @@ import AwardsSection from '@/components/home/AwardsSection';
 import FurnitureSlider from '@/components/home/FurnitureSlider';
 import ContactCallback from '@/components/home/ContactCallback';
 import LatestPosts from '@/components/home/LatestPosts';
+import FadeInSection from '@/components/common/FadeInSection';
 import { SITE_NAME, SITE_DESCRIPTION, SITE_URL } from '@/lib/constants';
 
 export const metadata: Metadata = {
@@ -23,21 +24,37 @@ export default function Home() {
     <div>
       <Hero />
 
-      <ServicesPreview />
+      <FadeInSection direction="up" delay={0} duration={0.6}>
+        <ServicesPreview />
+      </FadeInSection>
 
-      <ServicesGrid />
+      <FadeInSection direction="left" delay={0.1} duration={0.7}>
+        <ServicesGrid />
+      </FadeInSection>
 
-      <FeaturedProjects />
+      <FadeInSection direction="scale" delay={0} duration={0.8}>
+        <FeaturedProjects />
+      </FadeInSection>
 
-      <AboutSection />
+      <FadeInSection direction="right" delay={0.1} duration={0.7}>
+        <AboutSection />
+      </FadeInSection>
 
-      <AwardsSection />
+      <FadeInSection direction="up" delay={0} duration={0.6}>
+        <AwardsSection />
+      </FadeInSection>
 
-      <FurnitureSlider />
+      <FadeInSection direction="left" delay={0.1} duration={0.7}>
+        <FurnitureSlider />
+      </FadeInSection>
 
-      <ContactCallback />
+      <FadeInSection direction="rotate" delay={0} duration={0.8}>
+        <ContactCallback />
+      </FadeInSection>
 
-      <LatestPosts />
+      <FadeInSection direction="up" delay={0.1} duration={0.6}>
+        <LatestPosts />
+      </FadeInSection>
     </div>
   );
 }
