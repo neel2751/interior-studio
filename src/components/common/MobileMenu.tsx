@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { X, Phone, Mail, MapPin } from 'lucide-react';
 import { CONTACT_INFO } from '@/lib/constants';
+import { RESIDENTIAL_SERVICES } from '@/data/residentialServices';
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -17,6 +18,12 @@ const navigation = [
   { name: 'About Us', href: '/#about' },
   { name: 'Contact',  href: '/contact' },
 ];
+
+const residentialServices = RESIDENTIAL_SERVICES.map((service) => ({
+  name: service.title,
+  href: `/services/residential/${service.slug}`,
+  icon: service.icon,
+}));
 
 const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
   return (
@@ -140,6 +147,60 @@ const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
               </li>
             ))}
           </ul>
+
+          <div className="mt-6">
+            <p
+              style={{
+                fontFamily: 'var(--font-body)',
+                fontSize: 10,
+                fontWeight: 600,
+                letterSpacing: 2,
+                color: 'var(--gold)',
+                textTransform: 'uppercase',
+                marginBottom: 12,
+              }}
+            >
+              Residential Services
+            </p>
+            <ul className="space-y-0">
+              {residentialServices.map((item) => (
+                <li key={item.name}>
+                  <Link
+                    href={item.href}
+                    onClick={onClose}
+                    className="flex items-center gap-3 py-2.5 transition-colors duration-200"
+                    style={{
+                      fontFamily: 'var(--font-body)',
+                      fontSize: 10,
+                      fontWeight: 400,
+                      letterSpacing: 1,
+                      color: 'rgba(255,255,255,0.55)',
+                    }}
+                    onMouseEnter={(e) =>
+                      ((e.currentTarget as HTMLAnchorElement).style.color = 'var(--gold)')
+                    }
+                    onMouseLeave={(e) =>
+                      ((e.currentTarget as HTMLAnchorElement).style.color = 'rgba(255,255,255,0.55)')
+                    }
+                  >
+                    {item.icon && (
+                      <img
+                        src={item.icon}
+                        alt=""
+                        style={{
+                          width: '14px',
+                          height: '14px',
+                          flexShrink: 0,
+                          opacity: 0.7,
+                        }}
+                      />
+                    )}
+                    <span>{item.name}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
 
           <div className="mt-8">
             <Link

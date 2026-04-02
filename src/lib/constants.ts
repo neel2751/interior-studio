@@ -56,28 +56,28 @@ export const HERO_STATS = [
 
 
 export const SERVICES_GRID = [
-  { title: 'Villa Interior Design',          image: '/images/projects/modern-villa-ahmedabad/ChatGPT Image Mar 26, 2026, 09_14_47 PM.png',  href: '/services/residential-interior-design' },
-  { title: 'Commercial Fit-Out',             image: '/images/projects/tech-office-bangalore/ChatGPT Image Mar 26, 2026, 09_14_47 PM.png',   href: '/services/commercial-interior-design'  },
-  { title: 'Apartment Interior Design',      image: '/images/projects/sky-penthouse-mumbai/ChatGPT Image Mar 26, 2026, 09_14_47 PM.png',  href: '/services/residential-interior-design' },
-  { title: 'Furniture & Accessories',        image: '/images/projects/boutique-hotel-goa/ChatGPT Image Mar 26, 2026, 09_14_47 PM.png',  href: '/services/hospitality-space'           },
-  { title: 'Landscape Design',               image: '/images/projects/heritage-bungalow-pune/ChatGPT Image Mar 26, 2026, 09_14_47 PM.png',       href: '/services/hospitality-space'           },
-  { title: 'Exterior Design',                image: '/images/projects/restaurant-delhi/ChatGPT Image Mar 26, 2026, 09_14_47 PM.png',   href: '/services/commercial-interior-design'  },
-  { title: 'Hotel Interior Design',          image: '/images/projects/boutique-hotel-goa/ChatGPT Image Mar 26, 2026, 09_22_39 PM.png',  href: '/services/hospitality-space'           },
-  { title: 'Office Design & Commercial',     image: '/images/projects/tech-office-bangalore/ChatGPT Image Mar 26, 2026, 09_22_39 PM.png',       href: '/services/office-interior'             },
-  { title: 'Kitchen Design',                 image: '/images/projects/modern-villa-ahmedabad/ChatGPT Image Mar 26, 2026, 09_22_39 PM.png',  href: '/services/residential-interior-design' },
-  { title: 'Bathroom Design',                image: '/images/projects/sky-penthouse-mumbai/ChatGPT Image Mar 26, 2026, 09_22_39 PM.png',  href: '/services/residential-interior-design' },
-  { title: 'Dressing Room Design',           image: '/images/projects/heritage-bungalow-pune/ChatGPT Image Mar 26, 2026, 09_22_39 PM.png',  href: '/services/residential-interior-design' },
-  { title: 'Hospital & Clinical Fit-Out',    image: '/images/projects/restaurant-delhi/ChatGPT Image Mar 26, 2026, 09_22_39 PM.png',   href: '/services/commercial-interior-design'  },
+  { title: 'Villa Interior Design',          image: '/images/services/residential.jpg',  href: '/services/residential-interior-design' },
+  { title: 'Commercial Fit-Out',             image: '/images/services/commercial.jpg',   href: '/services/commercial-interior-design'  },
+  { title: 'Apartment Interior Design',      image: '/images/services/residential.jpg',  href: '/services/residential-interior-design' },
+  { title: 'Furniture & Accessories',        image: '/images/services/hospitality.jpg',  href: '/services/hospitality-space'           },
+  { title: 'Landscape Design',               image: '/images/services/office.jpg',       href: '/services/hospitality-space'           },
+  { title: 'Exterior Design',                image: '/images/services/commercial.jpg',   href: '/services/commercial-interior-design'  },
+  { title: 'Hotel Interior Design',          image: '/images/services/hospitality.jpg',  href: '/services/hospitality-space'           },
+  { title: 'Office Design & Commercial',     image: '/images/services/office.jpg',       href: '/services/office-interior'             },
+  { title: 'Kitchen Design',                 image: '/images/services/residential.jpg',  href: '/services/residential-interior-design' },
+  { title: 'Bathroom Design',                image: '/images/services/residential.jpg',  href: '/services/residential-interior-design' },
+  { title: 'Dressing Room Design',           image: '/images/services/residential.jpg',  href: '/services/residential-interior-design' },
+  { title: 'Hospital & Clinical Fit-Out',    image: '/images/services/commercial.jpg',   href: '/services/commercial-interior-design'  },
 ];
 
 
 export const FURNITURE_CATEGORIES = [
-  { title: 'Bedroom',     image: '/images/projects/modern-villa-ahmedabad/ChatGPT Image Mar 26, 2026, 09_14_47 PM.png', href: '/services/residential-interior-design' },
-  { title: 'Dining Room', image: '/images/projects/tech-office-bangalore/ChatGPT Image Mar 26, 2026, 09_14_47 PM.png', href: '/services/hospitality-space'           },
-  { title: 'Living Room', image: '/images/projects/sky-penthouse-mumbai/ChatGPT Image Mar 26, 2026, 09_14_47 PM.png', href: '/services/residential-interior-design' },
-  { title: 'Office',      image: '/images/projects/boutique-hotel-goa/ChatGPT Image Mar 26, 2026, 09_14_47 PM.png',      href: '/services/office-interior'             },
-  { title: 'Outdoor',     image: '/images/projects/heritage-bungalow-pune/ChatGPT Image Mar 26, 2026, 09_14_47 PM.png',  href: '/services/commercial-interior-design'  },
-  { title: 'Kitchen',     image: '/images/projects/restaurant-delhi/ChatGPT Image Mar 26, 2026, 09_14_47 PM.png', href: '/services/residential-interior-design' },
+  { title: 'Bedroom',     image: '/images/services/residential.jpg', href: '/services/residential-interior-design' },
+  { title: 'Dining Room', image: '/images/services/hospitality.jpg', href: '/services/hospitality-space'           },
+  { title: 'Living Room', image: '/images/services/residential.jpg', href: '/services/residential-interior-design' },
+  { title: 'Office',      image: '/images/services/office.jpg',      href: '/services/office-interior'             },
+  { title: 'Outdoor',     image: '/images/services/commercial.jpg',  href: '/services/commercial-interior-design'  },
+  { title: 'Kitchen',     image: '/images/services/residential.jpg', href: '/services/residential-interior-design' },
 ];
 
 
@@ -94,8 +94,10 @@ export const PROJECTS: Project[] = [
     scopeOfWork: ['Space Planning', 'Custom Furniture', 'Lighting Design', 'Material Selection'],
     materials: ['Italian Marble', 'Walnut Wood', 'Brushed Brass', 'Textured Fabrics'],
     images: [
-      '/images/projects/modern-villa-ahmedabad/ChatGPT Image Mar 26, 2026, 09_14_47 PM.png',
-      '/images/projects/modern-villa-ahmedabad/ChatGPT Image Mar 26, 2026, 09_22_39 PM.png',
+      '/images/projects/modern-villa-ahmedabad/cover.jpg',
+      '/images/projects/modern-villa-ahmedabad/gallery-1.jpg',
+      '/images/projects/modern-villa-ahmedabad/gallery-2.jpg',
+      '/images/projects/modern-villa-ahmedabad/gallery-3.jpg',
     ],
     featured: true,
   },
@@ -111,8 +113,9 @@ export const PROJECTS: Project[] = [
     scopeOfWork: ['Workspace Design', 'Meeting Rooms', 'Reception Area', 'Breakout Spaces'],
     materials: ['Glass Partitions', 'Acoustic Panels', 'Sustainable Wood', 'LED Lighting'],
     images: [
-      '/images/projects/tech-office-bangalore/ChatGPT Image Mar 26, 2026, 09_14_47 PM.png',
-      '/images/projects/tech-office-bangalore/ChatGPT Image Mar 26, 2026, 09_22_39 PM.png',
+      '/images/projects/tech-office-bangalore/cover.jpg',
+      '/images/projects/tech-office-bangalore/gallery-1.jpg',
+      '/images/projects/tech-office-bangalore/gallery-2.jpg',
     ],
     featured: true,
   },
@@ -128,8 +131,9 @@ export const PROJECTS: Project[] = [
     scopeOfWork: ['Full Renovation', 'Custom Joinery', 'Home Automation', 'Terrace Design'],
     materials: ['Travertine Stone', 'Macassar Ebony', 'Bronze Fixtures', 'Silk Textiles'],
     images: [
-      '/images/projects/sky-penthouse-mumbai/ChatGPT Image Mar 26, 2026, 09_14_47 PM.png',
-      '/images/projects/sky-penthouse-mumbai/ChatGPT Image Mar 26, 2026, 09_22_39 PM.png',
+      '/images/projects/sky-penthouse-mumbai/cover.jpg',
+      '/images/projects/sky-penthouse-mumbai/gallery-1.jpg',
+      '/images/projects/sky-penthouse-mumbai/gallery-2.jpg',
     ],
     featured: true,
   },
@@ -145,8 +149,9 @@ export const PROJECTS: Project[] = [
     scopeOfWork: ['Lobby Design', 'Reception Desk', 'Lounge Areas', 'Art Curation'],
     materials: ['Terracotta Tiles', 'Teak Wood', 'Copper Accents', 'Local Artwork'],
     images: [
-      '/images/projects/boutique-hotel-goa/ChatGPT Image Mar 26, 2026, 09_14_47 PM.png',
-      '/images/projects/boutique-hotel-goa/ChatGPT Image Mar 26, 2026, 09_22_39 PM.png',
+      '/images/projects/boutique-hotel-goa/cover.jpg',
+      '/images/projects/boutique-hotel-goa/gallery-1.jpg',
+      '/images/projects/boutique-hotel-goa/gallery-2.jpg',
     ],
     featured: true,
   },
@@ -162,8 +167,9 @@ export const PROJECTS: Project[] = [
     scopeOfWork: ['Heritage Restoration', 'Custom Furniture', 'Garden Design', 'Lighting'],
     materials: ['Reclaimed Teak', 'Lime Plaster', 'Antique Brass', 'Handwoven Textiles'],
     images: [
-      '/images/projects/heritage-bungalow-pune/ChatGPT Image Mar 26, 2026, 09_14_47 PM.png',
-      '/images/projects/heritage-bungalow-pune/ChatGPT Image Mar 26, 2026, 09_22_39 PM.png',
+      '/images/projects/heritage-bungalow-pune/cover.jpg',
+      '/images/projects/heritage-bungalow-pune/gallery-1.jpg',
+      '/images/projects/heritage-bungalow-pune/gallery-2.jpg',
     ],
     featured: true,
   },
@@ -179,8 +185,9 @@ export const PROJECTS: Project[] = [
     scopeOfWork: ['Interior Design', 'Lighting Design', 'Custom Furniture', 'Art Curation'],
     materials: ['Onyx Stone', 'Velvet Upholstery', 'Gold Leaf', 'Hand-painted Tiles'],
     images: [
-      '/images/projects/restaurant-delhi/ChatGPT Image Mar 26, 2026, 09_14_47 PM.png',
-      '/images/projects/restaurant-delhi/ChatGPT Image Mar 26, 2026, 09_22_39 PM.png',
+      '/images/projects/restaurant-delhi/cover.jpg',
+      '/images/projects/restaurant-delhi/gallery-1.jpg',
+      '/images/projects/restaurant-delhi/gallery-2.jpg',
     ],
     featured: true,
   },
@@ -195,7 +202,7 @@ export const SERVICES: Service[] = [
     description: 'Transform your living spaces into personalized sanctuaries that reflect your lifestyle and aspirations.',
     detailedDescription: 'Our residential design services focus on creating homes that are both beautiful and functional. We work closely with clients to understand their needs, preferences, and lifestyle to deliver spaces that exceed expectations — from modern villas to heritage bungalows.',
     icon: '/icons/home.svg',
-    image: '/images/projects/modern-villa-ahmedabad/ChatGPT Image Mar 26, 2026, 09_14_47 PM.png',
+    image: '/images/services/residential.jpg',
     process: [
       'Initial consultation and space analysis',
       'Concept development and mood boards',
@@ -206,6 +213,7 @@ export const SERVICES: Service[] = [
     ],
     features: ['Personalized Design Solutions', 'Budget Management', 'Vendor Coordination', 'Timeline Adherence'],
     projectExamples: ['modern-villa-ahmedabad', 'sky-penthouse-mumbai', 'heritage-bungalow-pune'],
+    heroGradient: 'from-amber-900/80 via-stone-900/60 to-black',
   },
   {
     id: '2',
@@ -214,7 +222,7 @@ export const SERVICES: Service[] = [
     description: 'Create inspiring commercial spaces that enhance productivity and reinforce your brand identity.',
     detailedDescription: 'We design commercial environments that balance aesthetics with functionality, creating spaces that support business objectives while providing exceptional user experiences for customers and employees alike.',
     icon: '/icons/office.svg',
-    image: '/images/projects/tech-office-bangalore/ChatGPT Image Mar 26, 2026, 09_14_47 PM.png',
+    image: '/images/services/commercial.jpg',
     process: [
       'Brand analysis and requirements gathering',
       'Space planning and workflow optimization',
@@ -225,6 +233,7 @@ export const SERVICES: Service[] = [
     ],
     features: ['Brand Integration', 'Ergonomic Design', 'Sustainability Focus', 'Technology Integration'],
     projectExamples: ['tech-office-bangalore', 'boutique-hotel-goa', 'restaurant-delhi'],
+    heroGradient: 'from-slate-900/80 via-zinc-900/60 to-black',
   },
   {
     id: '3',
@@ -233,7 +242,7 @@ export const SERVICES: Service[] = [
     description: 'Modern office spaces designed for collaboration, productivity, and employee well-being.',
     detailedDescription: 'Our office design solutions create work environments that inspire creativity, foster collaboration, and support the changing needs of modern businesses — from startups to large corporations.',
     icon: '/icons/building.svg',
-    image: '/images/projects/sky-penthouse-mumbai/ChatGPT Image Mar 26, 2026, 09_14_47 PM.png',
+    image: '/images/services/office.jpg',
     process: [
       'Workplace strategy consultation',
       'Space audit and analysis',
@@ -244,6 +253,7 @@ export const SERVICES: Service[] = [
     ],
     features: ['Flexible Workspaces', 'Acoustic Solutions', 'Biophilic Design', 'Smart Office Integration'],
     projectExamples: ['tech-office-bangalore'],
+    heroGradient: 'from-blue-900/80 via-slate-900/60 to-black',
   },
   {
     id: '4',
@@ -252,7 +262,7 @@ export const SERVICES: Service[] = [
     description: 'Create memorable hospitality experiences through thoughtful and immersive interior design.',
     detailedDescription: 'We design hospitality spaces that delight guests while supporting operational efficiency — from boutique hotels and resorts to restaurants, lounges, and spas across India.',
     icon: '/icons/utensils.svg',
-    image: '/images/projects/boutique-hotel-goa/ChatGPT Image Mar 26, 2026, 09_14_47 PM.png',
+    image: '/images/services/hospitality.jpg',
     process: [
       'Concept development and market analysis',
       'Guest journey mapping',
@@ -263,40 +273,46 @@ export const SERVICES: Service[] = [
     ],
     features: ['Guest Experience Focus', 'Brand Storytelling', 'Operational Efficiency', 'Durability and Maintenance'],
     projectExamples: ['boutique-hotel-goa', 'restaurant-delhi'],
+    heroGradient: 'from-emerald-900/80 via-teal-900/60 to-black',
   },
 ];
-
 
 export const PROCESS_STEPS = [
   {
     id: '1',
     title: 'Initial Consultation',
     description: 'We begin with a comprehensive discussion to understand your vision, requirements, budget, and timeline.',
+    image: '/images/process/stage-1-consultation.jpg',
   },
   {
     id: '2',
     title: 'Concept Development',
     description: 'Our team creates design concepts, mood boards, and initial space plans based on your requirements.',
+    image: '/images/process/stage-2-concept.jpg',
   },
   {
     id: '3',
     title: 'Design Planning',
     description: 'We develop detailed drawings, 3D visualizations, and material specifications for your approval.',
+    image: '/images/process/stage-3-planning.jpg',
   },
   {
     id: '4',
     title: 'Material & Furniture Selection',
     description: 'We curate and select all materials, finishes, furniture, and fixtures to bring the design to life.',
+    image: '/images/process/stage-4-materials.jpg',
   },
   {
     id: '5',
     title: 'Project Execution',
     description: 'Our team manages the entire implementation process, coordinating with contractors and vendors.',
+    image: '/images/process/stage-5-execution.jpg',
   },
   {
     id: '6',
     title: 'Final Styling & Handover',
     description: 'We add the finishing touches, conduct quality checks, and hand over your beautifully designed space.',
+    image: '/images/process/stage-6-handover.jpg',
   },
 ];
 
@@ -313,3 +329,9 @@ export const CONTACT_INFO = {
     youtube:   'InteriorStudioLtd',
   },
 };
+
+export const CACHE_TAGS = {
+  services: 'services',
+  projects: 'projects',
+  blog: 'blog',
+} as const;

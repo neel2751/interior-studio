@@ -14,7 +14,7 @@ const ServiceCard = ({ service }: ServiceCardProps) => {
       href={`/services/${service.slug}`}
       className="group bg-white border border-gray-200 rounded-lg overflow-hidden hover:border-gray-300 hover:shadow-xl transition-all duration-300"
     >
-      <div className="aspect-[16/10] bg-gray-200 overflow-hidden relative">
+      <div className="aspect-16/10 bg-gray-200 overflow-hidden relative">
         <OptimizedImage
           src={service.image}
           alt={service.title}
@@ -22,7 +22,7 @@ const ServiceCard = ({ service }: ServiceCardProps) => {
           className="group-hover:scale-105 transition-transform duration-500"
         />
 
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         <div className="absolute bottom-4 left-4 right-4 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
           <p className="text-sm font-medium mb-2">{service.title}</p>
           <div className="flex items-center text-sm">

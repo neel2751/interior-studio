@@ -1,64 +1,5 @@
 'use client';
 import Link from 'next/link';
-import { CONTACT_INFO } from '@/lib/constants';
-
-const footerColumns = [
-  {
-    title: 'Menu',
-    links: [
-      { label: 'About Us',           href: '/#about' },
-      { label: 'Process',            href: '/process' },
-      { label: 'Projects',           href: '/projects' },
-      { label: 'Contact Us',         href: '/contact' },
-      { label: 'Privacy Policy',     href: '/privacy' },
-      { label: 'Terms & Conditions', href: '/terms' },
-    ],
-  },
-  {
-    title: 'Interior Design',
-    links: [
-      { label: 'Residential Interior Design', href: '/services/residential-interior-design' },
-      { label: 'Commercial Interior Design',  href: '/services/commercial-interior-design' },
-      { label: 'Office Interior Design',      href: '/services/office-interior' },
-      { label: 'Hotel Design',                href: '/services/hospitality-space' },
-      { label: 'Villa Renovation',            href: '/services/residential-interior-design' },
-      { label: 'Clinic Interior Design',      href: '/services/commercial-interior-design' },
-    ],
-  },
-  {
-    title: 'Services',
-    links: [
-      { label: 'Villa Interior Design',     href: '/services/residential-interior-design' },
-      { label: 'Apartment Interior Design', href: '/services/residential-interior-design' },
-      { label: 'Office Fit-Out',            href: '/services/office-interior' },
-      { label: 'Retail Fit-Out',            href: '/services/commercial-interior-design' },
-      { label: 'Exterior Design',           href: '/services/commercial-interior-design' },
-      { label: 'Hotel Interior Design',     href: '/services/hospitality-space' },
-    ],
-  },
-  {
-    title: 'Furniture',
-    links: [
-      { label: 'Home Furniture',    href: '/services/hospitality-space' },
-      { label: 'Outdoor Furniture', href: '/services/hospitality-space' },
-      { label: 'Dressing Room',     href: '/services/residential-interior-design' },
-      { label: 'Office',            href: '/services/office-interior' },
-      { label: 'Bathroom',          href: '/services/residential-interior-design' },
-      { label: 'Kitchen',           href: '/services/residential-interior-design' },
-    ],
-  },
-  {
-    title: 'Contact',
-    links: [
-      { label: CONTACT_INFO.phone,  href: `tel:${CONTACT_INFO.phone}` },
-      { label: CONTACT_INFO.email,  href: `mailto:${CONTACT_INFO.email}` },
-      { label: 'Book Consultation', href: '/contact' },
-      { label: 'Studio Address',    href: '/contact' },
-      { label: 'Instagram',         href: `https://instagram.com/${CONTACT_INFO.social?.instagram || ''}` },
-      { label: 'LinkedIn',          href: `https://linkedin.com/company/${CONTACT_INFO.social?.linkedin || ''}` },
-    ],
-  },
-];
 
 const YoutubeIcon = () => (
   <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
@@ -86,38 +27,102 @@ const PinterestIcon = () => (
   </svg>
 );
 
+const YEAR = 2026;
 
 const Footer = () => {
-  const linkStyle: React.CSSProperties = {
-    fontFamily:  'var(--font-body)',
-    fontSize:    12,
-    color:       'rgba(255,255,255,0.38)',
-    transition:  'color 0.3s ease',
-    display:     'block',
-    lineHeight:  2,
+  // ── Hydration-safe contact info ──
+  const contactEmail = 'info@interiorstudioltd.com';
+  const contactPhone = '+91 98765 43210';
+
+  const linkStyle = {
+    fontFamily: 'var(--font-body)',
+    fontSize: 10,
+    letterSpacing: 0.5,
+    color: 'rgba(255,255,255,0.38)',
+    transition: 'color 0.3s ease',
+    textDecoration: 'none',
   };
+
+  const footerColumns = [
+    {
+      title: 'Menu',
+      links: [
+        { label: 'About Us',           href: '/#about' },
+        { label: 'Process',            href: '/process' },
+        { label: 'Projects',           href: '/projects' },
+        { label: 'Contact Us',         href: '/contact' },
+        { label: 'Privacy Policy',     href: '/privacy' },
+        { label: 'Terms & Conditions', href: '/terms' },
+      ],
+    },
+    {
+      title: 'Interior Design',
+      links: [
+        { label: 'Residential Interior Design', href: '/services/residential-interior-design' },
+        { label: 'Commercial Interior Design',  href: '/services/commercial-interior-design' },
+        { label: 'Office Interior Design',      href: '/services/office-interior' },
+        { label: 'Hotel Design',                href: '/services/hospitality-space' },
+        { label: 'Villa Renovation',            href: '/services/residential-interior-design' },
+        { label: 'Clinic Interior Design',      href: '/services/commercial-interior-design' },
+      ],
+    },
+    {
+      title: 'Services',
+      links: [
+        { label: 'Villa Interior Design',     href: '/services/residential-interior-design' },
+        { label: 'Apartment Interior Design', href: '/services/residential-interior-design' },
+        { label: 'Office Fit-Out',            href: '/services/office-interior' },
+        { label: 'Retail Fit-Out',            href: '/services/commercial-interior-design' },
+        { label: 'Exterior Design',           href: '/services/commercial-interior-design' },
+        { label: 'Hotel Interior Design',     href: '/services/hospitality-space' },
+      ],
+    },
+    {
+      title: 'Furniture',
+      links: [
+        { label: 'Home Furniture',    href: '/services/hospitality-space' },
+        { label: 'Outdoor Furniture', href: '/services/hospitality-space' },
+        { label: 'Dressing Room',     href: '/services/residential-interior-design' },
+        { label: 'Office',            href: '/services/office-interior' },
+        { label: 'Bathroom',          href: '/services/residential-interior-design' },
+        { label: 'Kitchen',           href: '/services/residential-interior-design' },
+      ],
+    },
+    {
+      title: 'Contact',
+      links: [
+        { label: contactPhone,  href: `tel:${contactPhone}` },
+        { label: contactEmail,  href: `mailto:${contactEmail}` },
+        { label: 'Book Consultation', href: '/contact' },
+        { label: 'Studio Address',    href: '/contact' },
+        { label: 'Instagram',         href: 'https://instagram.com/interiorstudioltd' },
+        { label: 'LinkedIn',          href: 'https://linkedin.com/company/interior-studio-ltd' },
+      ],
+    },
+  ];
 
   return (
     <footer style={{ background: 'var(--black)', color: 'var(--white)' }}>
 
+      {/* ── Top bar: tagline + contact ── */}
       <div
         style={{
-          borderBottom:   '1px solid rgba(255,255,255,0.06)',
-          padding:        '24px 48px',
-          display:        'flex',
-          alignItems:     'center',
+          borderBottom: '1px solid rgba(255,255,255,0.06)',
+          padding: '24px 48px',
+          display: 'flex',
+          alignItems: 'center',
           justifyContent: 'space-between',
-          gap:            24,
-          flexWrap:       'wrap',
+          gap: 24,
+          flexWrap: 'wrap',
         }}
       >
         <p
           style={{
-            fontFamily:  'var(--font-display)',
-            fontSize:    13,
-            fontWeight:  300,
-            fontStyle:   'italic',
-            color:       'rgba(255,255,255,0.35)',
+            fontFamily: 'var(--font-display)',
+            fontSize: 13,
+            fontWeight: 300,
+            fontStyle: 'italic',
+            color: 'rgba(255,255,255,0.35)',
             letterSpacing: 0.5,
           }}
         >
@@ -125,64 +130,70 @@ const Footer = () => {
         </p>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: 32 }}>
+          {/* ── phone: suppressHydrationWarning fixes env mismatch ── */}
           <a
-            href={`tel:${CONTACT_INFO.phone}`}
+            suppressHydrationWarning
+            href={`tel:${contactPhone}`}
             style={{
-              fontFamily:    'var(--font-body)',
-              fontSize:      11,
+              fontFamily: 'var(--font-body)',
+              fontSize: 11,
               letterSpacing: 1.5,
-              color:         'var(--gold)',
-              transition:    'opacity 0.3s ease',
+              color: 'var(--gold)',
+              transition: 'opacity 0.3s ease',
             }}
             onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.opacity = '0.7')}
             onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.opacity = '1')}
           >
-            {CONTACT_INFO.phone}
+            {contactPhone}
           </a>
+
+          {/* ── email: suppressHydrationWarning fixes env mismatch ── */}
           <a
-            href={`mailto:${CONTACT_INFO.email}`}
+            suppressHydrationWarning
+            href={`mailto:${contactEmail}`}
             style={{
-              fontFamily:    'var(--font-body)',
-              fontSize:      11,
+              fontFamily: 'var(--font-body)',
+              fontSize: 11,
               letterSpacing: 0.5,
-              color:         'rgba(255,255,255,0.35)',
-              transition:    'color 0.3s ease',
+              color: 'rgba(255,255,255,0.35)',
+              transition: 'color 0.3s ease',
             }}
             onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = 'var(--gold)')}
             onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = 'rgba(255,255,255,0.35)')}
           >
-            {CONTACT_INFO.email}
+            {contactEmail}
           </a>
         </div>
       </div>
 
+      {/* ── Main footer columns ── */}
       <div
         style={{
           maxWidth: 1200,
-          margin:   '0 auto',
-          padding:  '64px 48px 56px',
+          margin: '0 auto',
+          padding: '64px 48px 56px',
         }}
       >
         <div
           className="footer-cols"
           style={{
-            display:             'grid',
+            display: 'grid',
             gridTemplateColumns: 'repeat(5, 1fr)',
-            gap:                 '32px 24px',
-            marginBottom:        56,
+            gap: '32px 24px',
+            marginBottom: 56,
           }}
         >
           {footerColumns.map((col) => (
             <div key={col.title}>
               <h4
                 style={{
-                  fontFamily:    'var(--font-body)',
-                  fontSize:      9,
-                  fontWeight:    700,
+                  fontFamily: 'var(--font-body)',
+                  fontSize: 9,
+                  fontWeight: 700,
                   letterSpacing: 3,
                   textTransform: 'uppercase',
-                  color:         '#ffffff',
-                  marginBottom:  20,
+                  color: '#ffffff',
+                  marginBottom: 20,
                 }}
               >
                 {col.title}
@@ -193,6 +204,7 @@ const Footer = () => {
                     <Link
                       href={link.href}
                       style={linkStyle}
+                      suppressHydrationWarning
                       onMouseEnter={(e) =>
                         ((e.currentTarget as HTMLAnchorElement).style.color = 'var(--gold)')
                       }
@@ -209,27 +221,27 @@ const Footer = () => {
           ))}
         </div>
 
+        {/* ── Bottom bar: logo + copyright + socials ── */}
         <div
           className="footer-bottom"
           style={{
-            borderTop:      '1px solid rgba(255,255,255,0.07)',
-            paddingTop:     28,
-            display:        'flex',
-            alignItems:     'center',
+            borderTop: '1px solid rgba(255,255,255,0.07)',
+            paddingTop: 28,
+            display: 'flex',
+            alignItems: 'center',
             justifyContent: 'space-between',
-            gap:            24,
-            flexWrap:       'wrap',
+            gap: 24,
+            flexWrap: 'wrap',
           }}
         >
-
           <Link
             href="/"
             style={{
               textDecoration: 'none',
-              display:        'flex',
-              alignItems:     'center',
-              gap:            14,
-              flexShrink:     0,
+              display: 'flex',
+              alignItems: 'center',
+              gap: 14,
+              flexShrink: 0,
             }}
           >
             <svg
@@ -239,65 +251,91 @@ const Footer = () => {
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <text x="24" y="22" textAnchor="middle"
+              <text
+                x="24"
+                y="22"
+                textAnchor="middle"
                 fontFamily="var(--font-display, serif)"
-                fontSize="20" fontWeight="300" letterSpacing="3"
-                fill="#ffffff">LU</text>
-              <line x1="8" y1="27" x2="40" y2="27"
-                stroke="#ffffff" strokeWidth="0.6" opacity="0.4"/>
-              <text x="24" y="44" textAnchor="middle"
+                fontSize="20"
+                fontWeight="300"
+                letterSpacing="3"
+                fill="#ffffff"
+              >
+                LU
+              </text>
+              <line
+                x1="8"
+                y1="27"
+                x2="40"
+                y2="27"
+                stroke="#ffffff"
+                strokeWidth="0.6"
+                opacity="0.4"
+              />
+              <text
+                x="24"
+                y="44"
+                textAnchor="middle"
                 fontFamily="var(--font-display, serif)"
-                fontSize="16" fontWeight="300" letterSpacing="4"
-                fill="#ffffff">XII</text>
+                fontSize="16"
+                fontWeight="300"
+                letterSpacing="4"
+                fill="#ffffff"
+              >
+                XII
+              </text>
             </svg>
-            <div>
+            <div suppressHydrationWarning>
               <p
+                suppressHydrationWarning
                 style={{
-                  fontFamily:    'var(--font-display)',
-                  fontSize:      14,
-                  fontWeight:    300,
-                  letterSpacing: 4,
+                  fontFamily: 'var(--font-display)',
+                  fontSize: '14px',
+                  fontWeight: '300',
+                  letterSpacing: '4px',
                   textTransform: 'uppercase',
-                  color:         'rgba(255,255,255,0.9)',
+                  color: 'rgba(255,255,255,0.9)',
+                }}
+              >
+                Lumi XII
+              </p>
+              <p
+                suppressHydrationWarning
+                style={{
+                  fontFamily: 'var(--font-body)',
+                  fontSize: '8px',
+                  letterSpacing: '3px',
+                  textTransform: 'uppercase',
+                  color: 'var(--gold)',
+                  marginTop: '3px',
+                  opacity: '0.9',
                 }}
               >
                 Interior Studio
-              </p>
-              <p
-                style={{
-                  fontFamily:    'var(--font-body)',
-                  fontSize:      8,
-                  letterSpacing: 3,
-                  textTransform: 'uppercase',
-                  color:         'var(--gold)',
-                  marginTop:     3,
-                  opacity:       0.9,
-                }}
-              >
-                Luxury Design
               </p>
             </div>
           </Link>
 
           <p
+            suppressHydrationWarning
             style={{
               fontFamily: 'var(--font-body)',
-              fontSize:   10,
-              color:      'rgba(255,255,255,0.22)',
-              textAlign:  'center',
+              fontSize: 10,
+              color: 'rgba(255,255,255,0.22)',
+              textAlign: 'center',
               letterSpacing: 0.5,
             }}
           >
-            © {new Date().getFullYear()} Interior Studio — All rights reserved
+            © {YEAR} Interior Studio — All rights reserved
           </p>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
             {[
-              { href: 'https://youtube.com',                                                  icon: <YoutubeIcon />,   label: 'YouTube'   },
-              { href: `https://instagram.com/${CONTACT_INFO.social?.instagram || ''}`,        icon: <InstagramIcon />, label: 'Instagram' },
-              { href: `https://facebook.com/${CONTACT_INFO.social?.facebook || ''}`,          icon: <FacebookIcon />,  label: 'Facebook'  },
-              { href: `https://linkedin.com/company/${CONTACT_INFO.social?.linkedin || ''}`,  icon: <LinkedinIcon />,  label: 'LinkedIn'  },
-              { href: '#',                                                                     icon: <PinterestIcon />, label: 'Pinterest' },
+              { href: 'https://youtube.com',                                           icon: <YoutubeIcon />,   label: 'YouTube'   },
+              { href: 'https://instagram.com/interiorstudioltd',                      icon: <InstagramIcon />, label: 'Instagram' },
+              { href: 'https://facebook.com/InteriorStudioLtd',                      icon: <FacebookIcon />,  label: 'Facebook'  },
+              { href: 'https://linkedin.com/company/interior-studio-ltd',            icon: <LinkedinIcon />,  label: 'LinkedIn'  },
+              { href: '#',                                                            icon: <PinterestIcon />, label: 'Pinterest' },
             ].map((s) => (
               <a
                 key={s.label}
@@ -306,9 +344,9 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 aria-label={s.label}
                 style={{
-                  color:      'rgba(255,255,255,0.28)',
+                  color: 'rgba(255,255,255,0.28)',
                   transition: 'color 0.3s ease',
-                  display:    'flex',
+                  display: 'flex',
                 }}
                 onMouseEnter={(e) =>
                   ((e.currentTarget as HTMLAnchorElement).style.color = 'var(--gold)')

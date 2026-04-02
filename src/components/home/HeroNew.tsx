@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback, useRef } from 'react';
+import Link from 'next/link';
 
 const SLIDES = [
   {
@@ -337,7 +338,7 @@ const Hero = () => {
 
         <TextReveal delay={isLoaded ? 900 : 0}>
           <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', justifyContent: 'center' }}>
-            <a
+            <Link
               href="/projects"
               style={{
                 display: 'inline-flex',
@@ -365,8 +366,8 @@ const Hero = () => {
               }}
             >
               View Projects
-            </a>
-            <a
+            </Link>
+            <Link
               href="/contact"
               style={{
                 display: 'inline-flex',
@@ -396,7 +397,7 @@ const Hero = () => {
               }}
             >
               Get in Touch
-            </a>
+            </Link>
           </div>
         </TextReveal>
         <TextReveal delay={isLoaded ? 1200 : 0}>

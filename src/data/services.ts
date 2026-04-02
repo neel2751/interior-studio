@@ -30,7 +30,8 @@ export const SERVICES: Service[] = [
       'Luxury Villa in South Mumbai',
       'Contemporary Home in Powai',
       'Minimalist Flat in Andheri'
-    ]
+    ],
+    heroGradient: 'linear-gradient(135deg, #1a1a1a 0%, #2a2010 50%, #1a1a1a 100%)'
   },
   {
     id: '2',
@@ -61,7 +62,8 @@ export const SERVICES: Service[] = [
       'Retail Store in Colaba',
       'Restaurant in Worli',
       'Coworking Space in Lower Parel'
-    ]
+    ],
+    heroGradient: 'linear-gradient(135deg, #1a1a1a 0%, #2a2010 50%, #1a1a1a 100%)'
   },
   {
     id: '3',
@@ -92,7 +94,8 @@ export const SERVICES: Service[] = [
       'Law Firm in Fort',
       'Financial Services in Nariman Point',
       'Creative Agency in Khar'
-    ]
+    ],
+    heroGradient: 'linear-gradient(135deg, #1a1a1a 0%, #2a2010 50%, #1a1a1a 100%)'
   },
   {
     id: '4',
@@ -123,7 +126,8 @@ export const SERVICES: Service[] = [
       'Fine Dining Restaurant in Bandra',
       'Café in Juhu',
       'Bar in Lower Parel'
-    ]
+    ],
+    heroGradient: 'linear-gradient(135deg, #1a1a1a 0%, #2a2010 50%, #1a1a1a 100%)'
   }
 ];
 

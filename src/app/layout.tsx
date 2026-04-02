@@ -63,12 +63,12 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      data-scroll-behavior="smooth"
       className={`${cormorant.variable} ${jost.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col" style={{ fontFamily: "var(--font-body)" }}>
         <div>
           <NavbarClient />
-          {/* Placeholder for browser extension WhatsApp FAB */}
           <a
             href="https://wa.me/1234567890"
             target="_blank"

@@ -1,12 +1,9 @@
 import { notFound } from 'next/navigation';
 import { SERVICES } from '@/lib/constants';
 import ServiceDetail from '@/components/services/ServiceDetail';
-import Section from '@/components/common/Section';
 
 interface ServicePageProps {
-  params: {
-    slug: string;
-  };
+  params: Promise<{ slug: string }>;
 }
 
 export default async function ServicePage({ params }: ServicePageProps) {
@@ -17,13 +14,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
     notFound();
   }
 
-  return (
-    <div className="pt-20">
-      <Section>
-        <ServiceDetail service={service} />
-      </Section>
-    </div>
-  );
+  return <ServiceDetail service={service} />;
 }
 
 export async function generateStaticParams() {

@@ -3,173 +3,229 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import Link from "next/link";
 
-const NAV_ITEMS = [
-  { name: "Home", href: "/", dropdown: null },
+interface DropdownItem {
+  label: string;
+  href: string;
+  icon?: string;
+}
+
+interface NavItem {
+  name: string;
+  href: string;
+  dropdown: DropdownItem[] | null;
+}
+
+const NAV_ITEMS: NavItem[] = [
+  {
+    name: "Home",
+    href: "/",
+    dropdown: null,
+  },
+
   {
     name: "Residential",
     href: "/services/residential-interior-design",
     dropdown: [
-      { label: "Bedroom Interior Design",        href: "/services/residential-interior-design" },
-      { label: "Master Bedroom",                 href: "/services/residential-interior-design" },
-      { label: "Home Library",                   href: "/services/residential-interior-design" },
-      { label: "Landscape Design",               href: "/services/residential-interior-design" },
-      { label: "Kitchen Interior",               href: "/services/residential-interior-design" },
-      { label: "Home Furniture",                 href: "/services/residential-interior-design" },
-      { label: "Bungalow",                       href: "/services/residential-interior-design" },
-      { label: "Chilekotha",                     href: "/services/residential-interior-design" },
-      { label: "3-Bedroom Flat Interior Design", href: "/services/residential-interior-design" },
-      { label: "Condo Design",                   href: "/services/residential-interior-design" },
-      { label: "Home Gym Design",                href: "/services/residential-interior-design" },
-      { label: "Small Bedroom",                  href: "/services/residential-interior-design" },
-      { label: "Bedroom Wall",                   href: "/services/residential-interior-design" },
-      { label: "Wooden House",                   href: "/services/residential-interior-design" },
-      { label: "Loft Interior Design",           href: "/services/residential-interior-design" },
-      { label: "Home Decor Products",            href: "/services/residential-interior-design" },
-      { label: "Studio Apartment",               href: "/services/residential-interior-design" },
-      { label: "Apartment Exterior Design",      href: "/services/residential-interior-design" },
-      { label: "Villa Exterior Design",          href: "/services/residential-interior-design" },
-      { label: "Drawing Room",                   href: "/services/residential-interior-design" },
-      { label: "Child Bedroom",                  href: "/services/residential-interior-design" },
-      { label: "Living Room",                    href: "/services/residential-interior-design" },
-      { label: "Apartment",                      href: "/services/residential-interior-design" },
-      { label: "Villa Design",                   href: "/services/residential-interior-design" },
-      { label: "Living Space Design",            href: "/services/residential-interior-design" },
-      { label: "Duplex Interior",                href: "/services/residential-interior-design" },
-      { label: "Dining Room",                    href: "/services/residential-interior-design" },
-      { label: "Study Unit",                     href: "/services/residential-interior-design" },
-      { label: "Bathroom",                       href: "/services/residential-interior-design" },
-      { label: "Village House",                  href: "/services/residential-interior-design" },
-      { label: "Wall Cabinet",                   href: "/services/residential-interior-design" },
-      { label: "Virtual",                        href: "/services/residential-interior-design" },
-      { label: "Gaming Room",                    href: "/services/residential-interior-design" },
-      { label: "Kids Furniture Design",          href: "/services/residential-interior-design" },
-      { label: "Bedroom Wall Paint",             href: "/services/residential-interior-design" },
-      { label: "Building Design",                href: "/services/residential-interior-design" },
+      { label: "Residential Interior Design", href: "/services/residential-interior-design" },
+      { label: "Bedroom Interior Design",      href: "/services/residential-interior-design/bedroom-interior-design" },
+      { label: "Master Bedroom",               href: "/services/residential-interior-design/master-bedroom" },
+      { label: "Living Room",                  href: "/services/residential-interior-design/living-room" },
+      { label: "Drawing Room",                 href: "/services/residential-interior-design/drawing-room" },
+      { label: "Dining Room",                  href: "/services/residential-interior-design/dining-room" },
+      { label: "Kitchen Interior",             href: "/services/residential-interior-design/kitchen-interior" },
+      { label: "Bathroom",                     href: "/services/residential-interior-design/bathroom" },
+      { label: "Child Bedroom",                href: "/services/residential-interior-design/child-bedroom" },
+      { label: "Home Library",                 href: "/services/residential-interior-design/home-library" },
+      { label: "Home Gym Design",              href: "/services/residential-interior-design/home-gym-design" },
+      { label: "Gaming Room",                  href: "/services/residential-interior-design/gaming-room" },
+      { label: "Study Unit",                   href: "/services/residential-interior-design/study-unit" },
+      { label: "Dressing Room",                href: "/services/residential-interior-design/dressing-room" },
+      { label: "Wall Cabinet",                 href: "/services/residential-interior-design/wall-cabinet" },
+      { label: "Apartment",                    href: "/services/residential-interior-design/apartment" },
+      { label: "Studio Apartment",             href: "/services/residential-interior-design/studio-apartment" },
+      { label: "Duplex Interior",              href: "/services/residential-interior-design/duplex-interior" },
+      { label: "Villa Design",                 href: "/services/residential-interior-design/villa-design" },
+      { label: "Bungalow",                     href: "/services/residential-interior-design/bungalow" },
+      { label: "Loft Interior Design",         href: "/services/residential-interior-design/loft-interior-design" },
+      { label: "Wooden House",                 href: "/services/residential-interior-design/wooden-house" },
+      { label: "Village House",                href: "/services/residential-interior-design/village-house" },
+      { label: "Landscape Design",             href: "/services/residential-interior-design/landscape-design" },
+      { label: "Apartment Exterior Design",    href: "/services/residential-interior-design/apartment-exterior-design" },
+      { label: "Villa Exterior Design",        href: "/services/residential-interior-design/villa-exterior-design" },
+      { label: "Home Furniture",               href: "/services/residential-interior-design/home-furniture" },
+      { label: "Kids Furniture Design",        href: "/services/residential-interior-design/kids-furniture-design" },
+      { label: "Home Decor Products",          href: "/services/residential-interior-design/home-decor-products" },
+      { label: "Bedroom Wall",                 href: "/services/residential-interior-design/bedroom-wall" },
+      { label: "Bedroom Wall Paint",           href: "/services/residential-interior-design/bedroom-wall-paint" },
+      { label: "Small Bedroom",                href: "/services/residential-interior-design/small-bedroom" },
+      { label: "3-Bedroom Flat Interior",      href: "/services/residential-interior-design/3-bedroom-flat" },
+      { label: "Condo Design",                 href: "/services/residential-interior-design/condo-design" },
+      { label: "Chilekotha",                   href: "/services/residential-interior-design/chilekotha" },
+      { label: "Building Design",              href: "/services/residential-interior-design/building-design" },
+      { label: "Virtual Tour",                 href: "/services/residential-interior-design/virtual-tour" },
+      { label: "Living Space Design",          href: "/services/residential-interior-design/living-space-design" },
     ],
   },
+
   {
     name: "Commercial",
     href: "/services/commercial-interior-design",
     dropdown: [
-      { label: "Showroom",                       href: "/services/commercial-interior-design" },
-      { label: "Restaurant Design & Decoration", href: "/services/commercial-interior-design" },
-      { label: "Music Shop",                     href: "/services/commercial-interior-design" },
-      { label: "Cake Shop",                      href: "/services/commercial-interior-design" },
-      { label: "Exhibition Design",              href: "/services/commercial-interior-design" },
-      { label: "Warehouse",                      href: "/services/commercial-interior-design" },
-      { label: "Classroom Design",               href: "/services/commercial-interior-design" },
-      { label: "Dormitory",                      href: "/services/commercial-interior-design" },
-      { label: "Grocery Shop Design",            href: "/services/commercial-interior-design" },
-      { label: "Super Shop",                     href: "/services/commercial-interior-design" },
-      { label: "Small Shop",                     href: "/services/commercial-interior-design" },
-      { label: "Call Center",                    href: "/services/commercial-interior-design" },
-      { label: "Bakery",                         href: "/services/commercial-interior-design" },
-      { label: "Cloud Kitchen",                  href: "/services/commercial-interior-design" },
-      { label: "Daycare Center",                 href: "/services/commercial-interior-design" },
-      { label: "Cottage",                        href: "/services/commercial-interior-design" },
-      { label: "Gaming Cafe",                    href: "/services/commercial-interior-design" },
-      { label: "Gents Parlour",                  href: "/services/commercial-interior-design" },
-      { label: "Steel Structure Fabrication",    href: "/services/commercial-interior-design" },
-      { label: "Public Restroom",                href: "/services/commercial-interior-design" },
-      { label: "Training Center",                href: "/services/commercial-interior-design" },
-      { label: "Pop Up Store",                   href: "/services/commercial-interior-design" },
-      { label: "Clinic",                         href: "/services/commercial-interior-design" },
-      { label: "Lobby",                          href: "/services/commercial-interior-design" },
-      { label: "Hospital Interior",              href: "/services/commercial-interior-design" },
-      { label: "Pharmacy",                       href: "/services/commercial-interior-design" },
-      { label: "Buying House",                   href: "/services/commercial-interior-design" },
-      { label: "Dental Clinic",                  href: "/services/commercial-interior-design" },
-      { label: "Spa And Beauty Parlor",          href: "/services/commercial-interior-design" },
-      { label: "Law Firm",                       href: "/services/commercial-interior-design" },
-      { label: "Bank Interior",                  href: "/services/commercial-interior-design" },
-      { label: "ATM Booth",                      href: "/services/commercial-interior-design" },
-      { label: "Coffee Shop",                    href: "/services/commercial-interior-design" },
-      { label: "Jewelry Shop",                   href: "/services/commercial-interior-design" },
-      { label: "Cafeteria",                      href: "/services/commercial-interior-design" },
-      { label: "Diagnostics Center",             href: "/services/commercial-interior-design" },
-      { label: "Doctors Chamber",                href: "/services/commercial-interior-design" },
-      { label: "IT Office",                      href: "/services/commercial-interior-design" },
-      { label: "News Room",                      href: "/services/commercial-interior-design" },
-      { label: "Automobile Showroom",            href: "/services/commercial-interior-design" },
-      { label: "Food Court",                     href: "/services/commercial-interior-design" },
-      { label: "Lawn Garden",                    href: "/services/commercial-interior-design" },
-      { label: "Waiting Room",                   href: "/services/commercial-interior-design" },
-      { label: "Healthcare Center",              href: "/services/commercial-interior-design" },
-      { label: "Media Center",                   href: "/services/commercial-interior-design" },
-      { label: "Officers Club",                  href: "/services/commercial-interior-design" },
-      { label: "Turnkey Project",                href: "/services/commercial-interior-design" },
-      { label: "Rehabilitation Center",          href: "/services/commercial-interior-design" },
+      { label: "Commercial Interior Design",  href: "/services/commercial-interior-design" },
+      { label: "Showroom",                    href: "/services/commercial-interior-design/showroom" },
+      { label: "Restaurant Design",           href: "/services/commercial-interior-design/restaurant-design" },
+      { label: "Coffee Shop",                 href: "/services/commercial-interior-design/coffee-shop" },
+      { label: "Bakery",                      href: "/services/commercial-interior-design/bakery" },
+      { label: "Cafeteria",                   href: "/services/commercial-interior-design/cafeteria" },
+      { label: "Cloud Kitchen",               href: "/services/commercial-interior-design/cloud-kitchen" },
+      { label: "Food Court",                  href: "/services/commercial-interior-design/food-court" },
+      { label: "Cake Shop",                   href: "/services/commercial-interior-design/cake-shop" },
+      { label: "Jewelry Shop",                href: "/services/commercial-interior-design/jewelry-shop" },
+      { label: "Grocery Shop Design",         href: "/services/commercial-interior-design/grocery-shop" },
+      { label: "Super Shop",                  href: "/services/commercial-interior-design/super-shop" },
+      { label: "Small Shop",                  href: "/services/commercial-interior-design/small-shop" },
+      { label: "Music Shop",                  href: "/services/commercial-interior-design/music-shop" },
+      { label: "Pop Up Store",                href: "/services/commercial-interior-design/pop-up-store" },
+      { label: "Automobile Showroom",         href: "/services/commercial-interior-design/automobile-showroom" },
+      { label: "Clinic",                      href: "/services/commercial-interior-design/clinic" },
+      { label: "Dental Clinic",               href: "/services/commercial-interior-design/dental-clinic" },
+      { label: "Hospital Interior",           href: "/services/commercial-interior-design/hospital-interior" },
+      { label: "Pharmacy",                    href: "/services/commercial-interior-design/pharmacy" },
+      { label: "Diagnostics Center",          href: "/services/commercial-interior-design/diagnostics-center" },
+      { label: "Doctors Chamber",             href: "/services/commercial-interior-design/doctors-chamber" },
+      { label: "Healthcare Center",           href: "/services/commercial-interior-design/healthcare-center" },
+      { label: "Spa & Beauty Parlour",        href: "/services/commercial-interior-design/spa-beauty-parlour" },
+      { label: "Gents Parlour",               href: "/services/commercial-interior-design/gents-parlour" },
+      { label: "Bank Interior",               href: "/services/commercial-interior-design/bank-interior" },
+      { label: "ATM Booth",                   href: "/services/commercial-interior-design/atm-booth" },
+      { label: "Law Firm",                    href: "/services/commercial-interior-design/law-firm" },
+      { label: "Call Center",                 href: "/services/call-center" },
+      { label: "IT Office",                   href: "/services/commercial-interior-design/it-office" },
+      { label: "News Room",                   href: "/services/commercial-interior-design/news-room" },
+      { label: "Training Center",             href: "/services/commercial-interior-design/training-center" },
+      { label: "Classroom Design",            href: "/services/commercial-interior-design/classroom-design" },
+      { label: "Daycare Center",              href: "/services/commercial-interior-design/daycare-center" },
+      { label: "Rehabilitation Center",       href: "/services/commercial-interior-design/rehabilitation-center" },
+      { label: "Exhibition Design",           href: "/services/commercial-interior-design/exhibition-design" },
+      { label: "Lobby",                       href: "/services/commercial-interior-design/lobby" },
+      { label: "Waiting Room",                href: "/services/commercial-interior-design/waiting-room" },
+      { label: "Dormitory",                   href: "/services/commercial-interior-design/dormitory" },
+      { label: "Warehouse",                   href: "/services/commercial-interior-design/warehouse" },
+      { label: "Gaming Cafe",                 href: "/services/commercial-interior-design/gaming-cafe" },
+      { label: "Buying House",                href: "/services/commercial-interior-design/buying-house" },
+      { label: "Officers Club",               href: "/services/commercial-interior-design/officers-club" },
+      { label: "Media Center",                href: "/services/commercial-interior-design/media-center" },
+      { label: "Cottage",                     href: "/services/commercial-interior-design/cottage" },
+      { label: "Public Restroom",             href: "/services/commercial-interior-design/public-restroom" },
+      { label: "Steel Structure Fabrication", href: "/services/commercial-interior-design/steel-structure" },
+      { label: "Turnkey Project",             href: "/services/commercial-interior-design/turnkey-project" },
     ],
   },
+
   {
     name: "Office Interior",
     href: "/services/office-interior",
     dropdown: [
-      { label: "Reception Desk",       href: "/services/office-interior" },
-      { label: "Conference Room",      href: "/services/office-interior" },
-      { label: "CEO Desk",             href: "/services/office-interior" },
-      { label: "Modular Workstation",  href: "/services/office-interior" },
-      { label: "Ceiling Design",       href: "/services/office-interior" },
-      { label: "Modular Storage",      href: "/services/office-interior" },
-      { label: "Corporate Office",     href: "/services/office-interior" },
-      { label: "Office Furniture",     href: "/services/office-interior" },
-      { label: "Office Reinstatement", href: "/services/office-interior" },
-      { label: "Office Decoration",    href: "/services/office-interior" },
-      { label: "MD Room",              href: "/services/office-interior" },
-      { label: "Meeting Room",         href: "/services/office-interior" },
-      { label: "Coworking Space",      href: "/services/office-interior" },
+      { label: "Office Interior Design",  href: "/services/office-interior" },
+      { label: "Reception Desk",          href: "/services/office-interior/reception-desk" },
+      { label: "Conference Room",         href: "/services/office-interior/conference-room" },
+      { label: "Meeting Room",            href: "/services/office-interior/meeting-room" },
+      { label: "CEO Desk",                href: "/services/office-interior/ceo-desk" },
+      { label: "MD Room",                 href: "/services/office-interior/md-room" },
+      { label: "Modular Workstation",     href: "/services/office-interior/modular-workstation" },
+      { label: "Coworking Space",         href: "/services/office-interior/coworking-space" },
+      { label: "Corporate Office",        href: "/services/office-interior/corporate-office" },
+      { label: "Ceiling Design",          href: "/services/office-interior/ceiling-design" },
+      { label: "Modular Storage",         href: "/services/office-interior/modular-storage" },
+      { label: "Office Furniture",        href: "/services/office-interior/office-furniture" },
+      { label: "Office Decoration",       href: "/services/office-interior/office-decoration" },
+      { label: "Office Reinstatement",    href: "/services/office-interior/office-reinstatement" },
     ],
   },
+
   {
     name: "Hospitality",
     href: "/services/hospitality-space",
     dropdown: [
-      { label: "Hospitality Space Planning",      href: "/services/hospitality-space" },
-      { label: "Lighting Setup",                  href: "/services/hospitality-space" },
-      { label: "Kids Zone",                       href: "/services/hospitality-space" },
-      { label: "Floor Covering",                  href: "/services/hospitality-space" },
-      { label: "Branding Design",                 href: "/services/hospitality-space" },
-      { label: "Hospitality Space Wall Cladding", href: "/services/hospitality-space" },
-      { label: "Resort Interior Design",          href: "/services/hospitality-space" },
-      { label: "Indoor Swimming Pool Interior",   href: "/services/hospitality-space" },
-      { label: "Hotel Interior",                  href: "/services/hospitality-space" },
-      { label: "Rooftop Garden Design",           href: "/services/hospitality-space" },
-      { label: "Community Center",                href: "/services/hospitality-space" },
-      { label: "Auditorium",                      href: "/services/hospitality-space" },
-      { label: "Houseboat",                       href: "/services/hospitality-space" },
-      { label: "Dining Hall Interior",            href: "/services/hospitality-space" },
-      { label: "Theme Park Design",               href: "/services/hospitality-space" },
+      { label: "Hospitality Space Design",        href: "/services/hospitality-space" },
+      { label: "Hotel Interior",                  href: "/services/hospitality-space/hotel-interior" },
+      { label: "Resort Interior Design",          href: "/services/hospitality-space/resort-interior" },
+      { label: "Boutique Hotel",                  href: "/services/hospitality-space/boutique-hotel" },
+      { label: "Houseboat",                       href: "/services/hospitality-space/houseboat" },
+      { label: "Dining Hall Interior",            href: "/services/hospitality-space/dining-hall" },
+      { label: "Rooftop Garden Design",           href: "/services/hospitality-space/rooftop-garden" },
+      { label: "Indoor Swimming Pool Interior",   href: "/services/hospitality-space/indoor-swimming-pool" },
+      { label: "Community Center",                href: "/services/hospitality-space/community-center" },
+      { label: "Auditorium",                      href: "/services/hospitality-space/auditorium" },
+      { label: "Theme Park Design",               href: "/services/hospitality-space/theme-park" },
+      { label: "Kids Zone",                       href: "/services/hospitality-space/kids-zone" },
+      { label: "Hospitality Space Planning",      href: "/services/hospitality-space/space-planning" },
+      { label: "Lighting Setup",                  href: "/services/hospitality-space/lighting-setup" },
+      { label: "Floor Covering",                  href: "/services/hospitality-space/floor-covering" },
+      { label: "Branding Design",                 href: "/services/hospitality-space/branding-design" },
+      { label: "Hospitality Wall Cladding",       href: "/services/hospitality-space/wall-cladding" },
     ],
   },
+
   {
-    name: "Architecture",
-    href: "/services/commercial-interior-design",
+    name: "Projects",
+    href: "/projects",
     dropdown: [
-      { label: "Building Planning", href: "/services/commercial-interior-design" },
+      { label: "All Projects",             href: "/projects" },
+      { label: "Residential Projects",     href: "/projects?category=residential" },
+      { label: "Commercial Projects",      href: "/projects?category=commercial" },
+      { label: "Modern Villa – Ahmedabad", href: "/projects/modern-villa-ahmedabad" },
+      { label: "Tech Office – Bangalore",  href: "/projects/tech-office-bangalore" },
+      { label: "Sky Penthouse – Mumbai",   href: "/projects/sky-penthouse-mumbai" },
+      { label: "Boutique Hotel – Goa",     href: "/projects/boutique-hotel-goa" },
+      { label: "Heritage Bungalow – Pune", href: "/projects/heritage-bungalow-pune" },
+      { label: "Luxury Restaurant – Delhi",href: "/projects/restaurant-delhi" },
     ],
   },
+
+  {
+    name: "Our Process",
+    href: "/process",
+    dropdown: [
+      { label: "Our Design Process",        href: "/process" },
+      { label: "Stage 1 – Consultation",    href: "/process#consultation" },
+      { label: "Stage 2 – Concept",         href: "/process#concept" },
+      { label: "Stage 3 – Planning",        href: "/process#planning" },
+      { label: "Stage 4 – Materials",       href: "/process#materials" },
+      { label: "Stage 5 – Execution",       href: "/process#execution" },
+      { label: "Stage 6 – Handover",        href: "/process#handover" },
+    ],
+  },
+
   {
     name: "About Us",
     href: "/about",
     dropdown: [
-      { label: "Meet The Team",         href: "/about" },
-      { label: "Reviews",               href: "/about" },
-      { label: "Awards & Affiliations", href: "/about" },
-      { label: "Careers",               href: "/about" },
-      { label: "Completed Jobs",        href: "/about" },
-      { label: "Blog",                  href: "/about" },
-      { label: "Hours And Location",    href: "/about" },
-      { label: "Our Clients",           href: "/about" },
-      { label: "Design Gallery",        href: "/about" },
-      { label: "Contact Us",            href: "/contact" },
+      { label: "About Interior Studio",  href: "/about" },
+      { label: "Meet the Team",          href: "/about#team" },
+      { label: "Awards & Affiliations",  href: "/about#awards" },
+      { label: "Our Clients",            href: "/about#clients" },
+      { label: "Design Gallery",         href: "/about#gallery" },
+      { label: "Completed Jobs",         href: "/about#completed-jobs" },
+      { label: "Careers",                href: "/about#careers" },
+      { label: "Blog",                   href: "/about#blog" },
+      { label: "Reviews",                href: "/about#reviews" },
+      { label: "Hours & Location",       href: "/about#location" },
+      { label: "Contact Us",             href: "/contact" },
     ],
+  },
+
+  {
+    name: "Contact",
+    href: "/contact",
+    dropdown: null,
   },
 ];
 
 const PANEL_WIDTH = 700;
 const NAVBAR_H    = 56;
 
-const NavItem = ({ item }: { item: (typeof NAV_ITEMS)[number] }) => {
+const NavItem = ({ item }: { item: NavItem }) => {
   const [open,   setOpen]   = useState(false);
   const [hovIdx, setHovIdx] = useState<number | null>(null);
   const [left,   setLeft]   = useState(0);
@@ -178,8 +234,8 @@ const NavItem = ({ item }: { item: (typeof NAV_ITEMS)[number] }) => {
 
   const calcLeft = useCallback(() => {
     if (!ref.current) return;
-    const rect      = ref.current.getBoundingClientRect();
-    const vw        = window.innerWidth;
+    const rect       = ref.current.getBoundingClientRect();
+    const vw         = window.innerWidth;
     const itemCenter = rect.left + rect.width / 2;
     const ideal      = itemCenter - PANEL_WIDTH / 2;
     const clamped    = Math.min(ideal, vw - PANEL_WIDTH - 8);
@@ -310,9 +366,11 @@ const NavItem = ({ item }: { item: (typeof NAV_ITEMS)[number] }) => {
                               onMouseEnter={() => setHovIdx(idx)}
                               onMouseLeave={() => setHovIdx(null)}
                               style={{
-                                display:        "block",
+                                display:        "flex",
+                                alignItems:     "center",
+                                gap:            "12px",
                                 padding:        "10px 18px",
-                                color:          "#1a1a1a",
+                                color:          hovIdx === idx ? "#9a7b3c" : "#1a1a1a",
                                 fontSize:       13.5,
                                 fontWeight:     hovIdx === idx ? 700 : 400,
                                 textDecoration: "none",
@@ -321,8 +379,16 @@ const NavItem = ({ item }: { item: (typeof NAV_ITEMS)[number] }) => {
                                 overflow:       "hidden",
                                 textOverflow:   "ellipsis",
                                 fontFamily:     "'Jost', sans-serif",
+                                transition:     "color 0.15s, font-weight 0.15s",
                               }}
                             >
+                              {d.icon && (
+                                <img
+                                  src={d.icon}
+                                  alt=""
+                                  style={{ width: "16px", height: "16px", flexShrink: 0, opacity: 0.7 }}
+                                />
+                              )}
                               <span suppressHydrationWarning>{d.label}</span>
                             </Link>
                           </td>
@@ -359,11 +425,11 @@ const Navbar = () => {
     <nav
       suppressHydrationWarning
       style={{
-        position:   "fixed",
-        top:        0,
-        left:       0,
-        right:      0,
-        zIndex:     1000,
+        position:        "fixed",
+        top:             0,
+        left:            0,
+        right:           0,
+        zIndex:          1000,
         backgroundColor: "transparent",
         backgroundImage: "none",
         backdropFilter:  "none",
