@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import Button from '@/components/common/Button';
 import { CONTACT_INFO } from '@/lib/constants';
 
 function useInView(threshold = 0.12) {
@@ -166,10 +167,9 @@ function CareerCard({ job, i }: { job: (typeof CAREERS)[0]; i: number }) {
         <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 22, fontWeight: 300, color: '#fff', marginBottom: 8, lineHeight: 1.2 }}>{job.role}</h3>
         <p style={{ fontFamily: 'var(--font-body)', fontSize: 13, lineHeight: 1.7, color: 'rgba(255,255,255,0.5)' }}>{job.desc}</p>
       </div>
-      <Link href={`/contact?role=${encodeURIComponent(job.role)}`} className="abt-btn-ghost" style={{ flexShrink: 0 }}>
+      <Button href={`/contact?role=${encodeURIComponent(job.role)}`} variant="outline" size="sm" showArrow style={{ flexShrink: 0 }}>
         Apply Now
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
-      </Link>
+      </Button>
     </div>
   );
 }
@@ -196,8 +196,9 @@ function BlogCard({ post, i }: { post: (typeof BLOG_POSTS)[0]; i: number }) {
       <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(18px,2vw,24px)', fontWeight: 300, color: hov ? 'var(--gold-light)' : '#fff', lineHeight: 1.3, marginBottom: 14, transition: 'color 0.3s ease' }}>{post.title}</h3>
       <p style={{ fontFamily: 'var(--font-body)', fontSize: 13, lineHeight: 1.8, color: 'rgba(255,255,255,0.5)', marginBottom: 20 }}>{post.excerpt}</p>
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: 'var(--gold)', fontFamily: 'var(--font-body)', fontSize: 10, letterSpacing: '2px', textTransform: 'uppercase' }}>
-        Read More
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+        <Button href={`/blog/${post.title.toLowerCase().replace(' ', '-')}`} size="sm" showArrow>
+          Read More
+        </Button>
       </div>
     </div>
   );
@@ -216,24 +217,24 @@ function GalleryImage({ img, i }: { img: string; i: number }) {
 }
 export default function AboutPage() {
   const [heroVisible, setHeroVisible] = useState(false);
-  const [activeTab, setActiveTab]     = useState('team');
+  const [activeTab, setActiveTab] = useState('team');
 
   useEffect(() => { const t = setTimeout(() => setHeroVisible(true), 80); return () => clearTimeout(t); }, []);
 
   const fade = (delay: number): React.CSSProperties => ({
-    opacity:    heroVisible ? 1 : 0,
-    transform:  heroVisible ? 'translateY(0)' : 'translateY(30px)',
+    opacity: heroVisible ? 1 : 0,
+    transform: heroVisible ? 'translateY(0)' : 'translateY(30px)',
     transition: `opacity 0.8s ease ${delay}ms, transform 0.8s ease ${delay}ms`,
   });
 
   const TABS = [
-    { id: 'team',     label: 'Meet the Team' },
-    { id: 'reviews',  label: 'Reviews' },
-    { id: 'awards',   label: 'Awards' },
-    { id: 'careers',  label: 'Careers' },
-    { id: 'clients',  label: 'Our Clients' },
-    { id: 'gallery',  label: 'Gallery' },
-    { id: 'blog',     label: 'Blog' },
+    { id: 'team', label: 'Meet the Team' },
+    { id: 'reviews', label: 'Reviews' },
+    { id: 'awards', label: 'Awards' },
+    { id: 'careers', label: 'Careers' },
+    { id: 'clients', label: 'Our Clients' },
+    { id: 'gallery', label: 'Gallery' },
+    { id: 'blog', label: 'Blog' },
     { id: 'location', label: 'Location' },
   ];
 
@@ -241,10 +242,10 @@ export default function AboutPage() {
     <>
       <style>{`
         html { scroll-behavior: smooth; }
-        .abt-btn-primary { display:inline-flex;align-items:center;gap:10px;padding:16px 36px;font-family:var(--font-body);font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;text-decoration:none;background:var(--gold);color:#000;border:1.5px solid var(--gold);transition:background 0.25s,border-color 0.25s,transform 0.2s; }
-        .abt-btn-primary:hover { background:var(--gold-dark);border-color:var(--gold-dark);transform:scale(1.03); }
-        .abt-btn-ghost { display:inline-flex;align-items:center;gap:10px;padding:16px 36px;font-family:var(--font-body);font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;text-decoration:none;background:transparent;color:rgba(255,255,255,0.8);border:1.5px solid rgba(255,255,255,0.25);transition:border-color 0.25s,color 0.25s,transform 0.2s; }
-        .abt-btn-ghost:hover { border-color:var(--gold);color:var(--gold);transform:scale(1.03); }
+        .abt-btn-primary { display:inline-flex;align-items:center;gap:10px;padding:16px 36px;font-family:var(--font-body);font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;text-decoration:none;background:#c9a96e;color:#0a0a0a;border:1.5px solid #c9a96e;transition:all 0.3s ease; }
+        .abt-btn-primary:hover { background:transparent;color:#c9a96e; }
+        .abt-btn-ghost { display:inline-flex;align-items:center;gap:10px;padding:16px 36px;font-family:var(--font-body);font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;text-decoration:none;background:transparent;color:#c9a96e;border:1.5px solid #c9a96e;transition:all 0.3s ease; }
+        .abt-btn-ghost:hover { background:#c9a96e;color:#0a0a0a; }
         .abt-tab { font-family:var(--font-body);font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:12px 20px;border:none;background:transparent;cursor:pointer;transition:color 0.2s,border-color 0.2s;white-space:nowrap;border-bottom:2px solid transparent; }
         .abt-tab.active { color:var(--gold);border-bottom-color:var(--gold); }
         .abt-tab:not(.active) { color:rgba(255,255,255,0.4); }
@@ -284,11 +285,14 @@ export default function AboutPage() {
           </p>
 
           <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', ...fade(460) }}>
-            <a href="#team" className="abt-btn-primary">
+            <Button href="#team" size="lg" showArrow>
               Meet the Team
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 9l5 5 5-5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
-            </a>
-            <Link href="/contact" className="abt-btn-ghost">Work With Us</Link>
+            </Button>
+            <Link href="/contact" style={{ textDecoration: 'none' }}>
+              <Button variant="ghost" size="lg">
+                Work With Us
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -296,9 +300,9 @@ export default function AboutPage() {
       <section style={{ background: '#0a0a0a', padding: '0 48px' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
           {[
-            { v: '10+',  l: 'Years in Design' },
+            { v: '10+', l: 'Years in Design' },
             { v: '200+', l: 'Projects Completed' },
-            { v: '6',    l: 'Team Members' },
+            { v: '6', l: 'Team Members' },
             { v: '100%', l: 'Client Satisfaction' },
           ].map(({ v, l }, i) => (
             <StatCard key={l} v={v} l={l} i={i} />
@@ -327,22 +331,30 @@ export default function AboutPage() {
 
       <section className="abt-sec" style={{ background: '#0d0d0d', padding: '96px 48px' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-          <div className="abt-grid-2" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '64px 80px', alignItems: 'center' }}>
-            <AnimatedSection delay={0}>
+          <AnimatedSection delay={0}>
+            <div style={{ marginBottom: 64 }}>
               <SectionLabel>Who We Are</SectionLabel>
               <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px,3.5vw,44px)', fontWeight: 300, color: '#fff', lineHeight: 1.15, marginBottom: 20 }}>
                 A Studio Built on Craft and Conviction
               </h2>
-              <Divider />
+            </div>
+          </AnimatedSection>
+          <div className="abt-grid-2" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '64px 80px', alignItems: 'center' }}>
+            <AnimatedSection delay={0}>
+              <SectionLabel>Our Philosophy</SectionLabel>
+              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px,3.5vw,44px)', fontWeight: 300, color: '#fff', lineHeight: 1.15, marginBottom: 20 }}>
+                Designing Spaces That Define Lives
+              </h2>
               <p style={{ fontFamily: 'var(--font-body)', fontSize: 15, lineHeight: 1.9, color: 'rgba(255,255,255,0.6)', marginBottom: 24 }}>
                 Interior Studio Ltd was founded with a simple conviction: that well-designed spaces change how people feel, work, and live. Over a decade later, that conviction drives every project we take on — from the smallest apartment to the grandest hotel.
               </p>
               <p style={{ fontFamily: 'var(--font-body)', fontSize: 15, lineHeight: 1.9, color: 'rgba(255,255,255,0.6)', marginBottom: 40 }}>
                 Based in Ahmedabad with projects across India, we are a team of designers, architects, and project managers united by a passion for exceptional interiors and a commitment to delivering them without compromise.
               </p>
-              <Link href="/process" className="abt-btn-ghost">
-                Our Process
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              <Link href="/process" style={{ textDecoration: 'none' }}>
+                <Button variant="ghost" size="lg">
+                  Our Process
+                </Button>
               </Link>
             </AnimatedSection>
             <AnimatedSection delay={150}>
@@ -395,7 +407,6 @@ export default function AboutPage() {
       <section id="awards" className="abt-sec" style={{ background: '#111', padding: '96px 48px' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
           <div className="abt-grid-2" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '64px 80px' }}>
-            {/* Awards */}
             <AnimatedSection delay={0}>
               <SectionLabel>Recognition</SectionLabel>
               <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(24px,3vw,38px)', fontWeight: 300, color: '#fff', lineHeight: 1.15, marginBottom: 40 }}>Awards & Achievements</h2>
@@ -413,7 +424,6 @@ export default function AboutPage() {
               </div>
             </AnimatedSection>
 
-            {/* Affiliations */}
             <AnimatedSection delay={150}>
               <SectionLabel>Affiliations</SectionLabel>
               <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(24px,3vw,38px)', fontWeight: 300, color: '#fff', lineHeight: 1.15, marginBottom: 40 }}>Industry Memberships</h2>
@@ -425,14 +435,13 @@ export default function AboutPage() {
                   </div>
                 ))}
               </div>
-              {/* Completed jobs */}
               <div id="completed-jobs" style={{ background: 'rgba(201,169,110,0.05)', border: '1px solid rgba(201,169,110,0.2)', padding: '28px' }}>
                 <SectionLabel>Completed Jobs</SectionLabel>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 16 }}>
                   {[
                     { v: '200+', l: 'Total Projects' },
                     { v: '120+', l: 'Residential' },
-                    { v: '80+',  l: 'Commercial' },
+                    { v: '80+', l: 'Commercial' },
                   ].map(({ v, l }) => (
                     <div key={l} style={{ textAlign: 'center' }}>
                       <p style={{ fontFamily: 'var(--font-display)', fontSize: 28, fontWeight: 300, color: 'var(--gold)', lineHeight: 1, marginBottom: 6 }}>{v}</p>
@@ -492,9 +501,10 @@ export default function AboutPage() {
                 <SectionLabel>Design Gallery</SectionLabel>
                 <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px,3.5vw,44px)', fontWeight: 300, color: '#fff', lineHeight: 1.15 }}>A Glimpse of Our Work</h2>
               </div>
-              <Link href="/projects" className="abt-btn-ghost">
-                Full Portfolio
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              <Link href="/projects" style={{ textDecoration: 'none' }}>
+                <Button variant="ghost" size="lg">
+                  Full Portfolio
+                </Button>
               </Link>
             </div>
           </AnimatedSection>
@@ -529,19 +539,17 @@ export default function AboutPage() {
               <SectionLabel>Find Us</SectionLabel>
               <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px,3.5vw,44px)', fontWeight: 300, color: '#fff', lineHeight: 1.15, marginBottom: 40 }}>Hours & Location</h2>
 
-              {/* Address */}
               <div style={{ marginBottom: 40 }}>
                 <p style={{ fontFamily: 'var(--font-body)', fontSize: 10, letterSpacing: '3px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', marginBottom: 12 }}>Studio Address</p>
                 <p style={{ fontFamily: 'var(--font-body)', fontSize: 15, color: 'rgba(255,255,255,0.75)', lineHeight: 1.8 }}>{CONTACT_INFO.address}</p>
               </div>
 
-              {/* Hours */}
               <div style={{ marginBottom: 40 }}>
                 <p style={{ fontFamily: 'var(--font-body)', fontSize: 10, letterSpacing: '3px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', marginBottom: 16 }}>Opening Hours</p>
                 {[
                   { day: 'Monday – Friday', hours: '10:00 AM – 7:00 PM' },
-                  { day: 'Saturday',        hours: '10:00 AM – 5:00 PM' },
-                  { day: 'Sunday',          hours: 'Closed' },
+                  { day: 'Saturday', hours: '10:00 AM – 5:00 PM' },
+                  { day: 'Sunday', hours: 'Closed' },
                 ].map(({ day, hours }) => (
                   <div key={day} style={{ display: 'flex', justifyContent: 'space-between', padding: '12px 0', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
                     <span style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'rgba(255,255,255,0.55)' }}>{day}</span>
@@ -550,8 +558,7 @@ export default function AboutPage() {
                 ))}
               </div>
 
-              {/* Contact details */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
                 {[
                   { label: 'Phone', value: CONTACT_INFO.phone, href: `tel:${CONTACT_INFO.phone}` },
                   { label: 'Email', value: CONTACT_INFO.email, href: `mailto:${CONTACT_INFO.email}` },
@@ -566,28 +573,28 @@ export default function AboutPage() {
             </AnimatedSection>
 
             <AnimatedSection delay={150}>
-              {/* Map placeholder */}
               <div style={{ aspectRatio: '4/3', background: '#111', border: '1px solid rgba(255,255,255,0.07)', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', overflow: 'hidden', marginBottom: 24 }}>
                 <div style={{ textAlign: 'center' }}>
                   <div style={{ width: 48, height: 48, border: '1px solid rgba(201,169,110,0.3)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px' }}>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" strokeWidth="1.2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
                   </div>
                   <p style={{ fontFamily: 'var(--font-body)', fontSize: 11, letterSpacing: '2px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: 8 }}>Ahmedabad, Gujarat</p>
-                  <a href={`https://maps.google.com/?q=${encodeURIComponent(CONTACT_INFO.address)}`} target="_blank" rel="noopener noreferrer" className="abt-btn-ghost" style={{ fontSize: 10, padding: '10px 20px' }}>
-                    Open in Maps
+                  <a href={`https://maps.google.com/?q=${encodeURIComponent(CONTACT_INFO.address)}`} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+                    <Button variant="ghost" size="sm">
+                      Open in Maps
+                    </Button>
                   </a>
                 </div>
               </div>
 
-              {/* Social */}
               <div style={{ background: '#111', border: '1px solid rgba(255,255,255,0.07)', padding: '28px' }}>
                 <p style={{ fontFamily: 'var(--font-body)', fontSize: 10, letterSpacing: '3px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', marginBottom: 20 }}>Follow Us</p>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
                   {[
                     { label: 'Instagram', href: `https://instagram.com/${CONTACT_INFO.social.instagram}` },
-                    { label: 'LinkedIn',  href: `https://linkedin.com/company/${CONTACT_INFO.social.linkedin}` },
-                    { label: 'Facebook',  href: `https://facebook.com/${CONTACT_INFO.social.facebook}` },
-                    { label: 'YouTube',   href: `https://youtube.com/${CONTACT_INFO.social.youtube}` },
+                    { label: 'LinkedIn', href: `https://linkedin.com/company/${CONTACT_INFO.social.linkedin}` },
+                    { label: 'Facebook', href: `https://facebook.com/${CONTACT_INFO.social.facebook}` },
+                    { label: 'YouTube', href: `https://youtube.com/${CONTACT_INFO.social.youtube}` },
                   ].map(({ label, href }) => (
                     <a key={label} href={href} target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'var(--font-body)', fontSize: 10, letterSpacing: '1.5px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)', border: '1px solid rgba(255,255,255,0.1)', padding: '8px 16px', textDecoration: 'none', transition: 'color 0.2s, border-color 0.2s' }} onMouseEnter={e => { e.currentTarget.style.color = 'var(--gold)'; e.currentTarget.style.borderColor = 'rgba(201,169,110,0.4)'; }} onMouseLeave={e => { e.currentTarget.style.color = 'rgba(255,255,255,0.5)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)'; }}>
                       {label}
@@ -613,11 +620,16 @@ export default function AboutPage() {
               Whether you have a project in mind or simply want to learn more about how we work, we&apos;d love to hear from you.
             </p>
             <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
-              <Link href="/contact" className="abt-btn-primary">
-                Contact Us
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              <Link href="/contact" style={{ textDecoration: 'none' }}>
+                <Button size="lg" showArrow>
+                  Contact Us
+                </Button>
               </Link>
-              <Link href="/projects" className="abt-btn-ghost">View Our Work</Link>
+              <Link href="/projects" style={{ textDecoration: 'none' }}>
+                <Button variant="ghost" size="lg">
+                  View Our Work
+                </Button>
+              </Link>
             </div>
           </AnimatedSection>
         </div>

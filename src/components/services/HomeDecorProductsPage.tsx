@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { CheckCircle, ChevronLeft, ChevronRight, ShoppingBag, Palette, Frame, Lamp, Sparkles, Gift, Home, Heart } from 'lucide-react';
 import { ResidentialService } from '@/data/residentialServices';
 import Button from '@/components/common/Button';
@@ -134,11 +135,11 @@ const HomeDecorProductsPage = ({ service }: HomeDecorProductsPageProps) => {
             </div>
 
             <div className="flex flex-wrap gap-4 pt-4">
-              <Button href="/contact" size="lg">
+              <Button href="/contact" size="lg" showArrow>
                 Explore Our Collection
               </Button>
-              <Button variant="secondary" href="/projects" size="lg">
-                View Styled Spaces
+              <Button href="/projects" variant="ghost" size="lg">
+                View Projects
               </Button>
             </div>
           </div>
@@ -236,7 +237,7 @@ const HomeDecorProductsPage = ({ service }: HomeDecorProductsPageProps) => {
             ))}
           </div>
           <div className="text-center mt-12">
-            <Button href="/projects" variant="secondary" size="lg">
+            <Button href="/projects" variant="secondary" size="lg" showArrow>
               View All Projects
             </Button>
           </div>
@@ -252,7 +253,7 @@ const HomeDecorProductsPage = ({ service }: HomeDecorProductsPageProps) => {
           <p className="text-gray-300 max-w-2xl mx-auto mb-10 text-lg">
             Let us help you find the perfect decor pieces that bring your design vision to life.
           </p>
-          <Button href="/contact" className="bg-white text-teal-900 hover:bg-gray-100" size="lg">
+          <Button href="/contact" size="lg" showArrow className="bg-white text-teal-900 hover:bg-gray-100">
             Explore Decor Options
           </Button>
         </div>

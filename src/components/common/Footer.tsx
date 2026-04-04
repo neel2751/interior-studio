@@ -30,13 +30,12 @@ const PinterestIcon = () => (
 const YEAR = 2026;
 
 const Footer = () => {
-  // ── Hydration-safe contact info ──
   const contactEmail = 'info@interiorstudioltd.com';
   const contactPhone = '+91 98765 43210';
 
   const linkStyle = {
     fontFamily: 'var(--font-body)',
-    fontSize: 10,
+    fontSize: 17,
     letterSpacing: 0.5,
     color: 'rgba(255,255,255,0.38)',
     transition: 'color 0.3s ease',
@@ -104,7 +103,6 @@ const Footer = () => {
   return (
     <footer style={{ background: 'var(--black)', color: 'var(--white)' }}>
 
-      {/* ── Top bar: tagline + contact ── */}
       <div
         style={{
           borderBottom: '1px solid rgba(255,255,255,0.06)',
@@ -119,7 +117,7 @@ const Footer = () => {
         <p
           style={{
             fontFamily: 'var(--font-display)',
-            fontSize: 13,
+            fontSize: 20,
             fontWeight: 300,
             fontStyle: 'italic',
             color: 'rgba(255,255,255,0.35)',
@@ -130,13 +128,12 @@ const Footer = () => {
         </p>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: 32 }}>
-          {/* ── phone: suppressHydrationWarning fixes env mismatch ── */}
           <a
             suppressHydrationWarning
             href={`tel:${contactPhone}`}
             style={{
               fontFamily: 'var(--font-body)',
-              fontSize: 11,
+              fontSize: 18,
               letterSpacing: 1.5,
               color: 'var(--gold)',
               transition: 'opacity 0.3s ease',
@@ -147,13 +144,12 @@ const Footer = () => {
             {contactPhone}
           </a>
 
-          {/* ── email: suppressHydrationWarning fixes env mismatch ── */}
           <a
             suppressHydrationWarning
             href={`mailto:${contactEmail}`}
             style={{
               fontFamily: 'var(--font-body)',
-              fontSize: 11,
+              fontSize: 18,
               letterSpacing: 0.5,
               color: 'rgba(255,255,255,0.35)',
               transition: 'color 0.3s ease',
@@ -166,7 +162,6 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* ── Main footer columns ── */}
       <div
         style={{
           maxWidth: 1200,
@@ -188,7 +183,7 @@ const Footer = () => {
               <h4
                 style={{
                   fontFamily: 'var(--font-body)',
-                  fontSize: 9,
+                  fontSize: 16,
                   fontWeight: 700,
                   letterSpacing: 3,
                   textTransform: 'uppercase',
@@ -221,7 +216,6 @@ const Footer = () => {
           ))}
         </div>
 
-        {/* ── Bottom bar: logo + copyright + socials ── */}
         <div
           className="footer-bottom"
           style={{
@@ -290,7 +284,7 @@ const Footer = () => {
                 suppressHydrationWarning
                 style={{
                   fontFamily: 'var(--font-display)',
-                  fontSize: '14px',
+                  fontSize: '20px',
                   fontWeight: '300',
                   letterSpacing: '4px',
                   textTransform: 'uppercase',
@@ -303,7 +297,7 @@ const Footer = () => {
                 suppressHydrationWarning
                 style={{
                   fontFamily: 'var(--font-body)',
-                  fontSize: '8px',
+                  fontSize: '14px',
                   letterSpacing: '3px',
                   textTransform: 'uppercase',
                   color: 'var(--gold)',
@@ -320,13 +314,13 @@ const Footer = () => {
             suppressHydrationWarning
             style={{
               fontFamily: 'var(--font-body)',
-              fontSize: 10,
+              fontSize: 15,
               color: 'rgba(255,255,255,0.22)',
               textAlign: 'center',
               letterSpacing: 0.5,
             }}
           >
-            © {YEAR} Interior Studio — All rights reserved
+            &copy; {YEAR} Interior Studio — All rights reserved
           </p>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>

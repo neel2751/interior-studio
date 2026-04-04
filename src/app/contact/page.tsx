@@ -7,6 +7,7 @@ import { AlertCircle } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
+import Button from '@/components/common/Button';
 import { CONTACT_INFO, BUSINESS_HOURS } from '@/lib/constants';
 
 function useInView(threshold = 0.15) {
@@ -124,12 +125,6 @@ export default function ContactPage() {
         .ct-input option { background: #1a1a1a; color: #fff; }
         .ct-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
         .ct-layout  { display: flex; gap: 80px; flex-wrap: wrap; }
-        .ct-cta-primary { display:inline-flex;align-items:center;gap:10px;padding:16px 36px;font-family:var(--font-body);font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;text-decoration:none;background:var(--gold);color:#000;border:1.5px solid var(--gold);transition:background 0.25s,transform 0.2s; }
-        .ct-cta-primary:hover { background:var(--gold-dark);transform:scale(1.03); }
-        .ct-cta-ghost { display:inline-flex;align-items:center;gap:10px;padding:16px 36px;font-family:var(--font-body);font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;text-decoration:none;background:transparent;color:rgba(255,255,255,0.8);border:1.5px solid rgba(255,255,255,0.25);transition:border-color 0.25s,color 0.25s,transform 0.2s; }
-        .ct-cta-ghost:hover { border-color:var(--gold);color:var(--gold);transform:scale(1.03); }
-        .ct-social-link { font-family:var(--font-body);font-size:10px;font-weight:600;letter-spacing:1.5px;color:rgba(255,255,255,0.4);text-transform:uppercase;text-decoration:none;transition:color 0.2s; }
-        .ct-social-link:hover { color:var(--gold); }
         .ct-submit-btn { font-family:var(--font-body);font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#000;background:var(--gold);border:none;padding:15px 36px;cursor:pointer;transition:background 0.25s,transform 0.2s;display:inline-flex;align-items:center;gap:8px; }
         .ct-submit-btn:hover:not(:disabled) { background:var(--gold-dark);transform:translateY(-2px); }
         .ct-submit-btn:disabled { background:rgba(201,169,110,0.4);cursor:not-allowed; }
@@ -139,17 +134,13 @@ export default function ContactPage() {
       `}</style>
 
       <section style={{ position: 'relative', minHeight: '60vh', display: 'flex', alignItems: 'flex-end', background: 'linear-gradient(135deg, #0d0d1a 0%, #1a1a2e 40%, #0a0a0a 100%)', paddingTop: 100, overflow: 'hidden' }}>
-        {/* noise overlay */}
         <div style={{ position: 'absolute', inset: 0, backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E\")", opacity: 0.5, pointerEvents: 'none' }} />
-        {/* gold top line */}
         <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 2, background: 'linear-gradient(90deg, transparent, var(--gold), transparent)', opacity: 0.6 }} />
-        {/* large ghost word */}
         <div style={{ position: 'absolute', right: '5%', top: '50%', transform: 'translateY(-50%)', fontFamily: 'var(--font-display)', fontSize: 'clamp(100px,18vw,220px)', fontWeight: 300, color: 'rgba(255,255,255,0.025)', lineHeight: 1, userSelect: 'none', pointerEvents: 'none' }}>
           Contact
         </div>
 
         <div style={{ position: 'relative', width: '100%', maxWidth: 1200, margin: '0 auto', padding: '0 48px 80px' }}>
-          {/* breadcrumb */}
           <nav style={{ display: 'flex', alignItems: 'center', gap: 8, fontFamily: 'var(--font-body)', fontSize: 11, letterSpacing: 1.5, textTransform: 'uppercase', marginBottom: 32, opacity: heroVisible ? 1 : 0, transform: heroVisible ? 'translateY(0)' : 'translateY(20px)', transition: 'opacity 0.7s ease 0ms, transform 0.7s ease 0ms' }}>
             <Link href="/"        style={{ color: 'rgba(255,255,255,0.4)', textDecoration: 'none' }}>Home</Link>
             <span style={{ color: 'rgba(255,255,255,0.2)' }}>›</span>
@@ -166,11 +157,12 @@ export default function ContactPage() {
             Book a free consultation and let&apos;s bring your vision to life.
           </p>
           <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', opacity: heroVisible ? 1 : 0, transform: heroVisible ? 'translateY(0)' : 'translateY(32px)', transition: 'opacity 0.8s ease 460ms, transform 0.8s ease 460ms' }}>
-            <a href="#contact-form" className="ct-cta-primary">
+            <Button href="#contact-form" size="lg" showArrow>
               Book a Consultation
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 9l5 5 5-5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
-            </a>
-            <Link href="/projects" className="ct-cta-ghost">View Our Work</Link>
+            </Button>
+            <Button href="/projects" variant="ghost" size="lg">
+              View Our Work
+            </Button>
           </div>
         </div>
       </section>
@@ -203,7 +195,9 @@ export default function ContactPage() {
                     <p style={{ fontSize: 40, marginBottom: 16 }}>✓</p>
                     <p style={{ fontFamily: 'var(--font-display)', fontSize: 26, fontWeight: 300, color: 'var(--gold)', marginBottom: 12 }}>Thank You!</p>
                     <p style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'rgba(255,255,255,0.6)', marginBottom: 32, lineHeight: 1.7 }}>We&apos;ve received your enquiry and will be in touch within 24 hours.</p>
-                    <button onClick={() => setSubmitted(false)} className="ct-submit-btn">Send Another →</button>
+                    <Button onClick={() => setSubmitted(false)} size="sm">
+                      Send Another
+                    </Button>
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit(onSubmit)} noValidate style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
@@ -255,9 +249,9 @@ export default function ContactPage() {
                     )}
 
                     <div style={{ display: 'flex', alignItems: 'center', gap: 20, flexWrap: 'wrap', marginTop: 8 }}>
-                      <button type="submit" disabled={isSubmitting} className="ct-submit-btn">
+                      <Button type="submit" disabled={isSubmitting} size="lg">
                         {isSubmitting ? 'Sending...' : 'Send Enquiry →'}
-                      </button>
+                      </Button>
                       <p style={{ fontFamily: 'var(--font-body)', fontSize: 11, color: 'rgba(255,255,255,0.35)', letterSpacing: 1 }}>We respond within 24 hours</p>
                     </div>
 
@@ -282,7 +276,6 @@ export default function ContactPage() {
                   ))}
                 </div>
 
-                {/* social links */}
                 <div style={{ marginTop: 44, paddingTop: 32, borderTop: '1px solid rgba(255,255,255,0.08)' }}>
                   <p style={{ fontFamily: 'var(--font-body)', fontSize: 10, letterSpacing: 2, textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', marginBottom: 16 }}>Follow Us</p>
                   <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap' }}>
@@ -297,7 +290,6 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                {/* Quick links box */}
                 <div style={{ marginTop: 44, padding: '28px 24px', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)' }}>
                   <p style={{ fontFamily: 'var(--font-body)', fontSize: 10, letterSpacing: 2, textTransform: 'uppercase', color: 'var(--gold)', marginBottom: 20 }}>Explore More</p>
                   {[
@@ -331,11 +323,12 @@ export default function ContactPage() {
               Discover the spaces we&apos;ve crafted — from modern villas to boutique hotels across India.
             </p>
             <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
-              <Link href="/projects" className="ct-cta-primary">
+              <Button href="/projects" size="lg" showArrow>
                 View Projects
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
-              </Link>
-              <Link href="/services" className="ct-cta-ghost">Our Services</Link>
+              </Button>
+              <Button href="/services" variant="ghost" size="lg">
+                Our Services
+              </Button>
             </div>
           </AnimatedSection>
         </div>

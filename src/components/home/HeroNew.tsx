@@ -5,22 +5,22 @@ import Link from 'next/link';
 
 const SLIDES = [
   {
-    src: '/images/hero/ChatGPT Image Mar 26, 2026, 09_27_00 PM.png',
+    src: '/images/hero/hero-slide-1.png',
     fallback: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1600&q=80',
     alt: 'Luxury Living Room',
   },
   {
-    src: '/images/hero/Use AI Image Mar 26, 2026, 21_05_37.png',
+    src: '/images/hero/Use-AI-Image-Mar-26-2026-21_05_37.png',
     fallback: 'https://images.unsplash.com/photo-1600210492493-0946911123ea?w=1600&q=80',
     alt: 'Modern Interior Design',
   },
   {
-    src: '/images/projects/modern-villa-ahmedabad/ChatGPT Image Mar 26, 2026, 09_14_47 PM.png',
+    src: '/images/projects/modern-villa-ahmedabad/cover.png',
     fallback: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1600&q=80',
     alt: 'Modern Villa Ahmedabad',
   },
   {
-    src: '/images/projects/sky-penthouse-mumbai/ChatGPT Image Mar 26, 2026, 09_14_47 PM.png',
+    src: '/images/projects/sky-penthouse-mumbai/cover.png',
     fallback: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1600&q=80',
     alt: 'Sky Penthouse Mumbai',
   },

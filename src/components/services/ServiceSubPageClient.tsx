@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { Project } from '@/types/project';
+import Button from '@/components/common/Button';
 
 export interface ServiceSubPageData {
   title: string;
@@ -322,20 +323,24 @@ function AnimBtn({ href, variant, children }: {
       style={{
         display: 'inline-flex',
         alignItems: 'center',
+        justifyContent: 'center',
         gap: 10,
         padding: '16px 36px',
+        minWidth: 200,
+        height: 52,
         fontFamily: 'var(--font-body)',
         fontSize: 11,
         fontWeight: 600,
         letterSpacing: '2.5px',
         textTransform: 'uppercase',
         textDecoration: 'none',
-        transform: hov ? 'scale(1.04)' : 'scale(1)',
+        whiteSpace: 'nowrap',
+        transform: hov ? 'scale(1.02)' : 'scale(1)',
         transition: 'all 0.25s ease',
         ...(variant === 'primary' ? {
-          background: hov ? 'var(--gold-dark)' : 'var(--gold)',
-          color: '#000',
-          border: `1.5px solid ${hov ? 'var(--gold-dark)' : 'var(--gold)'}`,
+          background: hov ? 'transparent' : 'var(--gold)',
+          color: hov ? 'var(--gold)' : '#000',
+          border: '1.5px solid var(--gold)',
         } : {
           background: 'transparent',
           color: hov ? 'var(--gold)' : 'rgba(255,255,255,0.8)',
@@ -344,6 +349,9 @@ function AnimBtn({ href, variant, children }: {
       }}
     >
       {children}
+      {variant === 'ghost' && (
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+      )}
     </Link>
   );
 }
@@ -421,16 +429,26 @@ export default function ServiceSubPageClient({ service, related, breadcrumbLabel
             {service.title}
           </h1>
 
-          <p style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(16px,2vw,22px)', fontWeight: 300, fontStyle: 'italic', color: 'rgba(255,255,255,0.58)', maxWidth: 580, marginBottom: 44, ...fade(360) }}>
+          <p style={{
+            fontFamily: 'var(--font-display)',
+            fontSize: 'clamp(16px,2vw,22px)',
+            fontWeight: 300,
+            fontStyle: 'italic',
+            color: 'rgba(255,255,255,0.58)',
+            maxWidth: 580,
+            marginBottom: 44,
+            ...fade(360)
+          }}>
             {service.description}
           </p>
 
           <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', ...fade(480) }}>
-            <AnimBtn href="/contact" variant="primary">
+            <Button href="/contact" size="lg" showArrow>
               Book a Consultation
-              <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
-            </AnimBtn>
-            <AnimBtn href="/projects" variant="ghost">View Projects</AnimBtn>
+            </Button>
+            <Button href="/projects" variant="ghost" size="lg">
+              View Projects
+            </Button>
           </div>
         </div>
       </section>
@@ -505,10 +523,9 @@ export default function ServiceSubPageClient({ service, related, breadcrumbLabel
             </div>
             <AnimatedSection delay={200}>
               <div style={{ marginTop: 40, textAlign: 'center' }}>
-                <AnimBtn href={`/projects?category=${service.projectsFilter}`} variant="ghost">
+                <Button href={`/projects?category=${service.projectsFilter}`} variant="secondary" size="lg" showArrow>
                   View All {service.categoryLabel} Projects
-                  <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                </AnimBtn>
+                </Button>
               </div>
             </AnimatedSection>
           </div>
@@ -528,11 +545,12 @@ export default function ServiceSubPageClient({ service, related, breadcrumbLabel
               Let&apos;s discuss your {service.title.toLowerCase()} project. Our team is ready to bring your vision to life.
             </p>
             <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
-              <AnimBtn href="/contact" variant="primary">
+              <Button href="/contact" size="lg" showArrow>
                 Book a Consultation
-                <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
-              </AnimBtn>
-              <AnimBtn href="/projects" variant="ghost">View Our Portfolio</AnimBtn>
+              </Button>
+              <Button href="/projects" variant="ghost" size="lg">
+                View Our Portfolio
+              </Button>
             </div>
           </AnimatedSection>
         </div>

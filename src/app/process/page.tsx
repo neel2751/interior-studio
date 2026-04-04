@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import Button from '@/components/common/Button';
 import { PROCESS_STEPS } from '@/lib/constants';
 
 function useInView(threshold = 0.15) {
@@ -231,10 +232,10 @@ export default function ProcessPage() {
     <>
       <style>{`
         html { scroll-behavior: smooth; }
-        .prc-btn-primary { display:inline-flex;align-items:center;gap:10px;padding:16px 36px;font-family:var(--font-body);font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;text-decoration:none;background:var(--gold);color:#000;border:1.5px solid var(--gold);transition:background 0.25s,border-color 0.25s,transform 0.2s; }
-        .prc-btn-primary:hover { background:var(--gold-dark);border-color:var(--gold-dark);transform:scale(1.03); }
-        .prc-btn-ghost { display:inline-flex;align-items:center;gap:10px;padding:16px 36px;font-family:var(--font-body);font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;text-decoration:none;background:transparent;color:rgba(255,255,255,0.8);border:1.5px solid rgba(255,255,255,0.25);transition:border-color 0.25s,color 0.25s,transform 0.2s; }
-        .prc-btn-ghost:hover { border-color:var(--gold);color:var(--gold);transform:scale(1.03); }
+        .prc-btn-primary { display:inline-flex;align-items:center;gap:10px;padding:16px 36px;font-family:var(--font-body);font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;text-decoration:none;background:#c9a96e;color:#0a0a0a;border:1.5px solid #c9a96e;transition:all 0.3s ease; }
+        .prc-btn-primary:hover { background:transparent;color:#c9a96e; }
+        .prc-btn-ghost { display:inline-flex;align-items:center;gap:10px;padding:16px 36px;font-family:var(--font-body);font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;text-decoration:none;background:transparent;color:#c9a96e;border:1.5px solid #c9a96e;transition:all 0.3s ease; }
+        .prc-btn-ghost:hover { background:#c9a96e;color:#0a0a0a; }
         .prc-divider { width:48px;height:1px;background:var(--gold);margin:20px 0; }
 
         /* Mobile: stack timeline vertically */
@@ -281,24 +282,14 @@ export default function ProcessPage() {
 
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', ...fade(460) }}>
             {PROCESS_STEPS.map((_, i) => (
-              <button
+              <Button
                 key={i}
                 onClick={() => setActiveStep(i)}
-                style={{
-                  fontFamily:    'var(--font-body)',
-                  fontSize:      10,
-                  letterSpacing: '1.5px',
-                  textTransform: 'uppercase',
-                  padding:       '7px 16px',
-                  border:        `1px solid ${activeStep === i ? 'var(--gold)' : 'rgba(255,255,255,0.15)'}`,
-                  background:    activeStep === i ? 'var(--gold)' : 'transparent',
-                  color:         activeStep === i ? '#000' : 'rgba(255,255,255,0.5)',
-                  cursor:        'pointer',
-                  transition:    'all 0.25s ease',
-                }}
+                variant={activeStep === i ? 'default' : 'ghost'}
+                size="sm"
               >
                 {String(i + 1).padStart(2, '0')}
-              </button>
+              </Button>
             ))}
           </div>
         </div>
@@ -336,7 +327,7 @@ export default function ProcessPage() {
             <div style={{ textAlign: 'center', marginBottom: 80 }}>
               <p style={{ fontFamily: 'var(--font-body)', fontSize: 10, letterSpacing: 4, textTransform: 'uppercase', color: 'var(--gold)', marginBottom: 16 }}>Six Stages</p>
               <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px,3.5vw,48px)', fontWeight: 300, color: '#fff', lineHeight: 1.15, marginBottom: 16 }}>From Vision to Reality</h2>
-              <p style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'rgba(255,255,255,0.4)', maxWidth: 480, margin: '0 auto' }}>
+              <p style={{ fontFamily: 'var(--font-body)', fontSize: 13, lineHeight: 1.9, color: 'rgba(255,255,255,0.4)', maxWidth: 480, margin: '0 auto' }}>
                 Click any stage to explore it in detail. Each step builds naturally on the last.
               </p>
             </div>
@@ -360,7 +351,6 @@ export default function ProcessPage() {
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
           <AnimatedSection delay={0}>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 2 }} className="prc-preview">
-              {/* Stage image */}
               <div style={{ aspectRatio: '4/3', overflow: 'hidden', position: 'relative', background: '#0d0d0d' }}>
                 <img
                   src={STAGE_IMAGES[activeStep]}
@@ -383,21 +373,23 @@ export default function ProcessPage() {
                 </p>
 
                 <div style={{ display: 'flex', gap: 12 }}>
-                  <button
+                  <Button
                     onClick={() => setActiveStep(s => Math.max(0, s - 1))}
+                    variant="ghost"
+                    size="sm"
                     disabled={activeStep === 0}
-                    style={{ width: 44, height: 44, border: '1px solid rgba(255,255,255,0.15)', background: 'transparent', color: activeStep === 0 ? 'rgba(255,255,255,0.2)' : 'rgba(255,255,255,0.7)', cursor: activeStep === 0 ? 'default' : 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'border-color 0.2s, color 0.2s' }}
                   >
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                  </button>
-                  <button
+                  </Button>
+                  <Button
                     onClick={() => setActiveStep(s => Math.min(PROCESS_STEPS.length - 1, s + 1))}
+                    variant="default"
+                    size="sm"
                     disabled={activeStep === PROCESS_STEPS.length - 1}
-                    style={{ width: 44, height: 44, border: `1px solid ${activeStep === PROCESS_STEPS.length - 1 ? 'rgba(255,255,255,0.15)' : 'var(--gold)'}`, background: activeStep === PROCESS_STEPS.length - 1 ? 'transparent' : 'var(--gold)', color: activeStep === PROCESS_STEPS.length - 1 ? 'rgba(255,255,255,0.2)' : '#000', cursor: activeStep === PROCESS_STEPS.length - 1 ? 'default' : 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.25s ease' }}
                   >
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                  </button>
-                  <span style={{ fontFamily: 'var(--font-body)', fontSize: 10, letterSpacing: '2px', color: 'rgba(255,255,255,0.3)', display: 'flex', alignItems: 'center', marginLeft: 8 }}>
+                  </Button>
+                  <span style={{ fontFamily: 'var(--font-body)', fontSize: 10, letterSpacing: '2px', color: 'var(--gold)', display: 'flex', alignItems: 'center', marginLeft: 8 }}>
                     {String(activeStep + 1).padStart(2, '0')} / {String(PROCESS_STEPS.length).padStart(2, '0')}
                   </span>
                 </div>
@@ -458,11 +450,12 @@ export default function ProcessPage() {
               Let&apos;s start with a consultation to understand your vision and create a roadmap for your dream space.
             </p>
             <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
-              <Link href="/contact" className="prc-btn-primary">
+              <Button href="/contact" size="lg" showArrow>
                 Schedule Consultation
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
-              </Link>
-              <Link href="/projects" className="prc-btn-ghost">View Our Work</Link>
+              </Button>
+              <Button href="/projects" variant="ghost" size="lg">
+                View Our Work
+              </Button>
             </div>
           </AnimatedSection>
         </div>

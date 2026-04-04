@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { CheckCircle, ChevronLeft, ChevronRight, TreePine, Home, Flame, Wind, Leaf, Thermometer, Heart, Sparkles } from 'lucide-react';
 import { ResidentialService } from '@/data/residentialServices';
 import Button from '@/components/common/Button';
@@ -134,10 +135,10 @@ const WoodenHousePage = ({ service }: WoodenHousePageProps) => {
             </div>
 
             <div className="flex flex-wrap gap-4 pt-4">
-              <Button href="/contact" size="lg">
+              <Button href="/contact" size="lg" showArrow>
                 Design Your Wooden Home
               </Button>
-              <Button variant="secondary" href="/projects" size="lg">
+              <Button href="/projects" variant="ghost" size="lg">
                 View Projects
               </Button>
             </div>
@@ -262,7 +263,7 @@ const WoodenHousePage = ({ service }: WoodenHousePageProps) => {
             ))}
           </div>
           <div className="text-center mt-12">
-            <Button href="/projects" variant="secondary" size="lg">
+            <Button href="/projects" variant="secondary" size="lg" showArrow>
               View All Projects
             </Button>
           </div>
@@ -278,7 +279,7 @@ const WoodenHousePage = ({ service }: WoodenHousePageProps) => {
           <p className="text-gray-300 max-w-2xl mx-auto mb-10 text-lg">
             Let us design a wooden home interior that brings the warmth and beauty of nature into your daily life.
           </p>
-          <Button href="/contact" className="bg-white text-amber-900 hover:bg-gray-100" size="lg">
+          <Button href="/contact" size="lg" showArrow className="bg-white text-amber-900 hover:bg-gray-100">
             Start Your Wooden Home Project
           </Button>
         </div>

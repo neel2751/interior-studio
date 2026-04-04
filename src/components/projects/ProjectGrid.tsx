@@ -21,7 +21,6 @@ const CategoryFilter = ({
 }: CategoryFilterProps) => {
   return (
     <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-      {/* Category Tabs */}
       <div className="flex items-center gap-2 bg-gray-100 p-1 rounded-lg">
         {CATEGORIES.map(({ label, value }) => (
           <button

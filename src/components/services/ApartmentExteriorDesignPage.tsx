@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { CheckCircle, ChevronLeft, ChevronRight, Building, Paintbrush, Shield, Sun, Sparkles, Home, Eye } from 'lucide-react';
 import { ResidentialService } from '@/data/residentialServices';
 import Button from '@/components/common/Button';
@@ -134,10 +135,10 @@ const ApartmentExteriorDesignPage = ({ service }: ApartmentExteriorDesignPagePro
             </div>
 
             <div className="flex flex-wrap gap-4 pt-4">
-              <Button href="/contact" size="lg">
+              <Button href="/contact" size="lg" showArrow>
                 Design Your Exterior
               </Button>
-              <Button variant="secondary" href="/projects" size="lg">
+              <Button href="/projects" variant="ghost" size="lg">
                 View Projects
               </Button>
             </div>
@@ -236,7 +237,7 @@ const ApartmentExteriorDesignPage = ({ service }: ApartmentExteriorDesignPagePro
             ))}
           </div>
           <div className="text-center mt-12">
-            <Button href="/projects" variant="secondary" size="lg">
+            <Button href="/projects" variant="secondary" size="lg" showArrow>
               View All Projects
             </Button>
           </div>
@@ -252,7 +253,7 @@ const ApartmentExteriorDesignPage = ({ service }: ApartmentExteriorDesignPagePro
           <p className="text-gray-300 max-w-2xl mx-auto mb-10 text-lg">
             Let us create a stunning facade that enhances curb appeal and adds value to your property.
           </p>
-          <Button href="/contact" className="bg-white text-slate-900 hover:bg-gray-100" size="lg">
+          <Button href="/contact" size="lg" showArrow className="bg-white text-slate-900 hover:bg-gray-100">
             Start Your Exterior Project
           </Button>
         </div>

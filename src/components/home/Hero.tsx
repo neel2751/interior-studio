@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import Link from 'next/link';
 
 const SLIDES = [
   {
@@ -137,69 +136,6 @@ const Hero = () => {
   return (
     <section style={{ position: 'relative', height: '100vh', minHeight: 600, overflow: 'hidden' }}>
 
-      <style>{`
-        @keyframes heroFloat {
-          0%, 100% { margin-top: 0px; }
-          50%       { margin-top: -15px; }
-        }
-        @keyframes kenBurns {
-          0%   { transform: scale(1.1) translate(0, 0); }
-          100% { transform: scale(1)   translate(-1%, -1%); }
-        }
-        @keyframes progressBar {
-          from { width: 0%; }
-          to   { width: 100%; }
-        }
-        @keyframes heroFadeUp {
-          from { opacity: 0; transform: translateY(32px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
-        .hero-btn-primary {
-          display: inline-flex;
-          align-items: center;
-          gap: 10px;
-          padding: 16px 36px;
-          background: var(--gold, #C9A96E);
-          color: #1a1308;
-          font-family: var(--font-display, serif);
-          font-size: 12px;
-          font-weight: 600;
-          letter-spacing: 2.5px;
-          text-transform: uppercase;
-          text-decoration: none;
-          border: 2px solid var(--gold, #C9A96E);
-          cursor: pointer;
-          transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
-        }
-        .hero-btn-primary:hover {
-          background: transparent;
-          color: var(--gold, #C9A96E);
-          transform: translateY(-2px);
-        }
-        .hero-btn-secondary {
-          display: inline-flex;
-          align-items: center;
-          gap: 10px;
-          padding: 16px 36px;
-          background: transparent;
-          color: rgba(255,255,255,0.9);
-          font-family: var(--font-display, serif);
-          font-size: 12px;
-          font-weight: 600;
-          letter-spacing: 2.5px;
-          text-transform: uppercase;
-          text-decoration: none;
-          border: 2px solid rgba(255,255,255,0.4);
-          cursor: pointer;
-          transition: border-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
-        }
-        .hero-btn-secondary:hover {
-          border-color: var(--gold, #C9A96E);
-          color: var(--gold, #C9A96E);
-          transform: translateY(-2px);
-        }
-      `}</style>
-
       {SLIDES.map((slide, i) => {
         const isActive = i === current;
         return (
@@ -278,80 +214,6 @@ const Hero = () => {
           maxWidth: 820,
         }}
       >
-
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 12,
-            marginBottom: 24,
-            animation: mounted ? 'heroFadeUp 0.8s ease 0.2s both' : 'none',
-          }}
-        >
-          <div style={{ width: 40, height: 1, background: 'var(--gold, #C9A96E)' }} />
-          <span
-            style={{
-              fontFamily: 'var(--font-display, serif)',
-              fontSize: 11,
-              letterSpacing: 4,
-              textTransform: 'uppercase',
-              color: 'var(--gold, #C9A96E)',
-            }}
-          >
-            Luxury Interior Design
-          </span>
-        </div>
-
-        <h1
-          style={{
-            fontFamily: 'var(--font-display, serif)',
-            fontSize: 'clamp(2.6rem, 6vw, 5rem)',
-            fontWeight: 400,
-            lineHeight: 1.1,
-            color: '#ffffff',
-            margin: '0 0 20px',
-            animation: mounted ? 'heroFadeUp 0.8s ease 0.4s both' : 'none',
-          }}
-        >
-          Spaces That Tell <br />
-          <em style={{ color: 'var(--gold, #C9A96E)', fontStyle: 'italic' }}>Your Story</em>
-        </h1>
-
-        <p
-          style={{
-            fontFamily: 'var(--font-body, sans-serif)',
-            fontSize: 'clamp(0.95rem, 1.5vw, 1.1rem)',
-            lineHeight: 1.75,
-            color: 'rgba(255,255,255,0.72)',
-            margin: '0 0 44px',
-            maxWidth: 480,
-            animation: mounted ? 'heroFadeUp 0.8s ease 0.6s both' : 'none',
-          }}
-        >
-          Award-winning interiors crafted for discerning clients across India. From concept to handover — every detail, perfected.
-        </p>
-
-        <div
-          style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            gap: 16,
-            animation: mounted ? 'heroFadeUp 0.8s ease 0.8s both' : 'none',
-          }}
-        >
-          <Link href="/contact" className="hero-btn-primary">
-            Book a Consultation
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </Link>
-          <Link href="/projects" className="hero-btn-secondary">
-            View Projects
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </Link>
-        </div>
       </div>
 
       <button

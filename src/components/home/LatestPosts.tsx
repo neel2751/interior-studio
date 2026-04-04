@@ -10,50 +10,50 @@ const posts = [
     date: '25.03.26',
     excerpt: 'Custom Interior Design, Precision Construction, and Bespoke Living Spaces Crafted to Perfection.',
     href: '/blog/modern-villa-ahmedabad',
-    image: '/images/projects/modern-villa-ahmedabad/ChatGPT Image Mar 26, 2026, 09_14_47 PM.png',
+    image: '/images/projects/modern-villa-ahmedabad/cover.png',
   },
   {
     title: 'The Highest Standard in Turnkey Interior Design by Interior Studio',
     date: '25.03.26',
     excerpt: 'Complete Villa Design, Renovation, and Fit-Out Delivered with Precision and Elegance.',
     href: '/blog/turnkey-interior-design',
-    image: '/images/projects/sky-penthouse-mumbai/ChatGPT Image Mar 26, 2026, 09_14_47 PM.png',
+    image: '/images/projects/sky-penthouse-mumbai/cover.png',
   },
   {
     title: 'Mastering Luxury Commercial Interiors with Iconic Design',
     date: '25.03.26',
     excerpt: 'Delivering Complete Outdoor Elegance Through Expert Execution and Bespoke Design.',
     href: '/blog/luxury-commercial-interiors',
-    image: '/images/projects/heritage-bungalow-pune/ChatGPT Image Mar 26, 2026, 09_14_47 PM.png',
+    image: '/images/projects/heritage-bungalow-pune/cover.png',
   },
   {
     title: 'Interior Studio: Redefining Excellence as the Top Design Firm',
     date: '25.03.26',
     excerpt: 'Delivering Bespoke Luxury, Precision Engineering, and Full-Service Turnkey Solutions.',
     href: '/blog/top-design-firm',
-    image: '/images/projects/boutique-hotel-goa/ChatGPT Image Mar 26, 2026, 09_14_47 PM.png',
+    image: '/images/projects/boutique-hotel-goa/cover.png',
   },
 ];
 
 const videos = [
   {
     title: 'Modern Villa Ahmedabad — Before & After | Ultra-Luxury Living',
-    thumbnail: '/images/projects/modern-villa-ahmedabad/ChatGPT Image Mar 26, 2026, 09_14_47 PM.png',
+    thumbnail: '/images/projects/modern-villa-ahmedabad/cover.png',
     href: '#',
   },
   {
     title: 'World Class Penthouse Interiors | Full Renovation & Fit-Out',
-    thumbnail: '/images/projects/sky-penthouse-mumbai/ChatGPT Image Mar 26, 2026, 09_14_47 PM.png',
+    thumbnail: '/images/projects/sky-penthouse-mumbai/cover.png',
     href: '#',
   },
   {
     title: 'Full Luxury Villa Renovation & Project Showcase — Pune',
-    thumbnail: '/images/projects/heritage-bungalow-pune/ChatGPT Image Mar 26, 2026, 09_14_47 PM.png',
+    thumbnail: '/images/projects/heritage-bungalow-pune/cover.png',
     href: '#',
   },
   {
     title: 'Boutique Hotel Goa — Interior Design Reveal',
-    thumbnail: '/images/projects/boutique-hotel-goa/ChatGPT Image Mar 26, 2026, 09_14_47 PM.png',
+    thumbnail: '/images/projects/boutique-hotel-goa/cover.png',
     href: '#',
   },
 ];

@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
+import Button from '@/components/common/Button';
 import { Project } from '@/types/project';
 
 function useInView(threshold = 0.15) {
@@ -132,10 +133,6 @@ export default function ProjectPageClient({ project, related }: Props) {
   return (
     <>
       <style>{`
-        .ppg-btn-primary { display:inline-flex;align-items:center;gap:10px;padding:14px 32px;font-family:var(--font-body);font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;text-decoration:none;background:var(--gold);color:#000;border:1.5px solid var(--gold);transition:background 0.25s,border-color 0.25s,transform 0.2s; }
-        .ppg-btn-primary:hover { background:var(--gold-dark);border-color:var(--gold-dark);transform:scale(1.03); }
-        .ppg-btn-ghost { display:inline-flex;align-items:center;gap:10px;padding:14px 32px;font-family:var(--font-body);font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;text-decoration:none;background:transparent;color:rgba(255,255,255,0.7);border:1.5px solid rgba(255,255,255,0.2);transition:border-color 0.25s,color 0.25s,transform 0.2s; }
-        .ppg-btn-ghost:hover { border-color:var(--gold);color:var(--gold);transform:scale(1.03); }
         .ppg-divider { width:48px;height:1px;background:var(--gold);margin:20px 0; }
         .ppg-meta-item { display:flex;align-items:flex-start;gap:14px;padding:18px 0;border-bottom:1px solid rgba(255,255,255,0.06); }
         .ppg-meta-item:last-child { border-bottom:none; }
@@ -202,9 +199,9 @@ export default function ProjectPageClient({ project, related }: Props) {
                   style={{ width: '100%', height: '100%', objectFit: 'cover', transform: mainHov ? 'scale(1.04)' : 'scale(1)', transition: 'transform 0.6s ease', display: 'block' }}
                 />
                 <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.3)', opacity: mainHov ? 1 : 0, transition: 'opacity 0.35s ease', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <span style={{ fontFamily: 'var(--font-body)', fontSize: 11, fontWeight: 600, letterSpacing: '2.5px', textTransform: 'uppercase', color: '#fff', border: '1px solid rgba(255,255,255,0.6)', padding: '10px 24px', backdropFilter: 'blur(4px)' }}>
+                  <Button variant="outline" size="default" style={{ padding: '10px 24px', backdropFilter: 'blur(4px)' }}>
                     Open Gallery
-                  </span>
+                  </Button>
                 </div>
                 <div style={{ position: 'absolute', bottom: 16, right: 16, fontFamily: 'var(--font-body)', fontSize: 10, letterSpacing: '1.5px', color: 'rgba(255,255,255,0.7)', background: 'rgba(0,0,0,0.6)', padding: '4px 12px', backdropFilter: 'blur(4px)' }}>
                   {activeImg + 1} / {project.images.length}
@@ -298,13 +295,12 @@ export default function ProjectPageClient({ project, related }: Props) {
                   Let&apos;s create something extraordinary together.
                 </p>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-                  <Link href="/contact" className="ppg-btn-primary" style={{ justifyContent: 'center' }}>
+                  <Button href="/contact" size="lg" showArrow style={{ justifyContent: 'center' }}>
                     Book Consultation
-                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                  </Link>
-                  <Link href="/projects" className="ppg-btn-ghost" style={{ justifyContent: 'center' }}>
+                  </Button>
+                  <Button href="/projects" variant="outline" size="lg" style={{ justifyContent: 'center' }}>
                     More Projects
-                  </Link>
+                  </Button>
                 </div>
               </div>
             </div>
@@ -326,10 +322,9 @@ export default function ProjectPageClient({ project, related }: Props) {
             </div>
             <AnimatedSection delay={200}>
               <div style={{ marginTop: 48, textAlign: 'center' }}>
-                <Link href="/projects" className="ppg-btn-ghost">
+                <Button href="/projects" variant="outline" size="lg" showArrow>
                   View All Projects
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                </Link>
+                </Button>
               </div>
             </AnimatedSection>
           </div>
@@ -349,11 +344,12 @@ export default function ProjectPageClient({ project, related }: Props) {
               Let&apos;s create something extraordinary together. Schedule a consultation to discuss your vision.
             </p>
             <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
-              <Link href="/contact" className="ppg-btn-primary">
+              <Button href="/contact" size="lg" showArrow>
                 Book a Consultation
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
-              </Link>
-              <Link href="/projects" className="ppg-btn-ghost">View All Projects</Link>
+              </Button>
+              <Button href="/projects" variant="outline" size="lg">
+                View All Projects
+              </Button>
             </div>
           </AnimatedSection>
         </div>

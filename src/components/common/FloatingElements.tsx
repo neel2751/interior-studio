@@ -16,7 +16,6 @@ const FloatingElements = () => {
 
   return (
     <>
-      {/* ── Scroll to Top ── */}
       <button
         onClick={scrollToTop}
         aria-label="Scroll to top"

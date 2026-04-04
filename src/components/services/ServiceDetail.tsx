@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { Service } from '@/types/service';
 import { PROJECTS } from '@/lib/constants';
+import Button from '@/components/common/Button';
 
 interface ServiceDetailProps {
   service: Service;
@@ -198,11 +199,12 @@ const ServiceDetail = ({ service }: ServiceDetailProps) => {
               {service.detailedDescription}
             </p>
             <div style={{ display:'flex', gap:16, flexWrap:'wrap' }}>
-              <Link href="/contact" className="sd-btn-primary">
+              <Button href="/contact" size="lg" showArrow>
                 Book a Consultation
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
-              </Link>
-              <Link href="/projects" className="sd-btn-ghost">View Projects</Link>
+              </Button>
+              <Button href="/projects" variant="ghost" size="lg">
+                View Projects
+              </Button>
             </div>
           </div>
 
@@ -276,10 +278,9 @@ const ServiceDetail = ({ service }: ServiceDetailProps) => {
           </div>
 
           <div style={{ marginTop:40, textAlign:'center' }}>
-            <Link href="/projects" className="sd-btn-ghost">
+            <Button href="/projects" variant="secondary" size="lg" showArrow>
               View All Projects
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
-            </Link>
+            </Button>
           </div>
         </div>
       </section>
@@ -296,11 +297,12 @@ const ServiceDetail = ({ service }: ServiceDetailProps) => {
             Let&apos;s discuss your {service.title.toLowerCase()} project. Our team is ready to bring your vision to life.
           </p>
           <div style={{ display:'flex', gap:16, justifyContent:'center', flexWrap:'wrap' }}>
-            <Link href="/contact" className="sd-btn-primary">
+            <Button href="/contact" size="lg" showArrow>
               Book a Consultation
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
-            </Link>
-            <Link href="/projects" className="sd-btn-ghost">View Our Portfolio</Link>
+            </Button>
+            <Button href="/projects" variant="ghost" size="lg">
+              View Our Portfolio
+            </Button>
           </div>
         </div>
       </section>

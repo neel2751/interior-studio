@@ -1,4 +1,5 @@
 import { CheckCircle, Clock, Users, Award } from 'lucide-react';
+import Link from 'next/link';
 import { ResidentialService } from '@/data/residentialServices';
 import Button from '@/components/common/Button';
 import SectionHeading from '@/components/common/SectionHeading';
@@ -46,10 +47,10 @@ const ResidentialServiceDetail = ({ service }: ResidentialServiceDetailProps) =>
           />
           
           <div className="flex flex-wrap gap-4">
-            <Button href="/contact" size="lg">
+            <Button href="/contact" size="lg" showArrow>
               Get Started
             </Button>
-            <Button variant="secondary" href="/projects" size="lg">
+            <Button href="/projects" variant="ghost" size="lg">
               View Projects
             </Button>
           </div>
@@ -124,7 +125,7 @@ const ResidentialServiceDetail = ({ service }: ResidentialServiceDetailProps) =>
         </div>
         
         <div className="text-center mt-8">
-          <Button href="/projects" variant="secondary" size="lg">
+          <Button href="/projects" variant="secondary" size="lg" showArrow>
             View All Projects
           </Button>
         </div>
@@ -137,7 +138,7 @@ const ResidentialServiceDetail = ({ service }: ResidentialServiceDetailProps) =>
         <p className="text-gray-300 max-w-2xl mx-auto">
           Let&apos;s discuss your project requirements and create a space that exceeds your expectations.
         </p>
-        <Button href="/contact" className="bg-white text-gray-900 hover:bg-gray-100" size="lg">
+        <Button href="/contact" size="lg" showArrow className="bg-white text-gray-900 hover:bg-gray-100">
           Start Your Project
         </Button>
       </div>

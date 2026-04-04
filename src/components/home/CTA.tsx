@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Button from '@/components/common/Button';
 
 const CTA = () => {
   return (
@@ -132,58 +133,12 @@ const CTA = () => {
             marginBottom: 48,
           }}
         >
-          <Link
-            href="/contact"
-            style={{
-              fontFamily:    'var(--font-body)',
-              fontSize:      11,
-              fontWeight:    600,
-              letterSpacing: 2.5,
-              textTransform: 'uppercase',
-              color:         '#0f0f0f',
-              background:    'var(--gold)',
-              padding:       '16px 36px',
-              textDecoration: 'none',
-              transition:    'background 0.3s ease, color 0.3s ease',
-              whiteSpace:    'nowrap',
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.background = 'var(--gold-dark)';
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.background = 'var(--gold)';
-            }}
-          >
+          <Button href="/contact" size="lg" showArrow>
             Book Consultation
-          </Link>
-
-          <a
-            href="tel:+919876543210"
-            style={{
-              fontFamily:    'var(--font-body)',
-              fontSize:      11,
-              fontWeight:    600,
-              letterSpacing: 2.5,
-              textTransform: 'uppercase',
-              color:         '#ffffff',
-              background:    'transparent',
-              border:        '1px solid rgba(255,255,255,0.35)',
-              padding:       '16px 36px',
-              textDecoration: 'none',
-              transition:    'border-color 0.3s ease, background 0.3s ease',
-              whiteSpace:    'nowrap',
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.borderColor = '#ffffff';
-              (e.currentTarget as HTMLAnchorElement).style.background = 'rgba(255,255,255,0.06)';
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.borderColor = 'rgba(255,255,255,0.35)';
-              (e.currentTarget as HTMLAnchorElement).style.background = 'transparent';
-            }}
-          >
+          </Button>
+          <Button href="tel:+919876543210" variant="outline" size="lg">
             Call Us Now
-          </a>
+          </Button>
         </div>
 
         <div

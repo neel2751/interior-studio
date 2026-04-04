@@ -273,7 +273,7 @@ const NavItem = ({ item }: { item: NavItem }) => {
           gap:             5,
           padding:         "0 14px",
           color:           "#ffffff",
-          fontSize:        13,
+          fontSize:        18,
           fontWeight:      600,
           letterSpacing:   "0.06em",
           textTransform:   "uppercase",
@@ -285,7 +285,7 @@ const NavItem = ({ item }: { item: NavItem }) => {
           cursor:          "pointer",
           height:          "100%",
           boxSizing:       "border-box",
-          fontFamily:      "'Jost', sans-serif",
+          fontFamily:      "Cormorant Garamond",
           textShadow:      "0 1px 3px rgba(0,0,0,0.4)",
         }}
       >
@@ -327,7 +327,7 @@ const NavItem = ({ item }: { item: NavItem }) => {
               boxShadow:       "0 8px 32px rgba(0,0,0,0.18)",
               overflowY:       "auto",
               maxHeight:       "calc(100vh - 70px)",
-              fontFamily:      "'Jost', sans-serif",
+              fontFamily:      "Cormorant Garamond",
             }}
           >
             <div
@@ -335,14 +335,14 @@ const NavItem = ({ item }: { item: NavItem }) => {
               style={{
                 display:         "block",
                 padding:         "8px 18px 7px",
-                fontSize:        11,
+                fontSize:        15,
                 fontWeight:      700,
                 letterSpacing:   "0.13em",
                 textTransform:   "uppercase",
                 color:           "#9a7b3c",
                 backgroundColor: "#ffffff",
                 borderBottom:    "1px solid #e0e0e0",
-                fontFamily:      "'Jost', sans-serif",
+                fontFamily:      "Cormorant Garamond",
               }}
             >
               {item.name}
@@ -355,11 +355,11 @@ const NavItem = ({ item }: { item: NavItem }) => {
                   const empties = 3 - slice.length;
                   const rowBg   = ri % 2 === 0 ? "#ffffff" : "#f2f2f2";
                   return (
-                    <tr key={ri} style={{ backgroundColor: rowBg, borderBottom: "1px solid #e8e8e8" }}>
+                    <tr key={ri} style={{ backgroundColor: rowBg, borderBottom: "1px solid #e8e8e8" }} suppressHydrationWarning>
                       {slice.map((d, ci) => {
                         const idx = ri * 3 + ci;
                         return (
-                          <td key={ci} style={{ padding: 0, width: "33.333%", verticalAlign: "middle" }}>
+                          <td key={ci} style={{ padding: 0, width: "33.333%", verticalAlign: "middle" }} suppressHydrationWarning>
                             <Link
                               href={d.href}
                               suppressHydrationWarning
@@ -371,14 +371,14 @@ const NavItem = ({ item }: { item: NavItem }) => {
                                 gap:            "12px",
                                 padding:        "10px 18px",
                                 color:          hovIdx === idx ? "#9a7b3c" : "#1a1a1a",
-                                fontSize:       13.5,
+                                fontSize:       15,
                                 fontWeight:     hovIdx === idx ? 700 : 400,
                                 textDecoration: "none",
                                 lineHeight:     1.4,
                                 whiteSpace:     "nowrap",
                                 overflow:       "hidden",
                                 textOverflow:   "ellipsis",
-                                fontFamily:     "'Jost', sans-serif",
+                                fontFamily:     "Cormorant Garamond",
                                 transition:     "color 0.15s, font-weight 0.15s",
                               }}
                             >

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { CheckCircle, ChevronLeft, ChevronRight, Home, Trees, Sun, DoorOpen, Warehouse, Flower2, Heart } from 'lucide-react';
 import { ResidentialService } from '@/data/residentialServices';
 import Button from '@/components/common/Button';
@@ -135,10 +136,10 @@ const BungalowPage = ({ service }: BungalowPageProps) => {
             </div>
 
             <div className="flex flex-wrap gap-4 pt-4">
-              <Button href="/contact" size="lg">
+              <Button href="/contact" size="lg" showArrow>
                 Design Your Bungalow
               </Button>
-              <Button variant="secondary" href="/projects" size="lg">
+              <Button href="/projects" variant="ghost" size="lg">
                 View Projects
               </Button>
             </div>
@@ -265,7 +266,7 @@ const BungalowPage = ({ service }: BungalowPageProps) => {
           </div>
 
           <div className="text-center mt-12">
-            <Button href="/projects" variant="secondary" size="lg">
+            <Button href="/projects" variant="secondary" size="lg" showArrow>
               View All Projects
             </Button>
           </div>
@@ -281,7 +282,7 @@ const BungalowPage = ({ service }: BungalowPageProps) => {
           <p className="text-gray-300 max-w-2xl mx-auto mb-10 text-lg">
             Let us create a single-story sanctuary that connects you to the outdoors while providing all the modern comforts you desire.
           </p>
-          <Button href="/contact" className="bg-white text-stone-900 hover:bg-gray-100" size="lg">
+          <Button href="/contact" size="lg" showArrow className="bg-white text-stone-900 hover:bg-gray-100">
             Start Your Bungalow Project
           </Button>
         </div>

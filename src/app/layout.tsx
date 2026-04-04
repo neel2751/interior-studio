@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Jost } from "next/font/google";
+import { Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import NavbarClient from "@/components/common/NavbarClient";
 import Footer from "@/components/common/Footer";
@@ -9,14 +9,7 @@ const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
   style: ["normal", "italic"],
-  variable: "--font-display",
-  display: "swap",
-});
-
-const jost = Jost({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
-  variable: "--font-body",
+  variable: "--font-serif",
   display: "swap",
 });
 
@@ -64,9 +57,9 @@ export default function RootLayout({
     <html
       lang="en"
       data-scroll-behavior="smooth"
-      className={`${cormorant.variable} ${jost.variable} h-full antialiased`}
+      className={`${cormorant.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col" style={{ fontFamily: "var(--font-body)" }}>
+      <body className="min-h-full flex flex-col" style={{ fontFamily: "var(--font-serif)" }}>
         <div>
           <NavbarClient />
           <a

@@ -145,15 +145,14 @@ export default function ProjectsPage() {
         .prj-search { background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:#fff;font-family:var(--font-body);font-size:12px;letter-spacing:1px;padding:10px 16px 10px 40px;outline:none;width:220px;transition:border-color 0.25s,background 0.25s; }
         .prj-search::placeholder { color:rgba(255,255,255,0.3); }
         .prj-search:focus { border-color:var(--gold);background:rgba(255,255,255,0.07); }
-        .prj-cta-primary { display:inline-flex;align-items:center;gap:10px;padding:16px 36px;font-family:var(--font-body);font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;text-decoration:none;background:var(--gold);color:#000;border:1.5px solid var(--gold);transition:background 0.25s,border-color 0.25s,transform 0.2s; }
-        .prj-cta-primary:hover { background:var(--gold-dark);border-color:var(--gold-dark);transform:scale(1.03); }
-        .prj-cta-ghost { display:inline-flex;align-items:center;gap:10px;padding:16px 36px;font-family:var(--font-body);font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;text-decoration:none;background:transparent;color:rgba(255,255,255,0.8);border:1.5px solid rgba(255,255,255,0.25);transition:border-color 0.25s,color 0.25s,transform 0.2s; }
-        .prj-cta-ghost:hover { border-color:var(--gold);color:var(--gold);transform:scale(1.03); }
+        .prj-cta-primary { display:inline-flex;align-items:center;gap:10px;padding:16px 36px;font-family:var(--font-body);font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;text-decoration:none;background:#c9a96e;color:#0a0a0a;border:1.5px solid #c9a96e;transition:all 0.3s ease; }
+        .prj-cta-primary:hover { background:transparent;color:#c9a96e; }
+        .prj-cta-ghost { display:inline-flex;align-items:center;gap:10px;padding:16px 36px;font-family:var(--font-body);font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;text-decoration:none;background:transparent;color:#c9a96e;border:1.5px solid #c9a96e;transition:all 0.3s ease; }
+        .prj-cta-ghost:hover { background:#c9a96e;color:#0a0a0a; }
         @media (max-width:900px) { .prj-grid{grid-template-columns:repeat(2,1fr)!important;} }
         @media (max-width:600px) { .prj-grid{grid-template-columns:1fr!important;} .prj-controls{flex-direction:column!important;align-items:flex-start!important;} .prj-stats{grid-template-columns:repeat(2,1fr)!important;} }
       `}</style>
 
-      {/* ── Hero ─────────────────────────────────────────────────────────── */}
       <section style={{ position:'relative', minHeight:'70vh', display:'flex', alignItems:'flex-end', background:'linear-gradient(135deg, #0d0d1a 0%, #1a1a2e 40%, #0a0a0a 100%)', paddingTop:100, overflow:'hidden' }}>
         <div style={{ position:'absolute', inset:0, backgroundImage:"url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E\")", opacity:0.5, pointerEvents:'none' }} />
         <div style={{ position:'absolute', top:0, left:0, right:0, height:2, background:'linear-gradient(90deg, transparent, var(--gold), transparent)', opacity:0.6 }} />
@@ -182,7 +181,6 @@ export default function ProjectsPage() {
         </div>
       </section>
 
-      {/* ── Stats ────────────────────────────────────────────────────────── */}
       <section style={{ background:'#0a0a0a', padding:'0 48px' }}>
         <div className="prj-stats" style={{ maxWidth:1200, margin:'0 auto', display:'grid', gridTemplateColumns:'repeat(4,1fr)', borderBottom:'1px solid rgba(255,255,255,0.06)' }}>
           <StatCard value={`${PROJECTS.length}+`} label="Projects Completed" delay={0} />
@@ -192,7 +190,6 @@ export default function ProjectsPage() {
         </div>
       </section>
 
-      {/* ── Project Grid ─────────────────────────────────────────────────── */}
       <section id="projects" style={{ background:'#0d0d0d', padding:'96px 48px' }}>
         <div style={{ maxWidth:1200, margin:'0 auto' }}>
           <AnimatedSection delay={0}>
@@ -247,14 +244,12 @@ export default function ProjectsPage() {
         </div>
       </section>
 
-      {/* ── Category strip ───────────────────────────────────────────────── */}
       <section style={{ background:'#111' }}>
         <div style={{ maxWidth:1200, margin:'0 auto', padding:'0 48px' }}>
           <CategoryStrip />
         </div>
       </section>
 
-      {/* ── CTA ──────────────────────────────────────────────────────────── */}
       <section style={{ background:'linear-gradient(135deg, #1a1a1a 0%, #2a2010 50%, #1a1a1a 100%)', padding:'96px 48px', textAlign:'center', position:'relative', overflow:'hidden' }}>
         <div style={{ position:'absolute', top:'50%', left:'50%', transform:'translate(-50%,-50%)', width:600, height:600, border:'1px solid rgba(201,169,110,0.06)', borderRadius:'50%', pointerEvents:'none' }} />
         <div style={{ position:'absolute', top:'50%', left:'50%', transform:'translate(-50%,-50%)', width:400, height:400, border:'1px solid rgba(201,169,110,0.08)', borderRadius:'50%', pointerEvents:'none' }} />

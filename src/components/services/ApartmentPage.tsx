@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { CheckCircle, ChevronLeft, ChevronRight, Building2, Maximize, Layers, Grid3X3, Sparkles, Home, Key } from 'lucide-react';
 import { ResidentialService } from '@/data/residentialServices';
 import Button from '@/components/common/Button';
@@ -134,10 +135,10 @@ const ApartmentPage = ({ service }: ApartmentPageProps) => {
             </div>
 
             <div className="flex flex-wrap gap-4 pt-4">
-              <Button href="/contact" size="lg">
+              <Button href="/contact" size="lg" showArrow>
                 Design Your Apartment
               </Button>
-              <Button variant="secondary" href="/projects" size="lg">
+              <Button href="/projects" variant="ghost" size="lg">
                 View Projects
               </Button>
             </div>
@@ -236,7 +237,7 @@ const ApartmentPage = ({ service }: ApartmentPageProps) => {
             ))}
           </div>
           <div className="text-center mt-12">
-            <Button href="/projects" variant="secondary" size="lg">
+            <Button href="/projects" variant="secondary" size="lg" showArrow>
               View All Projects
             </Button>
           </div>
@@ -252,7 +253,7 @@ const ApartmentPage = ({ service }: ApartmentPageProps) => {
           <p className="text-gray-300 max-w-2xl mx-auto mb-10 text-lg">
             Let us create a cohesive, beautiful home where every room works in perfect harmony.
           </p>
-          <Button href="/contact" className="bg-white text-blue-900 hover:bg-gray-100" size="lg">
+          <Button href="/contact" size="lg" showArrow className="bg-white text-blue-900 hover:bg-gray-100">
             Start Your Apartment Project
           </Button>
         </div>

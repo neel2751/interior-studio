@@ -112,6 +112,34 @@ const ServicesPreview = () => {
         ))}
       </div>
 
+      <FadeInSection direction="up" delay={0.3} duration={0.6}>
+        <div style={{ textAlign: 'center', marginTop: 48 }}>
+          <Link
+            href="/services"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 12,
+              padding: '14px 32px',
+              background: 'transparent',
+              border: '1px solid var(--gold)',
+              color: 'var(--gold)',
+              fontFamily: 'var(--font-body)',
+              fontSize: 11,
+              fontWeight: 600,
+              letterSpacing: 2,
+              textTransform: 'uppercase',
+              textDecoration: 'none',
+              transition: 'all 0.3s ease',
+            }}
+            className="view-services-btn"
+          >
+            View Services
+            <span style={{ fontSize: 14 }}>→</span>
+          </Link>
+        </div>
+      </FadeInSection>
+
       <style>{`
         .sp-grid {
           display: grid;
@@ -148,6 +176,10 @@ const ServicesPreview = () => {
         }
         .sp-tile:hover .sp-dim {
           background: rgba(0,0,0,0.55) !important;
+        }
+        .view-services-btn:hover {
+          background: var(--gold) !important;
+          color: #0f0f0f !important;
         }
       `}</style>
     </section>

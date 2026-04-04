@@ -90,7 +90,6 @@ export default function FadeInSection({
     }
   };
 
-  // If staggerChildren is enabled, wrap children with staggered delays
   if (staggerChildren && Array.isArray(children)) {
     return (
       <div ref={ref} className={className}>
@@ -129,7 +128,6 @@ export default function FadeInSection({
   );
 }
 
-// Parallax wrapper component for scroll-based parallax
 export function ParallaxSection({
   children,
   speed = 0.5,
@@ -170,7 +168,6 @@ export function ParallaxSection({
   );
 }
 
-// Counter animation component
 export function AnimatedCounter({
   end,
   duration = 2000,
@@ -234,7 +231,6 @@ export function AnimatedCounter({
   );
 }
 
-// Split text animation component
 export function SplitText({
   children,
   delay = 0,

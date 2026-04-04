@@ -154,14 +154,14 @@ const AboutSection = () => {
                 }}
               >
                 <Image
-                  src="/images/hero/ChatGPT Image Mar 26, 2026, 09_27_00 PM.png"
+                  src="/images/hero/hero-slide-1.png"
                   alt="Interior Studio Ltd — Design Team"
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                   sizes="(max-width: 768px) 100vw, 50vw"
                   onError={(e) => {
                     (e.currentTarget as HTMLImageElement).src =
-                      '/images/projects/modern-villa-ahmedabad/ChatGPT Image Mar 26, 2026, 09_14_47 PM.png';
+                      '/images/projects/modern-villa-ahmedabad/cover.png';
                   }}
                 />
               </div>
