@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import Button from '@/components/common/Button';
 import { PROJECTS } from '@/lib/constants';
 
 type FilterType = 'all' | 'residential' | 'commercial';
@@ -145,10 +146,6 @@ export default function ProjectsPage() {
         .prj-search { background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:#fff;font-family:var(--font-body);font-size:12px;letter-spacing:1px;padding:10px 16px 10px 40px;outline:none;width:220px;transition:border-color 0.25s,background 0.25s; }
         .prj-search::placeholder { color:rgba(255,255,255,0.3); }
         .prj-search:focus { border-color:var(--gold);background:rgba(255,255,255,0.07); }
-        .prj-cta-primary { display:inline-flex;align-items:center;gap:10px;padding:16px 36px;font-family:var(--font-body);font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;text-decoration:none;background:#c9a96e;color:#0a0a0a;border:1.5px solid #c9a96e;transition:all 0.3s ease; }
-        .prj-cta-primary:hover { background:transparent;color:#c9a96e; }
-        .prj-cta-ghost { display:inline-flex;align-items:center;gap:10px;padding:16px 36px;font-family:var(--font-body);font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;text-decoration:none;background:transparent;color:#c9a96e;border:1.5px solid #c9a96e;transition:all 0.3s ease; }
-        .prj-cta-ghost:hover { background:#c9a96e;color:#0a0a0a; }
         @media (max-width:900px) { .prj-grid{grid-template-columns:repeat(2,1fr)!important;} }
         @media (max-width:600px) { .prj-grid{grid-template-columns:1fr!important;} .prj-controls{flex-direction:column!important;align-items:flex-start!important;} .prj-stats{grid-template-columns:repeat(2,1fr)!important;} }
       `}</style>
@@ -172,11 +169,12 @@ export default function ProjectsPage() {
             From modern villas to boutique hotels — {PROJECTS.length} projects across India.
           </p>
           <div style={{ display:'flex', gap:16, flexWrap:'wrap', opacity:heroVisible?1:0, transform:heroVisible?'translateY(0)':'translateY(32px)', transition:'opacity 0.8s ease 460ms,transform 0.8s ease 460ms' }}>
-            <a href="#projects" className="prj-cta-primary">
+            <Button href="#projects" size="lg" showArrow>
               Explore Projects
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 9l5 5 5-5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
-            </a>
-            <Link href="/contact" className="prj-cta-ghost">Start Your Project</Link>
+            </Button>
+            <Button href="/contact" variant="ghost" size="lg">
+              Start Your Project
+            </Button>
           </div>
         </div>
       </section>
@@ -261,11 +259,12 @@ export default function ProjectsPage() {
               Let&apos;s collaborate to create a space that reflects your vision and exceeds every expectation.
             </p>
             <div style={{ display:'flex', gap:16, justifyContent:'center', flexWrap:'wrap' }}>
-              <Link href="/contact" className="prj-cta-primary">
+              <Button href="/contact" size="lg" showArrow>
                 Start Your Project
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
-              </Link>
-              <Link href="/services" className="prj-cta-ghost">Our Services</Link>
+              </Button>
+              <Button href="/services" variant="ghost" size="lg">
+                Our Services
+              </Button>
             </div>
           </AnimatedSection>
         </div>
