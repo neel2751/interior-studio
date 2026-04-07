@@ -42,7 +42,6 @@ function AnimatedSection({ children, delay = 0, style = {} }: {
   return (
     <div
       ref={ref}
-      suppressHydrationWarning
       style={{
         opacity: inView ? 1 : 0,
         transform: inView ? 'translateY(0)' : 'translateY(48px)',
@@ -62,7 +61,6 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
   return (
     <div
       ref={ref}
-      suppressHydrationWarning
       style={{
         opacity: inView ? 1 : 0,
         transform: inView ? 'translateY(0) scale(1)' : 'translateY(48px) scale(0.98)',
@@ -77,7 +75,10 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       >
         <div
           style={{
-            position: 'relative', overflow: 'hidden', aspectRatio: '4/3', background: '#111',
+            position: 'relative',
+            overflow: 'hidden',
+            aspectRatio: '4/3',
+            background: '#111',
             transform: hov ? 'translateY(-8px) scale(1.02)' : 'translateY(0) scale(1)',
             boxShadow: hov
               ? '0 24px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(201,169,110,0.15)'
@@ -140,7 +141,6 @@ function StatCard({ value, label, delay }: { value: string; label: string; delay
   return (
     <div
       ref={ref}
-      suppressHydrationWarning
       style={{
         textAlign: 'center', padding: '36px 24px',
         border: '1px solid rgba(255,255,255,0.07)',
@@ -168,7 +168,6 @@ function FeatureItem({ text, index }: { text: string; index: number }) {
   return (
     <li
       ref={ref}
-      suppressHydrationWarning
       style={{
         display: 'flex', alignItems: 'flex-start', gap: 12,
         padding: '14px 0', borderBottom: '1px solid rgba(255,255,255,0.06)',
@@ -191,7 +190,6 @@ function ProcessStep({ text, index }: { text: string; index: number }) {
   return (
     <div
       ref={ref}
-      suppressHydrationWarning
       style={{
         display: 'flex', alignItems: 'flex-start', gap: 20,
         padding: '22px 0', borderBottom: '1px solid rgba(255,255,255,0.06)',
@@ -280,7 +278,6 @@ function AnimBtn({
   return (
     <Link
       href={href}
-      suppressHydrationWarning
       onMouseEnter={() => { setHov(true); setShimmer(true); }}
       onMouseLeave={() => { setHov(false); setTimeout(() => setShimmer(false), 700); }}
       style={{
@@ -302,17 +299,18 @@ function AnimBtn({
         ...variantStyles[variant],
       }}
     >
-      <span
-        suppressHydrationWarning
-        style={{
-          position: 'absolute', inset: 0,
-          background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent)',
-          transform: shimmer && hov ? 'translateX(110%)' : 'translateX(-110%)',
-          transition: shimmer ? 'transform 0.7s ease' : 'none',
-          pointerEvents: 'none', zIndex: 1,
-        }}
-      />
+      <span style={{
+        position: 'absolute',
+        inset: 0,
+        background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent)',
+        transform: shimmer && hov ? 'translateX(110%)' : 'translateX(-110%)',
+        transition: shimmer ? 'transform 0.7s ease' : 'none',
+        pointerEvents: 'none',
+        zIndex: 1,
+      }} />
+
       <span style={{ position: 'relative', zIndex: 2 }}>{children}</span>
+
       {(variant === 'ghost' || variant === 'luxury') && (
         <svg
           width="15" height="15" viewBox="0 0 16 16" fill="none"
@@ -361,7 +359,11 @@ export default function ServiceSubPageClient({ service, related, breadcrumbLabel
           transition: background 0.2s, border-color 0.2s, transform 0.2s;
           cursor: default;
         }
-        .ssp-scope-pill:hover { background: rgba(201,169,110,0.08); border-color: var(--gold); transform: scale(1.03); }
+        .ssp-scope-pill:hover {
+          background: rgba(201,169,110,0.08);
+          border-color: var(--gold);
+          transform: scale(1.03);
+        }
         @media (max-width: 768px) {
           .ssp-two-col   { grid-template-columns: 1fr !important; gap: 48px !important; }
           .ssp-three-col { grid-template-columns: 1fr !important; }
@@ -370,7 +372,11 @@ export default function ServiceSubPageClient({ service, related, breadcrumbLabel
         }
       `}</style>
 
-      <section style={{ position: 'relative', minHeight: '72vh', display: 'flex', alignItems: 'flex-end', background: service.heroGradient, paddingTop: 100, overflow: 'hidden' }}>
+      <section style={{
+        position: 'relative', minHeight: '72vh',
+        display: 'flex', alignItems: 'flex-end',
+        background: service.heroGradient, paddingTop: 100, overflow: 'hidden',
+      }}>
         <div style={{ position: 'absolute', inset: 0, backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E\")", opacity: 0.4, pointerEvents: 'none' }} />
         <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 2, background: 'linear-gradient(90deg, transparent, var(--gold), transparent)', opacity: 0.55 }} />
         <div style={{ position: 'absolute', right: '3%', bottom: '8%', fontFamily: 'var(--font-display)', fontSize: 'clamp(80px,14vw,180px)', fontWeight: 300, color: 'rgba(255,255,255,0.025)', lineHeight: 1, userSelect: 'none', pointerEvents: 'none', maxWidth: '60%', wordBreak: 'break-word' }}>
@@ -378,7 +384,7 @@ export default function ServiceSubPageClient({ service, related, breadcrumbLabel
         </div>
 
         <div style={{ position: 'relative', width: '100%', maxWidth: 1200, margin: '0 auto', padding: '0 48px 80px' }}>
-          <nav suppressHydrationWarning style={{ display: 'flex', alignItems: 'center', gap: 8, fontFamily: 'var(--font-body)', fontSize: 11, letterSpacing: 1.5, textTransform: 'uppercase', marginBottom: 32, ...fade(0) }}>
+          <nav style={{ display: 'flex', alignItems: 'center', gap: 8, fontFamily: 'var(--font-body)', fontSize: 11, letterSpacing: 1.5, textTransform: 'uppercase', marginBottom: 32, ...fade(0) }}>
             <Link href="/" style={{ color: 'rgba(255,255,255,0.4)', textDecoration: 'none' }}>Home</Link>
             <span style={{ color: 'rgba(255,255,255,0.2)' }}>›</span>
             <Link href={service.categoryHref} style={{ color: 'rgba(255,255,255,0.4)', textDecoration: 'none' }}>{breadcrumbLabel}</Link>
@@ -386,19 +392,25 @@ export default function ServiceSubPageClient({ service, related, breadcrumbLabel
             <span style={{ color: 'var(--gold)' }}>{service.title}</span>
           </nav>
 
-          <p suppressHydrationWarning style={{ fontFamily: 'var(--font-body)', fontSize: 10, letterSpacing: 4, textTransform: 'uppercase', color: 'var(--gold)', marginBottom: 20, ...fade(100) }}>
+          <p style={{ fontFamily: 'var(--font-body)', fontSize: 10, letterSpacing: 4, textTransform: 'uppercase', color: 'var(--gold)', marginBottom: 20, ...fade(100) }}>
             {service.categoryLabel}
           </p>
-          <h1 suppressHydrationWarning style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(36px,5.5vw,72px)', fontWeight: 300, color: '#fff', lineHeight: 1.05, marginBottom: 24, maxWidth: 800, ...fade(220) }}>
+
+          <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(36px,5.5vw,72px)', fontWeight: 300, color: '#fff', lineHeight: 1.05, marginBottom: 24, maxWidth: 800, ...fade(220) }}>
             {service.title}
           </h1>
-          <p suppressHydrationWarning style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(16px,2vw,22px)', fontWeight: 300, fontStyle: 'italic', color: 'rgba(255,255,255,0.58)', maxWidth: 580, marginBottom: 48, ...fade(360) }}>
+
+          <p style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(16px,2vw,22px)', fontWeight: 300, fontStyle: 'italic', color: 'rgba(255,255,255,0.58)', maxWidth: 580, marginBottom: 48, ...fade(360) }}>
             {service.description}
           </p>
 
-          <div suppressHydrationWarning style={{ display: 'flex', gap: 14, flexWrap: 'wrap', ...fade(480) }}>
-            <AnimBtn href="/contact" variant="primary" size="lg">Book a Consultation</AnimBtn>
-            <AnimBtn href="/projects" variant="ghost" size="lg">View Portfolio</AnimBtn>
+          <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', ...fade(480) }}>
+            <AnimBtn href="/contact" variant="primary" size="lg">
+              Book a Consultation
+            </AnimBtn>
+            <AnimBtn href="/projects" variant="ghost" size="lg">
+              View Portfolio
+            </AnimBtn>
           </div>
         </div>
       </section>
@@ -413,6 +425,7 @@ export default function ServiceSubPageClient({ service, related, breadcrumbLabel
 
       <section style={{ background: '#111111', padding: '96px 48px' }}>
         <div className="ssp-two-col" style={{ maxWidth: 1200, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '64px 80px', alignItems: 'start' }}>
+
           <AnimatedSection delay={0}>
             <p style={{ fontFamily: 'var(--font-body)', fontSize: 10, letterSpacing: 4, textTransform: 'uppercase', color: 'var(--gold)', marginBottom: 16 }}>About This Service</p>
             <div className="ssp-divider" />
@@ -425,7 +438,10 @@ export default function ServiceSubPageClient({ service, related, breadcrumbLabel
                 <span key={i} className="ssp-scope-pill">{item}</span>
               ))}
             </div>
-            <AnimBtn href="/contact" variant="luxury" size="md">Discuss Your Project</AnimBtn>
+            {/* Inline CTA after scope */}
+            <AnimBtn href="/contact" variant="luxury" size="md">
+              Discuss Your Project
+            </AnimBtn>
           </AnimatedSection>
 
           <AnimatedSection delay={150}>
@@ -436,7 +452,10 @@ export default function ServiceSubPageClient({ service, related, breadcrumbLabel
                 <FeatureItem key={i} text={feat} index={i} />
               ))}
             </ul>
-            <AnimBtn href="/projects" variant="ghost" size="md">See Our Work</AnimBtn>
+
+            <AnimBtn href="/projects" variant="ghost" size="md">
+              See Our Work
+            </AnimBtn>
           </AnimatedSection>
         </div>
       </section>
@@ -454,10 +473,15 @@ export default function ServiceSubPageClient({ service, related, breadcrumbLabel
               <ProcessStep key={i} text={step} index={i} />
             ))}
           </div>
+
           <AnimatedSection delay={200}>
             <div style={{ marginTop: 56, display: 'flex', gap: 14, flexWrap: 'wrap' }}>
-              <AnimBtn href="/contact" variant="primary" size="lg">Start Your Project</AnimBtn>
-              <AnimBtn href="/process" variant="luxury" size="lg">Our Full Process</AnimBtn>
+              <AnimBtn href="/contact" variant="primary" size="lg">
+                Start Your Project
+              </AnimBtn>
+              <AnimBtn href="/process" variant="luxury" size="lg">
+                Our Full Process
+              </AnimBtn>
             </div>
           </AnimatedSection>
         </div>
@@ -501,8 +525,12 @@ export default function ServiceSubPageClient({ service, related, breadcrumbLabel
               Let&apos;s discuss your {service.title.toLowerCase()} project. Our team is ready to bring your vision to life.
             </p>
             <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
-              <AnimBtn href="/contact" variant="primary" size="xl">Book a Consultation</AnimBtn>
-              <AnimBtn href="/projects" variant="ghost" size="xl">View Our Portfolio</AnimBtn>
+              <AnimBtn href="/contact" variant="primary" size="xl">
+                Book a Consultation
+              </AnimBtn>
+              <AnimBtn href="/projects" variant="ghost" size="xl">
+                View Our Portfolio
+              </AnimBtn>
             </div>
           </AnimatedSection>
         </div>

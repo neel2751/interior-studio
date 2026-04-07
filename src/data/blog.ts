@@ -32,7 +32,7 @@ export const BLOG_POSTS: BlogPost[] = [
       
       In commercial projects, the focus often shifts to acoustic planting walls and flexible planting schemes that can be maintained without specialist intervention.
     `,
-    coverImage: '/images/blog/biophilic-design.jpg',
+    coverImage: '/images/projects/modern-villa-ahmedabad/cover.png',
     author: {
       name: 'Priya Mehta',
       avatar: '/images/team/priya.jpg',
@@ -69,7 +69,7 @@ export const BLOG_POSTS: BlogPost[] = [
       
       Acoustic panels, upholstered furniture, rugs, and curtains all absorb sound. In new builds, we now routinely specify acoustic insulation in ceilings between floors even when clients have not asked for it — the difference in quality of life is significant.
     `,
-    coverImage: '/images/blog/open-plan-living.jpg',
+    coverImage: '/images/projects/sky-penthouse-mumbai/cover.png',
     author: {
       name: 'Arjun Shah',
       avatar: '/images/team/arjun.jpg',
@@ -106,7 +106,7 @@ export const BLOG_POSTS: BlogPost[] = [
       
       Sample boards lie. A material that looks beautiful at 10x10cm may be overwhelming at floor scale. We always test samples in context — in the actual space, in the actual light conditions — before finalising specifications.
     `,
-    coverImage: '/images/blog/material-palette.jpg',
+    coverImage: '/images/projects/heritage-bungalow-pune/cover.png',
     author: {
       name: 'Priya Mehta',
       avatar: '/images/team/priya.jpg',
@@ -139,7 +139,7 @@ export const BLOG_POSTS: BlogPost[] = [
       
       The constraint that separates hospitality design from residential is durability. Materials must withstand commercial levels of use while still feeling premium. This is a genuine design challenge — the answer is usually careful material selection combined with robust joinery and finishing details rather than specifying obviously commercial-grade products.
     `,
-    coverImage: '/images/blog/hospitality-design.jpg',
+    coverImage: '/images/projects/boutique-hotel-goa/cover.png',
     author: {
       name: 'Arjun Shah',
       avatar: '/images/team/arjun.jpg',

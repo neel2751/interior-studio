@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
-import Button from '@/components/common/Button';
 import { Project } from '@/types/project';
 
 function useInView(threshold = 0.15) {
@@ -21,10 +20,98 @@ function useInView(threshold = 0.15) {
   return { ref, inView };
 }
 
+function AnimBtn({
+  href,
+  variant,
+  size = 'md',
+  fullWidth = false,
+  showArrow = false,
+  children,
+}: {
+  href: string;
+  variant: 'primary' | 'ghost' | 'luxury';
+  size?: 'sm' | 'md' | 'lg' | 'xl';
+  fullWidth?: boolean;
+  showArrow?: boolean;
+  children: React.ReactNode;
+}) {
+  const [hov, setHov] = useState(false);
+  const [shimmer, setShimmer] = useState(false);
+
+  const sizeMap = {
+    sm: { padding: '11px 26px', fontSize: 9,  letterSpacing: '0.18em' },
+    md: { padding: '15px 36px', fontSize: 10, letterSpacing: '0.22em' },
+    lg: { padding: '18px 48px', fontSize: 11, letterSpacing: '0.24em' },
+    xl: { padding: '21px 60px', fontSize: 12, letterSpacing: '0.26em' },
+  };
+
+  const variantStyles: Record<string, React.CSSProperties> = {
+    primary: {
+      background: hov ? 'transparent' : 'var(--gold)',
+      color: hov ? 'var(--gold)' : '#0a0a0a',
+      border: '1.5px solid var(--gold)',
+      boxShadow: hov
+        ? '0 0 0 1px rgba(201,169,110,0.5), 0 8px 28px rgba(201,169,110,0.22)'
+        : 'inset 0 1px 0 rgba(255,255,255,0.22), 0 4px 20px rgba(201,169,110,0.32)',
+    },
+    ghost: {
+      background: hov ? 'var(--gold)' : 'transparent',
+      color: hov ? '#0a0a0a' : 'rgba(255,255,255,0.78)',
+      border: hov ? '1.5px solid var(--gold)' : '1.5px solid rgba(255,255,255,0.22)',
+      boxShadow: hov
+        ? 'inset 0 1px 0 rgba(255,255,255,0.18), 0 8px 28px rgba(201,169,110,0.35)'
+        : 'none',
+    },
+    luxury: {
+      background: hov ? '#141414' : '#0d0d0d',
+      color: 'var(--gold)',
+      border: '1.5px solid transparent',
+      boxShadow: hov
+        ? '0 0 0 1px rgba(201,169,110,1), 0 0 28px rgba(201,169,110,0.26), inset 0 1px 0 rgba(201,169,110,0.14)'
+        : '0 0 0 1px rgba(201,169,110,0.42), inset 0 1px 0 rgba(201,169,110,0.07)',
+    },
+  };
+
+  return (
+    <Link
+      href={href}
+      suppressHydrationWarning
+      onMouseEnter={() => { setHov(true); setShimmer(true); }}
+      onMouseLeave={() => { setHov(false); setTimeout(() => setShimmer(false), 700); }}
+      style={{
+        position: 'relative',
+        display: 'inline-flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: 10,
+        overflow: 'hidden',
+        fontFamily: 'var(--font-body)',
+        fontWeight: 600,
+        textTransform: 'uppercase',
+        textDecoration: 'none',
+        whiteSpace: 'nowrap',
+        width: fullWidth ? '100%' : undefined,
+        transform: hov ? 'translateY(-2px)' : 'translateY(0)',
+        transition: 'all 0.45s cubic-bezier(0.23,1,0.32,1)',
+        ...sizeMap[size],
+        ...variantStyles[variant],
+      }}
+    >
+      <span suppressHydrationWarning style={{ position: 'absolute', inset: 0, background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent)', transform: shimmer && hov ? 'translateX(110%)' : 'translateX(-110%)', transition: shimmer ? 'transform 0.7s ease' : 'none', pointerEvents: 'none', zIndex: 1 }} />
+      <span style={{ position: 'relative', zIndex: 2 }}>{children}</span>
+      {(showArrow || variant === 'ghost' || variant === 'luxury') && (
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" style={{ position: 'relative', zIndex: 2, flexShrink: 0, transform: hov ? 'translateX(4px)' : 'translateX(0)', transition: 'transform 0.3s ease' }}>
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      )}
+    </Link>
+  );
+}
+
 function AnimatedSection({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   const { ref, inView } = useInView();
   return (
-    <div ref={ref} style={{ opacity: inView ? 1 : 0, transform: inView ? 'translateY(0)' : 'translateY(48px)', transition: `opacity 0.75s ease ${delay}ms, transform 0.75s ease ${delay}ms` }}>
+    <div ref={ref} suppressHydrationWarning style={{ opacity: inView ? 1 : 0, transform: inView ? 'translateY(0)' : 'translateY(48px)', transition: `opacity 0.75s ease ${delay}ms, transform 0.75s ease ${delay}ms` }}>
       {children}
     </div>
   );
@@ -52,31 +139,25 @@ function Lightbox({ images, startIndex, onClose }: { images: string[]; startInde
 
   return (
     <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.95)', zIndex: 99999, display: 'flex', alignItems: 'center', justifyContent: 'center' }} onClick={onClose}>
-
       <button onClick={onClose} style={{ position: 'absolute', top: 24, right: 24, background: 'none', border: '1px solid rgba(255,255,255,0.2)', color: '#fff', width: 44, height: 44, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'border-color 0.2s' }}>
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 2l12 12M14 2L2 14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
       </button>
-
       {images.length > 1 && (
         <button onClick={e => { e.stopPropagation(); prev(); }} style={{ position: 'absolute', left: 24, top: '50%', transform: 'translateY(-50%)', background: 'none', border: '1px solid rgba(255,255,255,0.2)', color: '#fff', width: 48, height: 48, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <svg width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
         </button>
       )}
-
       <div style={{ maxWidth: '85vw', maxHeight: '85vh' }} onClick={e => e.stopPropagation()}>
         <img src={images[idx]} alt={`Image ${idx + 1}`} style={{ maxWidth: '100%', maxHeight: '85vh', objectFit: 'contain', display: 'block' }} />
       </div>
-
       {images.length > 1 && (
         <button onClick={e => { e.stopPropagation(); next(); }} style={{ position: 'absolute', right: 24, top: '50%', transform: 'translateY(-50%)', background: 'none', border: '1px solid rgba(255,255,255,0.2)', color: '#fff', width: 48, height: 48, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <svg width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
         </button>
       )}
-
       <div style={{ position: 'absolute', bottom: 28, left: '50%', transform: 'translateX(-50%)', fontFamily: 'var(--font-body)', fontSize: 11, letterSpacing: '2px', color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase' }}>
         {idx + 1} / {images.length}
       </div>
-
       {images.length > 1 && (
         <div style={{ position: 'absolute', bottom: 56, left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: 8 }}>
           {images.map((_, i) => (
@@ -92,7 +173,7 @@ function RelatedCard({ project, index }: { project: Project; index: number }) {
   const { ref, inView } = useInView(0.1);
   const [hov, setHov] = useState(false);
   return (
-    <div ref={ref} style={{ opacity: inView ? 1 : 0, transform: inView ? 'translateY(0)' : 'translateY(48px)', transition: `opacity 0.7s ease ${index * 130}ms, transform 0.7s ease ${index * 130}ms` }}>
+    <div ref={ref} suppressHydrationWarning style={{ opacity: inView ? 1 : 0, transform: inView ? 'translateY(0)' : 'translateY(48px)', transition: `opacity 0.7s ease ${index * 130}ms, transform 0.7s ease ${index * 130}ms` }}>
       <Link href={`/projects/${project.id}`} style={{ textDecoration: 'none', display: 'block' }}
         onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}>
         <div style={{ transform: hov ? 'translateY(-8px) scale(1.02)' : 'translateY(0) scale(1)', boxShadow: hov ? '0 20px 50px rgba(0,0,0,0.4)' : '0 4px 16px rgba(0,0,0,0.2)', transition: 'transform 0.4s ease, box-shadow 0.4s ease', overflow: 'hidden', background: '#111' }}>
@@ -150,7 +231,7 @@ export default function ProjectPageClient({ project, related }: Props) {
         <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 2, background: 'linear-gradient(90deg, transparent, var(--gold), transparent)', opacity: 0.6 }} />
 
         <div style={{ position: 'relative', width: '100%', maxWidth: 1200, margin: '0 auto', padding: '0 48px 72px' }}>
-          <nav style={{ display: 'flex', alignItems: 'center', gap: 8, fontFamily: 'var(--font-body)', fontSize: 11, letterSpacing: 1.5, textTransform: 'uppercase', marginBottom: 28, ...fade(0) }}>
+          <nav suppressHydrationWarning style={{ display: 'flex', alignItems: 'center', gap: 8, fontFamily: 'var(--font-body)', fontSize: 11, letterSpacing: 1.5, textTransform: 'uppercase', marginBottom: 28, ...fade(0) }}>
             <Link href="/" style={{ color: 'rgba(255,255,255,0.4)', textDecoration: 'none' }}>Home</Link>
             <span style={{ color: 'rgba(255,255,255,0.2)' }}>›</span>
             <Link href="/projects" style={{ color: 'rgba(255,255,255,0.4)', textDecoration: 'none' }}>Projects</Link>
@@ -158,16 +239,16 @@ export default function ProjectPageClient({ project, related }: Props) {
             <span style={{ color: 'var(--gold)' }}>{project.title}</span>
           </nav>
 
-          <div style={{ display: 'flex', gap: 10, marginBottom: 20, ...fade(100) }}>
+          <div suppressHydrationWarning style={{ display: 'flex', gap: 10, marginBottom: 20, ...fade(100) }}>
             <span style={{ fontFamily: 'var(--font-body)', fontSize: 9, fontWeight: 600, letterSpacing: '2px', textTransform: 'uppercase', color: project.category === 'residential' ? '#4ade80' : '#60a5fa', background: project.category === 'residential' ? 'rgba(34,197,94,0.15)' : 'rgba(59,130,246,0.15)', border: `1px solid ${project.category === 'residential' ? 'rgba(74,222,128,0.3)' : 'rgba(96,165,250,0.3)'}`, padding: '4px 12px' }}>{project.category}</span>
             {project.featured && <span style={{ fontFamily: 'var(--font-body)', fontSize: 9, letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--gold)', background: 'rgba(201,169,110,0.15)', border: '1px solid rgba(201,169,110,0.3)', padding: '4px 12px' }}>Featured</span>}
           </div>
 
-          <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(36px,5.5vw,72px)', fontWeight: 300, color: '#fff', lineHeight: 1.05, marginBottom: 20, maxWidth: 800, ...fade(200) }}>
+          <h1 suppressHydrationWarning style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(36px,5.5vw,72px)', fontWeight: 300, color: '#fff', lineHeight: 1.05, marginBottom: 20, maxWidth: 800, ...fade(200) }}>
             {project.title}
           </h1>
 
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 28, ...fade(340) }}>
+          <div suppressHydrationWarning style={{ display: 'flex', flexWrap: 'wrap', gap: 28, ...fade(340) }}>
             {[
               { icon: '📍', label: project.location },
               { icon: '📅', label: project.completionDate },
@@ -193,15 +274,9 @@ export default function ProjectPageClient({ project, related }: Props) {
                 onMouseLeave={() => setMainHov(false)}
                 onClick={() => setLightboxIdx(activeImg)}
               >
-                <img
-                  src={project.images[activeImg]}
-                  alt={`${project.title} main`}
-                  style={{ width: '100%', height: '100%', objectFit: 'cover', transform: mainHov ? 'scale(1.04)' : 'scale(1)', transition: 'transform 0.6s ease', display: 'block' }}
-                />
+                <img src={project.images[activeImg]} alt={`${project.title} main`} style={{ width: '100%', height: '100%', objectFit: 'cover', transform: mainHov ? 'scale(1.04)' : 'scale(1)', transition: 'transform 0.6s ease', display: 'block' }} />
                 <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.3)', opacity: mainHov ? 1 : 0, transition: 'opacity 0.35s ease', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <Button variant="outline" size="default" style={{ padding: '10px 24px', backdropFilter: 'blur(4px)' }}>
-                    Open Gallery
-                  </Button>
+                  <AnimBtn href="#" variant="luxury" size="md">Open Gallery</AnimBtn>
                 </div>
                 <div style={{ position: 'absolute', bottom: 16, right: 16, fontFamily: 'var(--font-body)', fontSize: 10, letterSpacing: '1.5px', color: 'rgba(255,255,255,0.7)', background: 'rgba(0,0,0,0.6)', padding: '4px 12px', backdropFilter: 'blur(4px)' }}>
                   {activeImg + 1} / {project.images.length}
@@ -211,13 +286,8 @@ export default function ProjectPageClient({ project, related }: Props) {
               {project.images.length > 1 && (
                 <div style={{ display: 'grid', gridTemplateColumns: `repeat(${Math.min(project.images.length, 4)}, 1fr)`, gap: 8 }}>
                   {project.images.map((img, i) => (
-                    <div
-                      key={i}
-                      onClick={() => setActiveImg(i)}
-                      onMouseEnter={() => setThumbHov(i)}
-                      onMouseLeave={() => setThumbHov(null)}
-                      style={{ aspectRatio: '4/3', overflow: 'hidden', cursor: 'pointer', border: `2px solid ${activeImg === i ? 'var(--gold)' : 'transparent'}`, transition: 'border-color 0.25s', transform: thumbHov === i ? 'scale(1.03)' : 'scale(1)', transition2: 'transform 0.3s ease' } as React.CSSProperties}
-                    >
+                    <div key={i} onClick={() => setActiveImg(i)} onMouseEnter={() => setThumbHov(i)} onMouseLeave={() => setThumbHov(null)}
+                      style={{ aspectRatio: '4/3', overflow: 'hidden', cursor: 'pointer', border: `2px solid ${activeImg === i ? 'var(--gold)' : 'transparent'}`, transition: 'border-color 0.25s', transform: thumbHov === i ? 'scale(1.03)' : 'scale(1)' } as React.CSSProperties}>
                       <img src={img} alt={`thumb ${i + 1}`} style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: activeImg === i ? 1 : thumbHov === i ? 0.85 : 0.55, transition: 'opacity 0.25s' }} />
                     </div>
                   ))}
@@ -230,7 +300,6 @@ export default function ProjectPageClient({ project, related }: Props) {
                 <p style={{ fontFamily: 'var(--font-body)', fontSize: 10, letterSpacing: 4, textTransform: 'uppercase', color: 'var(--gold)', marginBottom: 16 }}>Project Overview</p>
                 <div className="ppg-divider" />
                 <p style={{ fontFamily: 'var(--font-body)', fontSize: 15, lineHeight: 1.9, color: 'rgba(255,255,255,0.65)', marginBottom: 40 }}>{project.description}</p>
-
                 <p style={{ fontFamily: 'var(--font-body)', fontSize: 10, letterSpacing: 4, textTransform: 'uppercase', color: 'var(--gold)', marginBottom: 16 }}>Design Concept</p>
                 <div className="ppg-divider" />
                 <p style={{ fontFamily: 'var(--font-body)', fontSize: 15, lineHeight: 1.9, color: 'rgba(255,255,255,0.65)' }}>{project.designConcept}</p>
@@ -264,7 +333,7 @@ export default function ProjectPageClient({ project, related }: Props) {
               </div>
             </AnimatedSection>
           </div>
-
+=
           <AnimatedSection delay={250}>
             <div style={{ position: 'sticky', top: 96 }}>
               <div style={{ background: '#111', border: '1px solid rgba(255,255,255,0.07)', padding: '32px', marginBottom: 24 }}>
@@ -288,19 +357,13 @@ export default function ProjectPageClient({ project, related }: Props) {
 
               <div style={{ background: 'linear-gradient(135deg, #1a1508 0%, #2a2010 100%)', border: '1px solid rgba(201,169,110,0.2)', padding: '32px', textAlign: 'center' }}>
                 <p style={{ fontFamily: 'var(--font-body)', fontSize: 9, letterSpacing: '2.5px', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: 16 }}>Inspired?</p>
-                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 22, fontWeight: 300, color: '#fff', lineHeight: 1.3, marginBottom: 12 }}>
-                  Transform Your Space
-                </h3>
+                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 22, fontWeight: 300, color: '#fff', lineHeight: 1.3, marginBottom: 12 }}>Transform Your Space</h3>
                 <p style={{ fontFamily: 'var(--font-body)', fontSize: 13, lineHeight: 1.7, color: 'rgba(255,255,255,0.5)', marginBottom: 28 }}>
                   Let&apos;s create something extraordinary together.
                 </p>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-                  <Button href="/contact" size="lg" showArrow style={{ justifyContent: 'center' }}>
-                    Book Consultation
-                  </Button>
-                  <Button href="/projects" variant="outline" size="lg" style={{ justifyContent: 'center' }}>
-                    More Projects
-                  </Button>
+                  <AnimBtn href="/contact" variant="primary" size="lg" fullWidth showArrow>Book a Consultation</AnimBtn>
+                  <AnimBtn href="/projects" variant="luxury" size="lg" fullWidth>View Projects</AnimBtn>
                 </div>
               </div>
             </div>
@@ -322,9 +385,7 @@ export default function ProjectPageClient({ project, related }: Props) {
             </div>
             <AnimatedSection delay={200}>
               <div style={{ marginTop: 48, textAlign: 'center' }}>
-                <Button href="/projects" variant="outline" size="lg" showArrow>
-                  View All Projects
-                </Button>
+                <AnimBtn href="/projects" variant="ghost" size="lg" showArrow>View All Projects</AnimBtn>
               </div>
             </AnimatedSection>
           </div>
@@ -344,12 +405,8 @@ export default function ProjectPageClient({ project, related }: Props) {
               Let&apos;s create something extraordinary together. Schedule a consultation to discuss your vision.
             </p>
             <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
-              <Button href="/contact" size="lg" showArrow>
-                Book a Consultation
-              </Button>
-              <Button href="/projects" variant="outline" size="lg">
-                View All Projects
-              </Button>
+              <AnimBtn href="/contact" variant="primary" size="xl" showArrow>Book a Consultation</AnimBtn>
+              <AnimBtn href="/projects" variant="ghost" size="xl">View All Projects</AnimBtn>
             </div>
           </AnimatedSection>
         </div>

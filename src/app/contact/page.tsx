@@ -7,7 +7,6 @@ import { AlertCircle } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import Button from '@/components/common/Button';
 import { CONTACT_INFO, BUSINESS_HOURS } from '@/lib/constants';
 
 function useInView(threshold = 0.15) {
@@ -26,17 +25,122 @@ function useInView(threshold = 0.15) {
   return { ref, inView };
 }
 
+function AnimBtn({
+  href,
+  onClick,
+  type,
+  variant,
+  size = 'md',
+  disabled = false,
+  showArrow = false,
+  children,
+}: {
+  href?: string;
+  onClick?: () => void;
+  type?: 'button' | 'submit';
+  variant: 'primary' | 'ghost' | 'luxury';
+  size?: 'sm' | 'md' | 'lg' | 'xl';
+  disabled?: boolean;
+  showArrow?: boolean;
+  children: React.ReactNode;
+}) {
+  const [hov, setHov] = useState(false);
+  const [shimmer, setShimmer] = useState(false);
+
+  const sizeMap = {
+    sm: { padding: '11px 26px', fontSize: 9,  letterSpacing: '0.18em' },
+    md: { padding: '15px 36px', fontSize: 10, letterSpacing: '0.22em' },
+    lg: { padding: '18px 48px', fontSize: 11, letterSpacing: '0.24em' },
+    xl: { padding: '21px 60px', fontSize: 12, letterSpacing: '0.26em' },
+  };
+
+  const variantStyles: Record<string, React.CSSProperties> = {
+    primary: {
+      background: disabled ? 'rgba(201,169,110,0.3)' : hov ? 'transparent' : 'var(--gold)',
+      color: disabled ? 'rgba(201,169,110,0.5)' : hov ? 'var(--gold)' : '#0a0a0a',
+      border: `1.5px solid ${disabled ? 'rgba(201,169,110,0.3)' : 'var(--gold)'}`,
+      boxShadow: disabled ? 'none' : hov
+        ? '0 0 0 1px rgba(201,169,110,0.5), 0 8px 28px rgba(201,169,110,0.22)'
+        : 'inset 0 1px 0 rgba(255,255,255,0.22), 0 4px 20px rgba(201,169,110,0.32)',
+    },
+    ghost: {
+      background: hov ? 'var(--gold)' : 'transparent',
+      color: hov ? '#0a0a0a' : 'rgba(255,255,255,0.78)',
+      border: hov ? '1.5px solid var(--gold)' : '1.5px solid rgba(255,255,255,0.22)',
+      boxShadow: hov
+        ? 'inset 0 1px 0 rgba(255,255,255,0.18), 0 8px 28px rgba(201,169,110,0.35)'
+        : 'none',
+    },
+    luxury: {
+      background: hov ? '#141414' : '#0d0d0d',
+      color: 'var(--gold)',
+      border: '1.5px solid transparent',
+      boxShadow: hov
+        ? '0 0 0 1px rgba(201,169,110,1), 0 0 28px rgba(201,169,110,0.26), inset 0 1px 0 rgba(201,169,110,0.14)'
+        : '0 0 0 1px rgba(201,169,110,0.42), inset 0 1px 0 rgba(201,169,110,0.07)',
+    },
+  };
+
+  const baseStyle: React.CSSProperties = {
+    position: 'relative',
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 10,
+    overflow: 'hidden',
+    fontFamily: 'var(--font-body)',
+    fontWeight: 600,
+    textTransform: 'uppercase',
+    textDecoration: 'none',
+    whiteSpace: 'nowrap',
+    cursor: disabled ? 'not-allowed' : 'pointer',
+    opacity: disabled ? 0.6 : 1,
+    transform: hov && !disabled ? 'translateY(-2px)' : 'translateY(0)',
+    transition: 'all 0.45s cubic-bezier(0.23,1,0.32,1)',
+    ...sizeMap[size],
+    ...variantStyles[variant],
+  };
+
+  const inner = (
+    <>
+      <span suppressHydrationWarning style={{ position: 'absolute', inset: 0, background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent)', transform: shimmer && hov ? 'translateX(110%)' : 'translateX(-110%)', transition: shimmer ? 'transform 0.7s ease' : 'none', pointerEvents: 'none', zIndex: 1 }} />
+      <span style={{ position: 'relative', zIndex: 2 }}>{children}</span>
+      {(showArrow || variant === 'ghost' || variant === 'luxury') && !disabled && (
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" style={{ position: 'relative', zIndex: 2, flexShrink: 0, transform: hov ? 'translateX(4px)' : 'translateX(0)', transition: 'transform 0.3s ease' }}>
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      )}
+    </>
+  );
+
+  if (href) {
+    return (
+      <Link href={href} suppressHydrationWarning
+        onMouseEnter={() => { setHov(true); setShimmer(true); }}
+        onMouseLeave={() => { setHov(false); setTimeout(() => setShimmer(false), 700); }}
+        style={baseStyle}>
+        {inner}
+      </Link>
+    );
+  }
+
+  return (
+    <button suppressHydrationWarning
+      type={type ?? 'button'}
+      disabled={disabled}
+      onMouseEnter={() => { if (!disabled) { setHov(true); setShimmer(true); } }}
+      onMouseLeave={() => { setHov(false); setTimeout(() => setShimmer(false), 700); }}
+      onClick={onClick}
+      style={{ ...baseStyle, border: 'none', outline: 'none', ...variantStyles[variant] }}>
+      {inner}
+    </button>
+  );
+}
+
 function AnimatedSection({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   const { ref, inView } = useInView();
   return (
-    <div
-      ref={ref}
-      style={{
-        opacity: inView ? 1 : 0,
-        transform: inView ? 'translateY(0)' : 'translateY(50px)',
-        transition: `opacity 0.75s ease ${delay}ms, transform 0.75s ease ${delay}ms`,
-      }}
-    >
+    <div ref={ref} suppressHydrationWarning style={{ opacity: inView ? 1 : 0, transform: inView ? 'translateY(0)' : 'translateY(50px)', transition: `opacity 0.75s ease ${delay}ms, transform 0.75s ease ${delay}ms` }}>
       {children}
     </div>
   );
@@ -53,22 +157,13 @@ const inquirySchema = z.object({
 type InquiryFormData = z.infer<typeof inquirySchema>;
 
 const baseInput: React.CSSProperties = {
-  fontFamily: 'var(--font-body)',
-  fontSize: 13,
-  color: '#fff',
-  background: 'rgba(255,255,255,0.04)',
-  border: '1px solid rgba(255,255,255,0.1)',
-  borderBottom: '1px solid rgba(255,255,255,0.15)',
-  padding: '13px 16px',
-  outline: 'none',
-  width: '100%',
-  transition: 'border-color 0.25s, background 0.25s',
+  fontFamily: 'var(--font-body)', fontSize: 13, color: '#fff',
+  background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.1)',
+  borderBottom: '1px solid rgba(255,255,255,0.15)', padding: '13px 16px',
+  outline: 'none', width: '100%', transition: 'border-color 0.25s, background 0.25s',
 };
 
-const errorInput: React.CSSProperties = {
-  ...baseInput,
-  borderColor: '#c0392b',
-};
+const errorInput: React.CSSProperties = { ...baseInput, borderColor: '#c0392b' };
 
 const ErrorMsg = ({ msg }: { msg?: string }) =>
   msg ? (
@@ -80,7 +175,7 @@ const ErrorMsg = ({ msg }: { msg?: string }) =>
 function StatCard({ value, label, delay }: { value: string; label: string; delay: number }) {
   const { ref, inView } = useInView();
   return (
-    <div ref={ref} style={{ textAlign: 'center', padding: '40px 24px', border: '1px solid rgba(255,255,255,0.07)', opacity: inView ? 1 : 0, transform: inView ? 'translateY(0)' : 'translateY(40px)', transition: `opacity 0.7s ease ${delay}ms, transform 0.7s ease ${delay}ms` }}>
+    <div ref={ref} suppressHydrationWarning style={{ textAlign: 'center', padding: '40px 24px', border: '1px solid rgba(255,255,255,0.07)', opacity: inView ? 1 : 0, transform: inView ? 'translateY(0)' : 'translateY(40px)', transition: `opacity 0.7s ease ${delay}ms, transform 0.7s ease ${delay}ms` }}>
       <p style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(32px,4vw,52px)', fontWeight: 300, color: 'var(--gold)', lineHeight: 1, marginBottom: 12 }}>{value}</p>
       <p style={{ fontFamily: 'var(--font-body)', fontSize: 10, letterSpacing: '2.5px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)' }}>{label}</p>
     </div>
@@ -116,6 +211,12 @@ export default function ContactPage() {
     { icon: <Clock   size={18} style={{ color: 'var(--gold)', flexShrink: 0, marginTop: 2 }} />, label: 'Business Hours',   content: <p style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'rgba(255,255,255,0.75)', lineHeight: 1.9, margin: 0 }}>Mon – Fri: {BUSINESS_HOURS.weekdays}<br />Saturday: {BUSINESS_HOURS.saturday}<br />Sunday: {BUSINESS_HOURS.sunday}</p> },
   ];
 
+  const fade = (delay: number): React.CSSProperties => ({
+    opacity: heroVisible ? 1 : 0,
+    transform: heroVisible ? 'translateY(0)' : 'translateY(30px)',
+    transition: `opacity 0.8s ease ${delay}ms, transform 0.8s ease ${delay}ms`,
+  });
+
   return (
     <>
       <style>{`
@@ -125,10 +226,9 @@ export default function ContactPage() {
         .ct-input option { background: #1a1a1a; color: #fff; }
         .ct-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
         .ct-layout  { display: flex; gap: 80px; flex-wrap: wrap; }
-        .ct-submit-btn { font-family:var(--font-body);font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#000;background:var(--gold);border:none;padding:15px 36px;cursor:pointer;transition:background 0.25s,transform 0.2s;display:inline-flex;align-items:center;gap:8px; }
-        .ct-submit-btn:hover:not(:disabled) { background:var(--gold-dark);transform:translateY(-2px); }
-        .ct-submit-btn:disabled { background:rgba(201,169,110,0.4);cursor:not-allowed; }
         .ct-stats { display:grid;grid-template-columns:repeat(4,1fr); }
+        .ct-social-link { font-family:var(--font-body);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.5);text-decoration:none;transition:color 0.2s; }
+        .ct-social-link:hover { color:var(--gold); }
         @media (max-width: 900px) { .ct-layout { flex-direction: column; gap: 56px; } .ct-stats { grid-template-columns: repeat(2,1fr); } }
         @media (max-width: 600px) { .ct-form-grid { grid-template-columns: 1fr; } .ct-stats { grid-template-columns: repeat(2,1fr); } }
       `}</style>
@@ -141,44 +241,39 @@ export default function ContactPage() {
         </div>
 
         <div style={{ position: 'relative', width: '100%', maxWidth: 1200, margin: '0 auto', padding: '0 48px 80px' }}>
-          <nav style={{ display: 'flex', alignItems: 'center', gap: 8, fontFamily: 'var(--font-body)', fontSize: 11, letterSpacing: 1.5, textTransform: 'uppercase', marginBottom: 32, opacity: heroVisible ? 1 : 0, transform: heroVisible ? 'translateY(0)' : 'translateY(20px)', transition: 'opacity 0.7s ease 0ms, transform 0.7s ease 0ms' }}>
-            <Link href="/"        style={{ color: 'rgba(255,255,255,0.4)', textDecoration: 'none' }}>Home</Link>
+          <nav suppressHydrationWarning style={{ display: 'flex', alignItems: 'center', gap: 8, fontFamily: 'var(--font-body)', fontSize: 11, letterSpacing: 1.5, textTransform: 'uppercase', marginBottom: 32, ...fade(0) }}>
+            <Link href="/" style={{ color: 'rgba(255,255,255,0.4)', textDecoration: 'none' }}>Home</Link>
             <span style={{ color: 'rgba(255,255,255,0.2)' }}>›</span>
             <span style={{ color: 'var(--gold)' }}>Contact</span>
           </nav>
 
-          <p style={{ fontFamily: 'var(--font-body)', fontSize: 10, letterSpacing: 4, textTransform: 'uppercase', color: 'var(--gold)', marginBottom: 20, opacity: heroVisible ? 1 : 0, transform: heroVisible ? 'translateY(0)' : 'translateY(25px)', transition: 'opacity 0.7s ease 100ms, transform 0.7s ease 100ms' }}>
+          <p suppressHydrationWarning style={{ fontFamily: 'var(--font-body)', fontSize: 10, letterSpacing: 4, textTransform: 'uppercase', color: 'var(--gold)', marginBottom: 20, ...fade(100) }}>
             Get In Touch
           </p>
-          <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(40px,6vw,80px)', fontWeight: 300, color: '#ffffff', lineHeight: 1.05, marginBottom: 24, maxWidth: 700, opacity: heroVisible ? 1 : 0, transform: heroVisible ? 'translateY(0)' : 'translateY(32px)', transition: 'opacity 0.8s ease 200ms, transform 0.8s ease 200ms' }}>
+          <h1 suppressHydrationWarning style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(40px,6vw,80px)', fontWeight: 300, color: '#ffffff', lineHeight: 1.05, marginBottom: 24, maxWidth: 700, ...fade(200) }}>
             Let&apos;s Create Something <em style={{ fontStyle: 'italic', color: 'var(--gold-light)' }}>Extraordinary</em>
           </h1>
-          <p style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(15px,2vw,20px)', fontWeight: 300, fontStyle: 'italic', color: 'rgba(255,255,255,0.55)', maxWidth: 500, marginBottom: 40, opacity: heroVisible ? 1 : 0, transform: heroVisible ? 'translateY(0)' : 'translateY(32px)', transition: 'opacity 0.8s ease 340ms, transform 0.8s ease 340ms' }}>
+          <p suppressHydrationWarning style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(15px,2vw,20px)', fontWeight: 300, fontStyle: 'italic', color: 'rgba(255,255,255,0.55)', maxWidth: 500, marginBottom: 48, ...fade(340) }}>
             Book a free consultation and let&apos;s bring your vision to life.
           </p>
-          <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', opacity: heroVisible ? 1 : 0, transform: heroVisible ? 'translateY(0)' : 'translateY(32px)', transition: 'opacity 0.8s ease 460ms, transform 0.8s ease 460ms' }}>
-            <Button href="#contact-form" size="lg" showArrow>
-              Book a Consultation
-            </Button>
-            <Button href="/projects" variant="ghost" size="lg">
-              View Our Work
-            </Button>
+          <div suppressHydrationWarning style={{ display: 'flex', gap: 16, flexWrap: 'wrap', ...fade(460) }}>
+            <AnimBtn href="#contact-form" variant="primary" size="lg" showArrow>Book a Consultation</AnimBtn>
+            <AnimBtn href="/projects" variant="ghost" size="lg">View Our Work</AnimBtn>
           </div>
         </div>
       </section>
 
       <section style={{ background: '#0a0a0a', padding: '0 48px' }}>
         <div className="ct-stats" style={{ maxWidth: 1200, margin: '0 auto', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
-          <StatCard value="150+"  label="Projects Completed"  delay={0}   />
-          <StatCard value="8+"    label="Years of Excellence"  delay={100} />
-          <StatCard value="24hrs" label="Response Time"        delay={200} />
-          <StatCard value="100%" label="Client Satisfaction"  delay={300} />
+          <StatCard value="150+"  label="Projects Completed" delay={0}   />
+          <StatCard value="8+"    label="Years of Excellence" delay={100} />
+          <StatCard value="24hrs" label="Response Time"       delay={200} />
+          <StatCard value="100%"  label="Client Satisfaction" delay={300} />
         </div>
       </section>
 
       <section id="contact-form" style={{ background: '#0d0d0d', padding: '96px 48px' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-
           <AnimatedSection delay={0}>
             <div style={{ marginBottom: 64 }}>
               <p style={{ fontFamily: 'var(--font-body)', fontSize: 10, letterSpacing: 4, textTransform: 'uppercase', color: 'var(--gold)', marginBottom: 16 }}>Reach Out</p>
@@ -187,7 +282,6 @@ export default function ContactPage() {
           </AnimatedSection>
 
           <div className="ct-layout">
-
             <AnimatedSection delay={100}>
               <div style={{ flex: 2, minWidth: 300 }}>
                 {submitted ? (
@@ -195,13 +289,10 @@ export default function ContactPage() {
                     <p style={{ fontSize: 40, marginBottom: 16 }}>✓</p>
                     <p style={{ fontFamily: 'var(--font-display)', fontSize: 26, fontWeight: 300, color: 'var(--gold)', marginBottom: 12 }}>Thank You!</p>
                     <p style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'rgba(255,255,255,0.6)', marginBottom: 32, lineHeight: 1.7 }}>We&apos;ve received your enquiry and will be in touch within 24 hours.</p>
-                    <Button onClick={() => setSubmitted(false)} size="sm">
-                      Send Another
-                    </Button>
+                    <AnimBtn onClick={() => setSubmitted(false)} variant="luxury" size="sm">Send Another</AnimBtn>
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit(onSubmit)} noValidate style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-
                     <div className="ct-form-grid">
                       <div>
                         <input {...register('fullName')} placeholder="Full Name *" className="ct-input" style={errors.fullName ? errorInput : baseInput} />
@@ -249,12 +340,11 @@ export default function ContactPage() {
                     )}
 
                     <div style={{ display: 'flex', alignItems: 'center', gap: 20, flexWrap: 'wrap', marginTop: 8 }}>
-                      <Button type="submit" disabled={isSubmitting} size="lg">
-                        {isSubmitting ? 'Sending...' : 'Send Enquiry →'}
-                      </Button>
+                      <AnimBtn type="submit" variant="primary" size="lg" disabled={isSubmitting}>
+                        {isSubmitting ? 'Sending...' : 'Send Enquiry'}
+                      </AnimBtn>
                       <p style={{ fontFamily: 'var(--font-body)', fontSize: 11, color: 'rgba(255,255,255,0.35)', letterSpacing: 1 }}>We respond within 24 hours</p>
                     </div>
-
                   </form>
                 )}
               </div>
@@ -263,7 +353,6 @@ export default function ContactPage() {
             <AnimatedSection delay={200}>
               <div style={{ flex: 1, minWidth: 240 }}>
                 <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 26, fontWeight: 300, color: '#ffffff', marginBottom: 36 }}>Studio Information</h3>
-
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
                   {infoItems.map((item) => (
                     <div key={item.label} style={{ display: 'flex', gap: 16 }}>
@@ -307,7 +396,6 @@ export default function ContactPage() {
                 </div>
               </div>
             </AnimatedSection>
-
           </div>
         </div>
       </section>
@@ -323,12 +411,8 @@ export default function ContactPage() {
               Discover the spaces we&apos;ve crafted — from modern villas to boutique hotels across India.
             </p>
             <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
-              <Button href="/projects" size="lg" showArrow>
-                View Projects
-              </Button>
-              <Button href="/services" variant="ghost" size="lg">
-                Our Services
-              </Button>
+              <AnimBtn href="/projects" variant="primary" size="xl" showArrow>View Projects</AnimBtn>
+              <AnimBtn href="/services" variant="ghost" size="xl">Our Services</AnimBtn>
             </div>
           </AnimatedSection>
         </div>

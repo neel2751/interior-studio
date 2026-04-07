@@ -356,3 +356,96 @@
   .ct-form-grid { grid-template-columns: 1fr; }
   .ct-stats { grid-template-columns: repeat(2,1fr); }
 }
+
+.sd-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 36px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: var(--gold);
+  color: #0a0a0a;
+  border: 1.5px solid var(--gold);
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.sd-btn-primary:hover {
+  background: transparent;
+  color: var(--gold);
+}
+
+.sd-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 36px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: transparent;
+  color: rgba(255,255,255,0.8);
+  border: 1.5px solid rgba(255,255,255,0.25);
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.sd-btn-ghost:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.sd-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 42px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.sd-cta-primary {
+  background: var(--gold);
+  color: #0a0a0a;
+  border: 1.5px solid var(--gold);
+}
+
+.sd-cta-primary:hover {
+  background: transparent;
+  color: var(--gold);
+}
+
+.sd-cta-ghost {
+  background: transparent;
+  color: rgba(255,255,255,0.8);
+  border: 1.5px solid rgba(255,255,255,0.25);
+}
+
+.sd-cta-ghost:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.sp-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; }
+@media (max-width: 900px) { .sp-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .sp-grid { grid-template-columns: 1fr; } }
+.sp-tile:hover .sp-bg { transform: scale(1.08); opacity: 1 !important; }
+.sp-tile:hover .sp-desc { opacity: 1 !important; transform: translateY(0) !important; }
+.sp-tile:hover .sp-arrow { opacity: 1 !important; transform: translateX(0) !important; }
+.sp-tile:hover .sp-title { color: #ffffff !important; }
+.sp-tile:hover .sp-dim { background: rgba(0,0,0,0.55) !important; }
+.view-services-btn:hover { background: var(--gold) !important; color: #0f0f0f !important; }

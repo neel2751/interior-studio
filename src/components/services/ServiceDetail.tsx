@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { Service } from '@/types/service';
 import { PROJECTS } from '@/lib/constants';
-import Button from '@/components/common/Button';
 
 interface ServiceDetailProps {
   service: Service;
@@ -131,6 +130,17 @@ const ServiceDetail = ({ service }: ServiceDetailProps) => {
         }
         .sd-stat-card:hover { border-color: rgba(201,169,110,0.3); }
 
+        .sd-cta-btn {
+          display: inline-flex; align-items: center; gap: 10px;
+          padding: 18px 42px; font-family: var(--font-body); font-size: 12px;
+          font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase;
+          text-decoration: none; transition: background 0.25s, color 0.25s, border-color 0.25s, transform 0.2s;
+        }
+        .sd-cta-primary { background: var(--gold); color: #0a0a0a; border: 1.5px solid var(--gold); }
+        .sd-cta-primary:hover { background: var(--gold-dark); border-color: var(--gold-dark); transform: scale(1.04); }
+        .sd-cta-ghost { background: transparent; color: rgba(255,255,255,0.8); border: 1.5px solid rgba(255,255,255,0.25); }
+        .sd-cta-ghost:hover { border-color: var(--gold); color: var(--gold); transform: scale(1.04); }
+
         @media (max-width: 768px) {
           .sd-two-col   { grid-template-columns: 1fr !important; gap: 48px !important; }
           .sd-three-col { grid-template-columns: 1fr !important; }
@@ -199,12 +209,11 @@ const ServiceDetail = ({ service }: ServiceDetailProps) => {
               {service.detailedDescription}
             </p>
             <div style={{ display:'flex', gap:16, flexWrap:'wrap' }}>
-              <Button href="/contact" size="lg" showArrow>
+              <Link href="/contact" className="sd-btn-primary">
                 Book a Consultation
-              </Button>
-              <Button href="/projects" variant="ghost" size="lg">
-                View Projects
-              </Button>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+              </Link>
+              <Link href="/projects" className="sd-btn-ghost">View Projects</Link>
             </div>
           </div>
 
@@ -278,9 +287,10 @@ const ServiceDetail = ({ service }: ServiceDetailProps) => {
           </div>
 
           <div style={{ marginTop:40, textAlign:'center' }}>
-            <Button href="/projects" variant="secondary" size="lg" showArrow>
+            <Link href="/projects" className="sd-cta-btn sd-cta-ghost">
               View All Projects
-            </Button>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+            </Link>
           </div>
         </div>
       </section>
@@ -297,12 +307,13 @@ const ServiceDetail = ({ service }: ServiceDetailProps) => {
             Let&apos;s discuss your {service.title.toLowerCase()} project. Our team is ready to bring your vision to life.
           </p>
           <div style={{ display:'flex', gap:16, justifyContent:'center', flexWrap:'wrap' }}>
-            <Button href="/contact" size="lg" showArrow>
-              Book a Consultation
-            </Button>
-            <Button href="/projects" variant="ghost" size="lg">
+            <Link href="/projects" className="sd-cta-btn sd-cta-primary">
               View Our Portfolio
-            </Button>
+            </Link>
+            <Link href="/contact" className="sd-cta-btn sd-cta-ghost">
+              Book a Consultation
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+            </Link>
           </div>
         </div>
       </section>

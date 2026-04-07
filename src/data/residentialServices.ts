@@ -143,7 +143,7 @@ export const RESIDENTIAL_SERVICES: Service[] = [
   },
   {
     id: 'r9',
-    slug: '3-bedroom-flat-interior-design',
+    slug: '3-bedroom-flat',
     title: '3-Bedroom Flat Interior Design',
     description: 'Complete interior solutions for 3-bedroom apartments.',
     detailedDescription: 'Maximize space and comfort in your 3-bedroom apartment with our comprehensive design services. We create cohesive interiors across all rooms, ensuring optimal space utilization and aesthetic harmony.',
@@ -442,8 +442,8 @@ export const RESIDENTIAL_SERVICES: Service[] = [
   },
   {
     id: 'r32',
-    slug: 'virtual',
-    title: 'Virtual',
+    slug: 'virtual-tour',
+    title: 'Virtual Tour',
     description: 'Virtual interior design consultations and 3D visualization.',
     detailedDescription: 'Get professional interior design services remotely with our virtual design offerings. We provide 3D visualizations, material boards, and detailed guidance for self-execution.',
     icon: '/icons/home.svg',
@@ -494,20 +494,38 @@ export const RESIDENTIAL_SERVICES: Service[] = [
   },
   {
     id: 'r36',
+    slug: 'dressing-room',
+    title: 'Dressing Room',
+    description: 'Elegant dressing room designs with custom wardrobes and vanity setups.',
+    detailedDescription: 'Create a luxurious personal dressing space with custom storage, elegant mirrors, and premium finishes. Our dressing room designs combine functionality with sophistication for the perfect wardrobe experience.',
+    icon: '/icons/home.svg',
+    image: '/images/projects/modern-villa-ahmedabad/cover.png',
+    gallery: ['/images/projects/modern-villa-ahmedabad/cover.png', '/images/projects/sky-penthouse-mumbai/cover.png'],
+    process: ['Storage needs assessment', 'Custom wardrobe design', 'Lighting planning', 'Mirror placement', 'Finishing selection', 'Installation and organization'],
+    features: ['Custom wardrobes', 'Full-length mirrors', 'Jewelry storage', 'Premium lighting'],
+    projectExamples: ['modern-villa-ahmedabad', 'sky-penthouse-mumbai'],
+    heroGradient: 'linear-gradient(135deg, #1a1a1a 0%, #2a2010 50%, #1a1a1a 100%)',
+    priceRange: '₹3,00,000 - ₹10,00,000',
+    duration: '4-8 weeks',
+  },
+  {
+    id: 'r38',
     slug: 'building-design',
     title: 'Building Design',
     description: 'Comprehensive building design from concept to completion.',
     detailedDescription: 'Get complete building design services covering architecture, structure, and interiors. We create cohesive designs that optimize space, function, and aesthetics from the ground up.',
     icon: '/icons/home.svg',
     image: '/images/projects/modern-villa-ahmedabad/cover.png',
+    gallery: ['/images/projects/modern-villa-ahmedabad/cover.png'],
     process: ['Site analysis', 'Architectural planning', 'Structural coordination', 'Interior integration', 'MEP planning', 'Project coordination'],
     features: ['Holistic approach', 'Architectural excellence', 'Structural integration', 'Interior harmony'],
     projectExamples: ['modern-villa-ahmedabad'],
     heroGradient: 'linear-gradient(135deg, #1a1a1a 0%, #2a2010 50%, #1a1a1a 100%)',
+    priceRange: '₹5,00,000 - ₹25,00,000',
+    duration: '12-24 weeks',
   },
 ];
 
-// ---- Utility functions -------------------------------------
 
 export function getResidentialServiceBySlug(slug: string): Service | undefined {
   return RESIDENTIAL_SERVICES.find((s) => s.slug === slug);

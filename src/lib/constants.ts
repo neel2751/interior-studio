@@ -1,5 +1,5 @@
-import { Project } from '@/types/project';
-import { Service } from '@/types/service';
+import type { Project } from '@/types/project';
+import type { Service } from '@/types/service';
 
 
 export const NAV_LINKS = [
@@ -54,30 +54,28 @@ export const HERO_STATS = [
   { value: '100%',  label: 'FULL SERVICE' },
 ];
 
-
 export const SERVICES_GRID = [
-  { title: 'Villa Interior Design',          image: '/images/projects/modern-villa-ahmedabad/cover.png',  href: '/services/residential-interior-design' },
-  { title: 'Commercial Fit-Out',             image: '/images/projects/tech-office-bangalore/cover.png',   href: '/services/commercial-interior-design'  },
-  { title: 'Apartment Interior Design',      image: '/images/projects/sky-penthouse-mumbai/cover.png',  href: '/services/residential-interior-design' },
-  { title: 'Furniture & Accessories',        image: '/images/projects/boutique-hotel-goa/cover.png',  href: '/services/hospitality-space'           },
-  { title: 'Landscape Design',               image: '/images/projects/restaurant-delhi/cover.png',       href: '/services/hospitality-space'           },
-  { title: 'Exterior Design',                image: '/images/projects/heritage-bungalow-pune/cover.png',   href: '/services/commercial-interior-design'  },
-  { title: 'Hotel Interior Design',          image: '/images/projects/boutique-hotel-goa/cover.png',  href: '/services/hospitality-space'           },
-  { title: 'Office Design & Commercial',     image: '/images/projects/tech-office-bangalore/cover.png',       href: '/services/office-interior'             },
-  { title: 'Kitchen Design',                 image: '/images/projects/modern-villa-ahmedabad/cover.png',  href: '/services/residential-interior-design' },
-  { title: 'Bathroom Design',                image: '/images/projects/sky-penthouse-mumbai/cover.png',  href: '/services/residential-interior-design' },
-  { title: 'Dressing Room Design',           image: '/images/projects/heritage-bungalow-pune/cover.png',  href: '/services/residential-interior-design' },
-  { title: 'Hospital & Clinical Fit-Out',    image: '/images/projects/restaurant-delhi/cover.png',   href: '/services/commercial-interior-design'  },
+  { title: 'Villa Interior Design',       image: '/images/projects/modern-villa-ahmedabad/cover.png',  href: '/services/residential-interior-design' },
+  { title: 'Commercial Fit-Out',          image: '/images/projects/tech-office-bangalore/cover.png',   href: '/services/commercial-interior-design'  },
+  { title: 'Apartment Interior Design',   image: '/images/projects/sky-penthouse-mumbai/cover.png',    href: '/services/residential-interior-design' },
+  { title: 'Furniture & Accessories',     image: '/images/projects/boutique-hotel-goa/cover.png',      href: '/services/hospitality-space'           },
+  { title: 'Landscape Design',            image: '/images/projects/heritage-bungalow-pune/cover.png',  href: '/services/hospitality-space'           },
+  { title: 'Exterior Design',             image: '/images/projects/restaurant-delhi/cover.png',        href: '/services/commercial-interior-design'  },
+  { title: 'Hotel Interior Design',       image: '/images/projects/boutique-hotel-goa/cover.png',      href: '/services/hospitality-space'           },
+  { title: 'Office Design & Commercial',  image: '/images/projects/tech-office-bangalore/cover.png',   href: '/services/office-interior'             },
+  { title: 'Kitchen Design',              image: '/images/projects/modern-villa-ahmedabad/cover.png',  href: '/services/residential-interior-design' },
+  { title: 'Bathroom Design',             image: '/images/projects/sky-penthouse-mumbai/cover.png',    href: '/services/residential-interior-design' },
+  { title: 'Dressing Room Design',        image: '/images/projects/heritage-bungalow-pune/cover.png',  href: '/services/residential-interior-design' },
+  { title: 'Hospital & Clinical Fit-Out', image: '/images/projects/restaurant-delhi/cover.png',        href: '/services/commercial-interior-design'  },
 ];
-
 
 export const FURNITURE_CATEGORIES = [
   { title: 'Bedroom',     image: '/images/projects/modern-villa-ahmedabad/cover.png', href: '/services/residential-interior-design' },
-  { title: 'Dining Room', image: '/images/projects/restaurant-delhi/cover.png', href: '/services/hospitality-space'           },
+  { title: 'Dining Room', image: '/images/projects/restaurant-delhi/cover.png',       href: '/services/hospitality-space'           },
   { title: 'Living Room', image: '/images/projects/heritage-bungalow-pune/cover.png', href: '/services/residential-interior-design' },
-  { title: 'Office',      image: '/images/projects/tech-office-bangalore/cover.png',      href: '/services/office-interior'             },
-  { title: 'Outdoor',     image: '/images/projects/boutique-hotel-goa/cover.png',  href: '/services/commercial-interior-design'  },
-  { title: 'Kitchen',     image: '/images/projects/sky-penthouse-mumbai/cover.png', href: '/services/residential-interior-design' },
+  { title: 'Office',      image: '/images/projects/tech-office-bangalore/cover.png',  href: '/services/office-interior'             },
+  { title: 'Outdoor',     image: '/images/projects/boutique-hotel-goa/cover.png',     href: '/services/commercial-interior-design'  },
+  { title: 'Kitchen',     image: '/images/projects/sky-penthouse-mumbai/cover.png',   href: '/services/residential-interior-design' },
 ];
 
 
@@ -95,9 +93,7 @@ export const PROJECTS: Project[] = [
     materials: ['Italian Marble', 'Walnut Wood', 'Brushed Brass', 'Textured Fabrics'],
     images: [
       '/images/projects/modern-villa-ahmedabad/cover.png',
-      '/images/projects/modern-villa-ahmedabad/gallery-1.jpg',
-      '/images/projects/modern-villa-ahmedabad/gallery-2.jpg',
-      '/images/projects/modern-villa-ahmedabad/gallery-3.jpg',
+      '/images/projects/modern-villa-ahmedabad/gallery-1.png',
     ],
     featured: true,
   },
@@ -114,8 +110,7 @@ export const PROJECTS: Project[] = [
     materials: ['Glass Partitions', 'Acoustic Panels', 'Sustainable Wood', 'LED Lighting'],
     images: [
       '/images/projects/tech-office-bangalore/cover.png',
-      '/images/projects/tech-office-bangalore/gallery-1.jpg',
-      '/images/projects/tech-office-bangalore/gallery-2.jpg',
+      '/images/projects/tech-office-bangalore/gallery-1.png',
     ],
     featured: true,
   },
@@ -132,8 +127,7 @@ export const PROJECTS: Project[] = [
     materials: ['Travertine Stone', 'Macassar Ebony', 'Bronze Fixtures', 'Silk Textiles'],
     images: [
       '/images/projects/sky-penthouse-mumbai/cover.png',
-      '/images/projects/sky-penthouse-mumbai/gallery-1.jpg',
-      '/images/projects/sky-penthouse-mumbai/gallery-2.jpg',
+      '/images/projects/sky-penthouse-mumbai/gallery-1.png',
     ],
     featured: true,
   },
@@ -150,8 +144,7 @@ export const PROJECTS: Project[] = [
     materials: ['Terracotta Tiles', 'Teak Wood', 'Copper Accents', 'Local Artwork'],
     images: [
       '/images/projects/boutique-hotel-goa/cover.png',
-      '/images/projects/boutique-hotel-goa/gallery-1.jpg',
-      '/images/projects/boutique-hotel-goa/gallery-2.jpg',
+      '/images/projects/boutique-hotel-goa/gallery-1.png',
     ],
     featured: true,
   },
@@ -168,8 +161,7 @@ export const PROJECTS: Project[] = [
     materials: ['Reclaimed Teak', 'Lime Plaster', 'Antique Brass', 'Handwoven Textiles'],
     images: [
       '/images/projects/heritage-bungalow-pune/cover.png',
-      '/images/projects/heritage-bungalow-pune/gallery-1.jpg',
-      '/images/projects/heritage-bungalow-pune/gallery-2.jpg',
+      '/images/projects/heritage-bungalow-pune/gallery-1.png',
     ],
     featured: true,
   },
@@ -186,8 +178,7 @@ export const PROJECTS: Project[] = [
     materials: ['Onyx Stone', 'Velvet Upholstery', 'Gold Leaf', 'Hand-painted Tiles'],
     images: [
       '/images/projects/restaurant-delhi/cover.png',
-      '/images/projects/restaurant-delhi/gallery-1.jpg',
-      '/images/projects/restaurant-delhi/gallery-2.jpg',
+      '/images/projects/restaurant-delhi/gallery-1.png',
     ],
     featured: true,
   },
@@ -274,6 +265,19 @@ export const SERVICES: Service[] = [
     features: ['Guest Experience Focus', 'Brand Storytelling', 'Operational Efficiency', 'Durability and Maintenance'],
     projectExamples: ['boutique-hotel-goa', 'restaurant-delhi'],
     heroGradient: 'from-emerald-900/80 via-teal-900/60 to-black',
+  },
+  {
+    id: '5',
+    slug: 'call-center',
+    title: 'Call Center Interior Design',
+    description: 'Ergonomic and efficient call centre environments for peak performance.',
+    detailedDescription: 'Call centres are high-density, high-pressure work environments where design directly affects agent performance and wellbeing. We design call centre spaces with acoustic management, ergonomic workstations, motivating aesthetics, and wellness considerations at the forefront.',
+    icon: '/icons/office.svg',
+    image: '/images/projects/tech-office-bangalore/cover.png',
+    process: ['Workforce analysis', 'Acoustic planning', 'Ergonomic workstation design', 'Technology integration', 'Breakout zone design', 'Implementation'],
+    features: ['Acoustic optimisation', 'Ergonomic workstations', 'Agent wellbeing design', 'Scalable layouts', 'Breakout & wellness zones', 'Technology infrastructure'],
+    projectExamples: ['tech-office-bangalore'],
+    heroGradient: 'from-indigo-900/80 via-slate-900/60 to-black',
   },
 ];
 

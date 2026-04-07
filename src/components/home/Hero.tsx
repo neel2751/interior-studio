@@ -4,24 +4,20 @@ import { useState, useEffect, useCallback } from 'react';
 
 const SLIDES = [
   {
-    src: '/images/hero/ChatGPT Image Mar 26, 2026, 09_27_00 PM.png',
-    fallback: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1600&q=80',
+    src: '/images/projects/modern-villa-ahmedabad/cover.png',
     alt: 'Luxury Living Room',
   },
   {
-    src: '/images/hero/Use AI Image Mar 26, 2026, 21_05_37.png',
-    fallback: 'https://images.unsplash.com/photo-1600210492493-0946911123ea?w=1600&q=80',
+    src: '/images/projects/tech-office-bangalore/cover.png',
     alt: 'Modern Interior Design',
   },
   {
-    src: '/images/projects/modern-villa-ahmedabad/ChatGPT Image Mar 26, 2026, 09_14_47 PM.png',
-    fallback: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1600&q=80',
-    alt: 'Modern Villa Ahmedabad',
+    src: '/images/projects/sky-penthouse-mumbai/cover.png',
+    alt: 'Sky Penthouse Mumbai',
   },
   {
-    src: '/images/projects/sky-penthouse-mumbai/ChatGPT Image Mar 26, 2026, 09_14_47 PM.png',
-    fallback: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1600&q=80',
-    alt: 'Sky Penthouse Mumbai',
+    src: '/images/projects/boutique-hotel-goa/cover.png',
+    alt: 'Boutique Hotel Goa',
   },
 ];
 
@@ -90,9 +86,7 @@ const Hero = () => {
   const [animating, setAnimating] = useState(false);
   const [mounted, setMounted] = useState(false);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  useEffect(() => { setMounted(true); }, []);
 
   const goTo = useCallback(
     (index: number) => {
@@ -141,28 +135,29 @@ const Hero = () => {
         return (
           <div
             key={i}
+            suppressHydrationWarning
             style={{
               position: 'absolute',
               inset: 0,
               zIndex: isActive ? 2 : 1,
+
               opacity: mounted ? (isActive ? 1 : 0) : i === 0 ? 1 : 0,
               transition: mounted ? 'opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1)' : 'none',
             }}
           >
             <div
+              suppressHydrationWarning
               style={{
                 position: 'absolute',
                 inset: -20,
                 animation: mounted && isActive ? 'kenBurns 8s ease-out forwards' : 'none',
               }}
             >
+
               <img
                 src={slide.src}
                 alt={slide.alt}
                 style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}
-                onError={(e) => {
-                  (e.currentTarget as HTMLImageElement).src = slide.fallback;
-                }}
               />
             </div>
 
@@ -194,9 +189,7 @@ const Hero = () => {
 
       <div
         style={{
-          position: 'absolute',
-          inset: 0,
-          zIndex: 3,
+          position: 'absolute', inset: 0, zIndex: 3,
           background: 'linear-gradient(to right, rgba(10,8,5,0.72) 0%, rgba(10,8,5,0.45) 55%, rgba(10,8,5,0.15) 100%)',
           pointerEvents: 'none',
         }}
@@ -204,27 +197,16 @@ const Hero = () => {
 
       <div
         style={{
-          position: 'absolute',
-          inset: 0,
-          zIndex: 4,
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          padding: '0 6vw',
-          maxWidth: 820,
+          position: 'absolute', inset: 0, zIndex: 4,
+          display: 'flex', flexDirection: 'column', justifyContent: 'center',
+          padding: '0 6vw', maxWidth: 820,
         }}
-      >
-      </div>
+      />
 
       <button
         onClick={prev}
         aria-label="Previous slide"
-        style={{
-          position: 'absolute', left: 24, top: '50%', transform: 'translateY(-50%)',
-          zIndex: 10, background: 'transparent', border: 'none', cursor: 'pointer',
-          padding: '16px 12px', display: 'flex', alignItems: 'center', justifyContent: 'center',
-          opacity: 0.7, transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-        }}
+        style={{ position: 'absolute', left: 24, top: '50%', transform: 'translateY(-50%)', zIndex: 10, background: 'transparent', border: 'none', cursor: 'pointer', padding: '16px 12px', display: 'flex', alignItems: 'center', justifyContent: 'center', opacity: 0.7, transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)' }}
         onMouseEnter={(e) => { e.currentTarget.style.opacity = '1'; e.currentTarget.style.transform = 'translateY(-50%) scale(1.15)'; e.currentTarget.style.background = 'rgba(255,255,255,0.1)'; }}
         onMouseLeave={(e) => { e.currentTarget.style.opacity = '0.7'; e.currentTarget.style.transform = 'translateY(-50%) scale(1)'; e.currentTarget.style.background = 'transparent'; }}
       >
@@ -236,12 +218,7 @@ const Hero = () => {
       <button
         onClick={next}
         aria-label="Next slide"
-        style={{
-          position: 'absolute', right: 24, top: '50%', transform: 'translateY(-50%)',
-          zIndex: 10, background: 'transparent', border: 'none', cursor: 'pointer',
-          padding: '16px 12px', display: 'flex', alignItems: 'center', justifyContent: 'center',
-          opacity: 0.7, transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-        }}
+        style={{ position: 'absolute', right: 24, top: '50%', transform: 'translateY(-50%)', zIndex: 10, background: 'transparent', border: 'none', cursor: 'pointer', padding: '16px 12px', display: 'flex', alignItems: 'center', justifyContent: 'center', opacity: 0.7, transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)' }}
         onMouseEnter={(e) => { e.currentTarget.style.opacity = '1'; e.currentTarget.style.transform = 'translateY(-50%) scale(1.15)'; e.currentTarget.style.background = 'rgba(255,255,255,0.1)'; }}
         onMouseLeave={(e) => { e.currentTarget.style.opacity = '0.7'; e.currentTarget.style.transform = 'translateY(-50%) scale(1)'; e.currentTarget.style.background = 'transparent'; }}
       >
@@ -251,16 +228,14 @@ const Hero = () => {
       </button>
 
       <div
-        style={{
-          position: 'absolute', bottom: 32, left: '50%', transform: 'translateX(-50%)',
-          zIndex: 10, display: 'flex', gap: 12, alignItems: 'center',
-        }}
+        style={{ position: 'absolute', bottom: 32, left: '50%', transform: 'translateX(-50%)', zIndex: 10, display: 'flex', gap: 12, alignItems: 'center' }}
       >
         {SLIDES.map((_, i) => (
           <button
             key={i}
             onClick={() => goTo(i)}
             aria-label={`Go to slide ${i + 1}`}
+            suppressHydrationWarning
             style={{
               position: 'relative',
               width: mounted && i === current ? 40 : 12,
@@ -278,11 +253,8 @@ const Hero = () => {
       </div>
 
       <div
-        style={{
-          position: 'absolute', bottom: 32, right: 32, zIndex: 10,
-          fontFamily: 'var(--font-display, serif)', fontSize: 12,
-          letterSpacing: 2, color: 'rgba(255,255,255,0.7)',
-        }}
+        suppressHydrationWarning
+        style={{ position: 'absolute', bottom: 32, right: 32, zIndex: 10, fontFamily: 'var(--font-display, serif)', fontSize: 12, letterSpacing: 2, color: 'rgba(255,255,255,0.7)' }}
       >
         <span style={{ color: 'var(--gold, #C9A96E)' }}>{String(current + 1).padStart(2, '0')}</span>
         <span style={{ margin: '0 4px' }}>/</span>

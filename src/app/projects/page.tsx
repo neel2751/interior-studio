@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import Button from '@/components/common/Button';
 import { PROJECTS } from '@/lib/constants';
 
 type FilterType = 'all' | 'residential' | 'commercial';
@@ -23,10 +22,98 @@ function useInView(threshold = 0.15) {
   return { ref, inView };
 }
 
+function AnimBtn({
+  href,
+  variant,
+  size = 'md',
+  fullWidth = false,
+  showArrow = false,
+  children,
+}: {
+  href: string;
+  variant: 'primary' | 'ghost' | 'luxury';
+  size?: 'sm' | 'md' | 'lg' | 'xl';
+  fullWidth?: boolean;
+  showArrow?: boolean;
+  children: React.ReactNode;
+}) {
+  const [hov, setHov] = useState(false);
+  const [shimmer, setShimmer] = useState(false);
+
+  const sizeMap = {
+    sm: { padding: '11px 26px', fontSize: 9,  letterSpacing: '0.18em' },
+    md: { padding: '15px 36px', fontSize: 10, letterSpacing: '0.22em' },
+    lg: { padding: '18px 48px', fontSize: 11, letterSpacing: '0.24em' },
+    xl: { padding: '21px 60px', fontSize: 12, letterSpacing: '0.26em' },
+  };
+
+  const variantStyles: Record<string, React.CSSProperties> = {
+    primary: {
+      background: hov ? 'transparent' : 'var(--gold)',
+      color: hov ? 'var(--gold)' : '#0a0a0a',
+      border: '1.5px solid var(--gold)',
+      boxShadow: hov
+        ? '0 0 0 1px rgba(201,169,110,0.5), 0 8px 28px rgba(201,169,110,0.22)'
+        : 'inset 0 1px 0 rgba(255,255,255,0.22), 0 4px 20px rgba(201,169,110,0.32)',
+    },
+    ghost: {
+      background: hov ? 'var(--gold)' : 'transparent',
+      color: hov ? '#0a0a0a' : 'rgba(255,255,255,0.78)',
+      border: hov ? '1.5px solid var(--gold)' : '1.5px solid rgba(255,255,255,0.22)',
+      boxShadow: hov
+        ? 'inset 0 1px 0 rgba(255,255,255,0.18), 0 8px 28px rgba(201,169,110,0.35)'
+        : 'none',
+    },
+    luxury: {
+      background: hov ? '#141414' : '#0d0d0d',
+      color: 'var(--gold)',
+      border: '1.5px solid transparent',
+      boxShadow: hov
+        ? '0 0 0 1px rgba(201,169,110,1), 0 0 28px rgba(201,169,110,0.26), inset 0 1px 0 rgba(201,169,110,0.14)'
+        : '0 0 0 1px rgba(201,169,110,0.42), inset 0 1px 0 rgba(201,169,110,0.07)',
+    },
+  };
+
+  return (
+    <Link
+      href={href}
+      suppressHydrationWarning
+      onMouseEnter={() => { setHov(true); setShimmer(true); }}
+      onMouseLeave={() => { setHov(false); setTimeout(() => setShimmer(false), 700); }}
+      style={{
+        position: 'relative',
+        display: 'inline-flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: 10,
+        overflow: 'hidden',
+        fontFamily: 'var(--font-body)',
+        fontWeight: 600,
+        textTransform: 'uppercase',
+        textDecoration: 'none',
+        whiteSpace: 'nowrap',
+        width: fullWidth ? '100%' : undefined,
+        transform: hov ? 'translateY(-2px)' : 'translateY(0)',
+        transition: 'all 0.45s cubic-bezier(0.23,1,0.32,1)',
+        ...sizeMap[size],
+        ...variantStyles[variant],
+      }}
+    >
+      <span suppressHydrationWarning style={{ position: 'absolute', inset: 0, background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent)', transform: shimmer && hov ? 'translateX(110%)' : 'translateX(-110%)', transition: shimmer ? 'transform 0.7s ease' : 'none', pointerEvents: 'none', zIndex: 1 }} />
+      <span style={{ position: 'relative', zIndex: 2 }}>{children}</span>
+      {(showArrow || variant === 'ghost' || variant === 'luxury') && (
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" style={{ position: 'relative', zIndex: 2, flexShrink: 0, transform: hov ? 'translateX(4px)' : 'translateX(0)', transition: 'transform 0.3s ease' }}>
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      )}
+    </Link>
+  );
+}
+
 function AnimatedSection({ children, delay = 0, className = '' }: { children: React.ReactNode; delay?: number; className?: string }) {
   const { ref, inView } = useInView();
   return (
-    <div ref={ref} className={className} style={{ opacity: inView ? 1 : 0, transform: inView ? 'translateY(0)' : 'translateY(50px)', transition: `opacity 0.75s ease ${delay}ms, transform 0.75s ease ${delay}ms` }}>
+    <div ref={ref} suppressHydrationWarning className={className} style={{ opacity: inView ? 1 : 0, transform: inView ? 'translateY(0)' : 'translateY(50px)', transition: `opacity 0.75s ease ${delay}ms, transform 0.75s ease ${delay}ms` }}>
       {children}
     </div>
   );
@@ -36,23 +123,16 @@ function ProjectCard({ project, index }: { project: (typeof PROJECTS)[0]; index:
   const { ref, inView } = useInView(0.1);
   const [hovered, setHovered] = useState(false);
   return (
-    <div ref={ref} style={{ opacity: inView ? 1 : 0, transform: inView ? 'translateY(0)' : 'translateY(50px)', transition: `opacity 0.7s ease ${index * 120}ms, transform 0.7s ease ${index * 120}ms` }}>
+    <div ref={ref} suppressHydrationWarning style={{ opacity: inView ? 1 : 0, transform: inView ? 'translateY(0)' : 'translateY(50px)', transition: `opacity 0.7s ease ${index * 120}ms, transform 0.7s ease ${index * 120}ms` }}>
       <Link href={`/projects/${project.id}`} style={{ textDecoration: 'none', display: 'block' }}
         onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>
-        <div style={{
-          transform:  hovered ? 'translateY(-10px) scale(1.02)' : 'translateY(0) scale(1)',
-          boxShadow:  hovered ? '0 24px 60px rgba(0,0,0,0.4), 0 0 0 1px rgba(201,169,110,0.15)' : '0 4px 20px rgba(0,0,0,0.25)',
-          transition: 'transform 0.4s ease, box-shadow 0.4s ease',
-          background: '#111', overflow: 'hidden',
-        }}>
+        <div style={{ transform: hovered ? 'translateY(-10px) scale(1.02)' : 'translateY(0) scale(1)', boxShadow: hovered ? '0 24px 60px rgba(0,0,0,0.4), 0 0 0 1px rgba(201,169,110,0.15)' : '0 4px 20px rgba(0,0,0,0.25)', transition: 'transform 0.4s ease, box-shadow 0.4s ease', background: '#111', overflow: 'hidden' }}>
           <div style={{ position: 'relative', aspectRatio: '4/3', overflow: 'hidden' }}>
             <img src={project.images[0]} alt={project.title} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', transform: hovered ? 'scale(1.08)' : 'scale(1)', transition: 'transform 0.6s ease', display: 'block' }} />
             <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 60%, transparent 100%)', opacity: hovered ? 1 : 0.5, transition: 'opacity 0.4s ease' }} />
-            {/* View overlay */}
             <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', opacity: hovered ? 1 : 0, transform: hovered ? 'translateY(0)' : 'translateY(10px)', transition: 'opacity 0.35s ease, transform 0.35s ease' }}>
               <span style={{ fontFamily: 'var(--font-body)', fontSize: 11, fontWeight: 600, letterSpacing: '2.5px', textTransform: 'uppercase', color: '#fff', border: '1px solid rgba(255,255,255,0.6)', padding: '10px 24px', backdropFilter: 'blur(4px)' }}>View Project</span>
             </div>
-            {/* Category badge */}
             <div style={{ position: 'absolute', top: 16, left: 16 }}>
               <span style={{ fontFamily: 'var(--font-body)', fontSize: 9, fontWeight: 600, letterSpacing: '2px', textTransform: 'uppercase', color: project.category === 'residential' ? '#4ade80' : '#60a5fa', background: project.category === 'residential' ? 'rgba(34,197,94,0.15)' : 'rgba(59,130,246,0.15)', border: `1px solid ${project.category === 'residential' ? 'rgba(74,222,128,0.3)' : 'rgba(96,165,250,0.3)'}`, padding: '4px 10px' }}>{project.category}</span>
             </div>
@@ -91,7 +171,7 @@ function FilterPill({ label, active, onClick }: { label: string; active: boolean
 function StatCard({ value, label, delay }: { value: string; label: string; delay: number }) {
   const { ref, inView } = useInView();
   return (
-    <div ref={ref} style={{ textAlign: 'center', padding: '40px 24px', border: '1px solid rgba(255,255,255,0.07)', opacity: inView ? 1 : 0, transform: inView ? 'translateY(0)' : 'translateY(40px)', transition: `opacity 0.7s ease ${delay}ms, transform 0.7s ease ${delay}ms` }}>
+    <div ref={ref} suppressHydrationWarning style={{ textAlign: 'center', padding: '40px 24px', border: '1px solid rgba(255,255,255,0.07)', opacity: inView ? 1 : 0, transform: inView ? 'translateY(0)' : 'translateY(40px)', transition: `opacity 0.7s ease ${delay}ms, transform 0.7s ease ${delay}ms` }}>
       <p style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(32px,4vw,52px)', fontWeight: 300, color: 'var(--gold)', lineHeight: 1, marginBottom: 12 }}>{value}</p>
       <p style={{ fontFamily: 'var(--font-body)', fontSize: 10, letterSpacing: '2.5px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)' }}>{label}</p>
     </div>
@@ -156,25 +236,21 @@ export default function ProjectsPage() {
         <div style={{ position:'absolute', right:'5%', top:'50%', transform:'translateY(-50%)', fontFamily:'var(--font-display)', fontSize:'clamp(120px,20vw,260px)', fontWeight:300, color:'rgba(255,255,255,0.025)', lineHeight:1, userSelect:'none', pointerEvents:'none' }}>{PROJECTS.length}</div>
 
         <div style={{ position:'relative', width:'100%', maxWidth:1200, margin:'0 auto', padding:'0 48px 80px' }}>
-          <nav style={{ display:'flex', alignItems:'center', gap:8, fontFamily:'var(--font-body)', fontSize:11, letterSpacing:1.5, textTransform:'uppercase', marginBottom:32, opacity: heroVisible?1:0, transform: heroVisible?'translateY(0)':'translateY(20px)', transition:'opacity 0.7s ease 0ms,transform 0.7s ease 0ms' }}>
+          <nav suppressHydrationWarning style={{ display:'flex', alignItems:'center', gap:8, fontFamily:'var(--font-body)', fontSize:11, letterSpacing:1.5, textTransform:'uppercase', marginBottom:32, opacity:heroVisible?1:0, transform:heroVisible?'translateY(0)':'translateY(20px)', transition:'opacity 0.7s ease 0ms,transform 0.7s ease 0ms' }}>
             <Link href="/" style={{ color:'rgba(255,255,255,0.4)', textDecoration:'none' }}>Home</Link>
             <span style={{ color:'rgba(255,255,255,0.2)' }}>›</span>
             <span style={{ color:'var(--gold)' }}>Projects</span>
           </nav>
-          <p style={{ fontFamily:'var(--font-body)', fontSize:10, letterSpacing:4, textTransform:'uppercase', color:'var(--gold)', marginBottom:20, opacity:heroVisible?1:0, transform:heroVisible?'translateY(0)':'translateY(25px)', transition:'opacity 0.7s ease 100ms,transform 0.7s ease 100ms' }}>Our Portfolio</p>
-          <h1 style={{ fontFamily:'var(--font-display)', fontSize:'clamp(44px,6vw,84px)', fontWeight:300, color:'#ffffff', lineHeight:1.05, marginBottom:24, maxWidth:800, opacity:heroVisible?1:0, transform:heroVisible?'translateY(0)':'translateY(32px)', transition:'opacity 0.8s ease 200ms,transform 0.8s ease 200ms' }}>
+          <p suppressHydrationWarning style={{ fontFamily:'var(--font-body)', fontSize:10, letterSpacing:4, textTransform:'uppercase', color:'var(--gold)', marginBottom:20, opacity:heroVisible?1:0, transform:heroVisible?'translateY(0)':'translateY(25px)', transition:'opacity 0.7s ease 100ms,transform 0.7s ease 100ms' }}>Our Portfolio</p>
+          <h1 suppressHydrationWarning style={{ fontFamily:'var(--font-display)', fontSize:'clamp(44px,6vw,84px)', fontWeight:300, color:'#ffffff', lineHeight:1.05, marginBottom:24, maxWidth:800, opacity:heroVisible?1:0, transform:heroVisible?'translateY(0)':'translateY(32px)', transition:'opacity 0.8s ease 200ms,transform 0.8s ease 200ms' }}>
             Spaces That Tell<br /><em style={{ fontStyle:'italic', color:'var(--gold-light)' }}>Extraordinary</em> Stories
           </h1>
-          <p style={{ fontFamily:'var(--font-display)', fontSize:'clamp(16px,2vw,22px)', fontWeight:300, fontStyle:'italic', color:'rgba(255,255,255,0.55)', maxWidth:540, marginBottom:40, opacity:heroVisible?1:0, transform:heroVisible?'translateY(0)':'translateY(32px)', transition:'opacity 0.8s ease 340ms,transform 0.8s ease 340ms' }}>
+          <p suppressHydrationWarning style={{ fontFamily:'var(--font-display)', fontSize:'clamp(16px,2vw,22px)', fontWeight:300, fontStyle:'italic', color:'rgba(255,255,255,0.55)', maxWidth:540, marginBottom:48, opacity:heroVisible?1:0, transform:heroVisible?'translateY(0)':'translateY(32px)', transition:'opacity 0.8s ease 340ms,transform 0.8s ease 340ms' }}>
             From modern villas to boutique hotels — {PROJECTS.length} projects across India.
           </p>
-          <div style={{ display:'flex', gap:16, flexWrap:'wrap', opacity:heroVisible?1:0, transform:heroVisible?'translateY(0)':'translateY(32px)', transition:'opacity 0.8s ease 460ms,transform 0.8s ease 460ms' }}>
-            <Button href="#projects" size="lg" showArrow>
-              Explore Projects
-            </Button>
-            <Button href="/contact" variant="ghost" size="lg">
-              Start Your Project
-            </Button>
+          <div suppressHydrationWarning style={{ display:'flex', gap:16, flexWrap:'wrap', opacity:heroVisible?1:0, transform:heroVisible?'translateY(0)':'translateY(32px)', transition:'opacity 0.8s ease 460ms,transform 0.8s ease 460ms' }}>
+            <AnimBtn href="#projects" variant="ghost" size="lg" showArrow>Explore Projects</AnimBtn>
+            <AnimBtn href="/contact" variant="primary" size="lg">Start Your Project</AnimBtn>
           </div>
         </div>
       </section>
@@ -259,12 +335,8 @@ export default function ProjectsPage() {
               Let&apos;s collaborate to create a space that reflects your vision and exceeds every expectation.
             </p>
             <div style={{ display:'flex', gap:16, justifyContent:'center', flexWrap:'wrap' }}>
-              <Button href="/contact" size="lg" showArrow>
-                Start Your Project
-              </Button>
-              <Button href="/services" variant="ghost" size="lg">
-                Our Services
-              </Button>
+              <AnimBtn href="/contact" variant="ghost" size="xl">Start Your Project</AnimBtn>
+              <AnimBtn href="/services" variant="primary" size="xl">Our Services</AnimBtn>
             </div>
           </AnimatedSection>
         </div>

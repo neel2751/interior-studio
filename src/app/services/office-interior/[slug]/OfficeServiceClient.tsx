@@ -25,9 +25,118 @@ function useInView(threshold = 0.12) {
 function AnimatedSection({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   const { ref, inView } = useInView();
   return (
-    <div ref={ref as React.Ref<HTMLDivElement>} style={{ opacity: inView ? 1 : 0, transform: inView ? "translateY(0)" : "translateY(48px)", transition: `opacity 0.75s ease ${delay}ms, transform 0.75s ease ${delay}ms` }}>
+    <div
+      ref={ref as React.Ref<HTMLDivElement>}
+      suppressHydrationWarning
+      style={{
+        opacity: inView ? 1 : 0,
+        transform: inView ? "translateY(0)" : "translateY(48px)",
+        transition: `opacity 0.75s ease ${delay}ms, transform 0.75s ease ${delay}ms`,
+      }}
+    >
       {children}
     </div>
+  );
+}
+function AnimBtn({
+  href,
+  variant,
+  size = "md",
+  fullWidth = false,
+  children,
+}: {
+  href: string;
+  variant: "primary" | "ghost" | "luxury";
+  size?: "sm" | "md" | "lg" | "xl";
+  fullWidth?: boolean;
+  children: React.ReactNode;
+}) {
+  const [hov, setHov] = useState(false);
+  const [shimmer, setShimmer] = useState(false);
+
+  const sizeMap = {
+    sm: { padding: "11px 26px", fontSize: 9,  letterSpacing: "0.18em" },
+    md: { padding: "15px 36px", fontSize: 10, letterSpacing: "0.22em" },
+    lg: { padding: "18px 48px", fontSize: 11, letterSpacing: "0.24em" },
+    xl: { padding: "21px 60px", fontSize: 12, letterSpacing: "0.26em" },
+  };
+
+  const variantStyles: Record<string, React.CSSProperties> = {
+    primary: {
+      background: hov ? "transparent" : "var(--gold)",
+      color: hov ? "var(--gold)" : "#0a0a0a",
+      border: "1.5px solid var(--gold)",
+      boxShadow: hov
+        ? "0 0 0 1px rgba(201,169,110,0.5), 0 8px 28px rgba(201,169,110,0.22)"
+        : "inset 0 1px 0 rgba(255,255,255,0.22), 0 4px 20px rgba(201,169,110,0.32)",
+    },
+    ghost: {
+      background: hov ? "var(--gold)" : "transparent",
+      color: hov ? "#0a0a0a" : "rgba(255,255,255,0.78)",
+      border: hov ? "1.5px solid var(--gold)" : "1.5px solid rgba(255,255,255,0.22)",
+      boxShadow: hov
+        ? "inset 0 1px 0 rgba(255,255,255,0.18), 0 8px 28px rgba(201,169,110,0.35)"
+        : "none",
+    },
+    luxury: {
+      background: hov ? "#141414" : "#0d0d0d",
+      color: "var(--gold)",
+      border: "1.5px solid transparent",
+      boxShadow: hov
+        ? "0 0 0 1px rgba(201,169,110,1), 0 0 28px rgba(201,169,110,0.26), inset 0 1px 0 rgba(201,169,110,0.14)"
+        : "0 0 0 1px rgba(201,169,110,0.42), inset 0 1px 0 rgba(201,169,110,0.07)",
+    },
+  };
+
+  return (
+    <Link
+      href={href}
+      suppressHydrationWarning
+      onMouseEnter={() => { setHov(true); setShimmer(true); }}
+      onMouseLeave={() => { setHov(false); setTimeout(() => setShimmer(false), 700); }}
+      style={{
+        position: "relative",
+        display: "inline-flex",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: 10,
+        overflow: "hidden",
+        fontFamily: "var(--font-body)",
+        fontWeight: 600,
+        textTransform: "uppercase",
+        textDecoration: "none",
+        whiteSpace: "nowrap",
+        width: fullWidth ? "100%" : undefined,
+        transform: hov ? "translateY(-2px)" : "translateY(0)",
+        transition: "all 0.45s cubic-bezier(0.23,1,0.32,1)",
+        ...sizeMap[size],
+        ...variantStyles[variant],
+      }}
+    >
+      <span
+        suppressHydrationWarning
+        style={{
+          position: "absolute", inset: 0,
+          background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent)",
+          transform: shimmer && hov ? "translateX(110%)" : "translateX(-110%)",
+          transition: shimmer ? "transform 0.7s ease" : "none",
+          pointerEvents: "none", zIndex: 1,
+        }}
+      />
+      <span style={{ position: "relative", zIndex: 2 }}>{children}</span>
+      {(variant === "ghost" || variant === "luxury") && (
+        <svg
+          width="15" height="15" viewBox="0 0 16 16" fill="none"
+          style={{
+            position: "relative", zIndex: 2, flexShrink: 0,
+            transform: hov ? "translateX(4px)" : "translateX(0)",
+            transition: "transform 0.3s ease",
+          }}
+        >
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      )}
+    </Link>
   );
 }
 
@@ -39,6 +148,7 @@ interface OfficeServiceClientProps {
 export default function OfficeServiceClient({ service, related }: OfficeServiceClientProps) {
   const [heroVisible, setHeroVisible] = useState(false);
   useEffect(() => { const t = setTimeout(() => setHeroVisible(true), 80); return () => clearTimeout(t); }, []);
+
   const fade = (delay: number): React.CSSProperties => ({
     opacity: heroVisible ? 1 : 0,
     transform: heroVisible ? "translateY(0)" : "translateY(30px)",
@@ -53,13 +163,11 @@ export default function OfficeServiceClient({ service, related }: OfficeServiceC
     <>
       <style>{`
         .osp-scope-pill {
-          display: inline-flex; align-items: center;
-          padding: 8px 18px;
+          display: inline-flex; align-items: center; padding: 8px 18px;
           border: 1px solid rgba(201,169,110,0.3);
           font-family: var(--font-body); font-size: 11px;
           letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold);
-          transition: background 0.2s, border-color 0.2s, transform 0.2s;
-          cursor: default;
+          transition: background 0.2s, border-color 0.2s, transform 0.2s; cursor: default;
         }
         .osp-scope-pill:hover { background: rgba(201,169,110,0.08); border-color: var(--gold); transform: scale(1.03); }
 
@@ -84,17 +192,6 @@ export default function OfficeServiceClient({ service, related }: OfficeServiceC
           padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.06);
         }
         .osp-feature-item:last-child { border-bottom: none; }
-
-        .osp-cta-btn {
-          display: inline-flex; align-items: center; gap: 10px;
-          padding: 16px 36px; font-family: var(--font-body); font-size: 11px;
-          font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase;
-          text-decoration: none; transition: background 0.25s, color 0.25s, border-color 0.25s, transform 0.2s;
-        }
-        .osp-cta-primary { background: var(--gold); color: #fff; border: 1.5px solid var(--gold); }
-        .osp-cta-primary:hover { background: var(--gold-dark); border-color: var(--gold-dark); transform: scale(1.04); }
-        .osp-cta-ghost { background: transparent; color: rgba(255,255,255,0.8); border: 1.5px solid rgba(255,255,255,0.25); }
-        .osp-cta-ghost:hover { border-color: var(--gold); color: var(--gold); transform: scale(1.04); }
 
         .osp-divider { width: 48px; height: 1px; background: var(--gold); margin: 24px 0; }
 
@@ -122,7 +219,7 @@ export default function OfficeServiceClient({ service, related }: OfficeServiceC
         </div>
 
         <div style={{ position: "relative", width: "100%", maxWidth: 1200, margin: "0 auto", padding: "0 48px 80px" }}>
-          <nav style={{ display: "flex", alignItems: "center", gap: 8, fontFamily: "var(--font-body)", fontSize: 11, letterSpacing: 1.5, textTransform: "uppercase", marginBottom: 32, ...fade(0) }}>
+          <nav suppressHydrationWarning style={{ display: "flex", alignItems: "center", gap: 8, fontFamily: "var(--font-body)", fontSize: 11, letterSpacing: 1.5, textTransform: "uppercase", marginBottom: 32, ...fade(0) }}>
             <Link href="/" style={{ color: "rgba(255,255,255,0.4)", textDecoration: "none" }}>Home</Link>
             <span style={{ color: "rgba(255,255,255,0.2)" }}>›</span>
             <Link href="/services/office-interior" style={{ color: "rgba(255,255,255,0.4)", textDecoration: "none" }}>Office</Link>
@@ -130,24 +227,19 @@ export default function OfficeServiceClient({ service, related }: OfficeServiceC
             <span style={{ color: "var(--gold)" }}>{service.title}</span>
           </nav>
 
-          <p style={{ fontFamily: "var(--font-body)", fontSize: 10, letterSpacing: 4, textTransform: "uppercase", color: "var(--gold)", marginBottom: 20, ...fade(120) }}>
+          <p suppressHydrationWarning style={{ fontFamily: "var(--font-body)", fontSize: 10, letterSpacing: 4, textTransform: "uppercase", color: "var(--gold)", marginBottom: 20, ...fade(120) }}>
             Office Interior Design
           </p>
-
-          <h1 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(36px, 5.5vw, 72px)", fontWeight: 300, color: "#ffffff", lineHeight: 1.1, marginBottom: 24, maxWidth: 800, ...fade(240) }}>
+          <h1 suppressHydrationWarning style={{ fontFamily: "var(--font-display)", fontSize: "clamp(36px, 5.5vw, 72px)", fontWeight: 300, color: "#ffffff", lineHeight: 1.1, marginBottom: 24, maxWidth: 800, ...fade(240) }}>
             {service.title}
           </h1>
-
-          <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(16px, 2vw, 22px)", fontWeight: 300, fontStyle: "italic", color: "rgba(255,255,255,0.6)", maxWidth: 560, marginBottom: 44, ...fade(360) }}>
+          <p suppressHydrationWarning style={{ fontFamily: "var(--font-display)", fontSize: "clamp(16px, 2vw, 22px)", fontWeight: 300, fontStyle: "italic", color: "rgba(255,255,255,0.6)", maxWidth: 560, marginBottom: 48, ...fade(360) }}>
             {service.description}
           </p>
 
-          <div style={{ display: "flex", gap: 14, flexWrap: "wrap", ...fade(480) }}>
-            <Link href="/contact" className="osp-cta-btn osp-cta-primary">
-              Book a Consultation
-              <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-            </Link>
-            <Link href="/projects" className="osp-cta-btn osp-cta-ghost">View Projects</Link>
+          <div suppressHydrationWarning style={{ display: "flex", gap: 14, flexWrap: "wrap", ...fade(480) }}>
+            <AnimBtn href="/contact" variant="primary" size="lg">Book a Consultation</AnimBtn>
+            <AnimBtn href="/projects" variant="ghost" size="lg">View Portfolio</AnimBtn>
           </div>
         </div>
       </section>
@@ -155,48 +247,48 @@ export default function OfficeServiceClient({ service, related }: OfficeServiceC
       <section style={{ background: "#0a0a0a", padding: "0 48px" }}>
         <div className="osp-stats" style={{ maxWidth: 1200, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(3,1fr)", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
           {[
-            { value: "10+", label: "Years of Experience", delay: 0 },
-            { value: "200+", label: "Projects Delivered", delay: 120 },
-            { value: "100%", label: "Client Satisfaction", delay: 240 },
-          ].map(({ value, label, delay }, index) => {
-            const refs = [statRef1, statRef2, statRef3];
-            const inViews = [statInView1, statInView2, statInView3];
-            return (
-              <div key={label} ref={refs[index] as React.Ref<HTMLDivElement>} className="osp-stat-card" style={{ opacity: inViews[index] ? 1 : 0, transform: inViews[index] ? "translateY(0)" : "translateY(32px)", transition: `opacity 0.7s ease ${delay}ms, transform 0.7s ease ${delay}ms` }}>
-                <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(28px,4vw,44px)", fontWeight: 300, color: "var(--gold)", lineHeight: 1, marginBottom: 10 }}>{value}</p>
-                <p style={{ fontFamily: "var(--font-body)", fontSize: 10, letterSpacing: "2.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.4)" }}>{label}</p>
-              </div>
-            );
-          })}
+            { value: "10+",  label: "Years of Experience", ref: statRef1, inView: statInView1, delay: 0   },
+            { value: "200+", label: "Projects Delivered",  ref: statRef2, inView: statInView2, delay: 120 },
+            { value: "100%", label: "Client Satisfaction", ref: statRef3, inView: statInView3, delay: 240 },
+          ].map(({ value, label, ref, inView, delay }) => (
+            <div key={label} ref={ref as React.Ref<HTMLDivElement>} suppressHydrationWarning className="osp-stat-card"
+              style={{ opacity: inView ? 1 : 0, transform: inView ? "translateY(0)" : "translateY(32px)", transition: `opacity 0.7s ease ${delay}ms, transform 0.7s ease ${delay}ms` }}>
+              <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(28px,4vw,44px)", fontWeight: 300, color: "var(--gold)", lineHeight: 1, marginBottom: 10 }}>{value}</p>
+              <p style={{ fontFamily: "var(--font-body)", fontSize: 10, letterSpacing: "2.5px", textTransform: "uppercase", color: "rgba(255,255,255,0.4)" }}>{label}</p>
+            </div>
+          ))}
         </div>
       </section>
 
       <section style={{ background: "#111111", padding: "96px 48px" }}>
         <div className="osp-two-col" style={{ maxWidth: 1200, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "64px 80px", alignItems: "start" }}>
-
           <AnimatedSection delay={0}>
             <p style={{ fontFamily: "var(--font-body)", fontSize: 10, letterSpacing: 4, textTransform: "uppercase", color: "var(--gold)", marginBottom: 20 }}>About This Service</p>
             <div className="osp-divider" />
             <p style={{ fontFamily: "var(--font-body)", fontSize: 15, lineHeight: 1.9, color: "rgba(255,255,255,0.65)", marginBottom: 40 }}>{service.description}</p>
             <p style={{ fontFamily: "var(--font-body)", fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: "rgba(255,255,255,0.35)", marginBottom: 16 }}>Scope of Work</p>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginBottom: 44 }}>
               {service.process.map((item) => (
                 <span key={item} className="osp-scope-pill">{item}</span>
               ))}
             </div>
+            <AnimBtn href="/contact" variant="luxury" size="md">Discuss Your Project</AnimBtn>
           </AnimatedSection>
 
           <AnimatedSection delay={150}>
             <p style={{ fontFamily: "var(--font-body)", fontSize: 10, letterSpacing: 4, textTransform: "uppercase", color: "var(--gold)", marginBottom: 20 }}>What We Deliver</p>
             <div className="osp-divider" />
-            <div style={{ listStyle: "none", padding: 0, margin: 0 }}>
+            <div style={{ listStyle: "none", padding: 0, margin: 0, marginBottom: 44 }}>
               {service.features.map((feat, i) => (
-                <motion.div key={feat} className="osp-feature-item" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6, delay: i * 0.08 }}>
+                <motion.div key={feat} className="osp-feature-item"
+                  initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: i * 0.08 }}>
                   <span style={{ width: 6, height: 6, borderRadius: "50%", background: "var(--gold)", flexShrink: 0, marginTop: 6 }} />
                   <span style={{ fontFamily: "var(--font-body)", fontSize: 14, color: "rgba(255,255,255,0.72)", lineHeight: 1.6 }}>{feat}</span>
                 </motion.div>
               ))}
             </div>
+            <AnimBtn href="/projects" variant="ghost" size="md">See Our Work</AnimBtn>
           </AnimatedSection>
         </div>
       </section>
@@ -211,7 +303,9 @@ export default function OfficeServiceClient({ service, related }: OfficeServiceC
           </AnimatedSection>
           <div className="osp-two-col" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0 80px" }}>
             {service.process.map((step, i) => (
-              <motion.div key={i} className="osp-step" initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, delay: i * 0.09 }}>
+              <motion.div key={i} className="osp-step"
+                initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.65, delay: i * 0.09 }}>
                 <div className="osp-step-num">
                   <span style={{ fontFamily: "var(--font-display)", fontSize: 15, fontWeight: 300, color: "var(--gold)" }}>{String(i + 1).padStart(2, "0")}</span>
                 </div>
@@ -219,6 +313,13 @@ export default function OfficeServiceClient({ service, related }: OfficeServiceC
               </motion.div>
             ))}
           </div>
+
+          <AnimatedSection delay={200}>
+            <div style={{ marginTop: 56, display: "flex", gap: 14, flexWrap: "wrap" }}>
+              <AnimBtn href="/contact" variant="primary" size="lg">Start Your Project</AnimBtn>
+              <AnimBtn href="/process" variant="luxury" size="lg">Our Full Process</AnimBtn>
+            </div>
+          </AnimatedSection>
         </div>
       </section>
 
@@ -231,7 +332,6 @@ export default function OfficeServiceClient({ service, related }: OfficeServiceC
                 <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(28px, 3.5vw, 44px)", fontWeight: 300, color: "#ffffff", lineHeight: 1.15 }}>Related Projects</h2>
               </div>
             </AnimatedSection>
-
             <div className="osp-three-col" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 2 }}>
               {related.map((project, i) => (
                 <motion.div key={project.id} initial={{ opacity: 0, y: 48 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: i * 0.12 }}>
@@ -247,13 +347,11 @@ export default function OfficeServiceClient({ service, related }: OfficeServiceC
                 </motion.div>
               ))}
             </div>
-
             <AnimatedSection delay={200}>
-              <div style={{ marginTop: 40, textAlign: "center" }}>
-                <Link href="/projects?category=commercial" className="osp-cta-btn osp-cta-ghost">
+              <div style={{ marginTop: 48, textAlign: "center" }}>
+                <AnimBtn href="/projects?category=commercial" variant="ghost" size="lg">
                   View All Office Projects
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                </Link>
+                </AnimBtn>
               </div>
             </AnimatedSection>
           </div>
@@ -266,16 +364,15 @@ export default function OfficeServiceClient({ service, related }: OfficeServiceC
         <div style={{ position: "relative", maxWidth: 640, margin: "0 auto" }}>
           <AnimatedSection delay={0}>
             <p style={{ fontFamily: "var(--font-body)", fontSize: 10, letterSpacing: 4, textTransform: "uppercase", color: "var(--gold)", marginBottom: 24 }}>Begin Your Project</p>
-            <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(32px, 4vw, 52px)", fontWeight: 300, color: "#ffffff", lineHeight: 1.15, marginBottom: 20 }}>Ready to Transform Your Space?</h2>
+            <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(32px, 4vw, 52px)", fontWeight: 300, color: "#ffffff", lineHeight: 1.15, marginBottom: 20 }}>
+              Ready to Transform Your Space?
+            </h2>
             <p style={{ fontFamily: "var(--font-body)", fontSize: 14, lineHeight: 1.8, color: "rgba(255,255,255,0.5)", marginBottom: 48 }}>
               Let&apos;s discuss your {service.title.toLowerCase()} project. Our team is ready to bring your vision to life.
             </p>
             <div style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
-              <Link href="/contact" className="osp-cta-btn osp-cta-primary">
-                Book a Consultation
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-              </Link>
-              <Link href="/projects" className="osp-cta-btn osp-cta-ghost">View Our Portfolio</Link>
+              <AnimBtn href="/contact" variant="primary" size="xl">Book a Consultation</AnimBtn>
+              <AnimBtn href="/projects" variant="ghost" size="xl">View Our Portfolio</AnimBtn>
             </div>
           </AnimatedSection>
         </div>

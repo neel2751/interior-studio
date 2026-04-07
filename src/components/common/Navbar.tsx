@@ -225,6 +225,8 @@ const NAV_ITEMS: NavItem[] = [
 const PANEL_WIDTH = 700;
 const NAVBAR_H    = 56;
 
+const FONT = "var(--font-display, 'Cormorant Garamond', serif)";
+
 const NavItem = ({ item }: { item: NavItem }) => {
   const [open,   setOpen]   = useState(false);
   const [hovIdx, setHovIdx] = useState<number | null>(null);
@@ -285,7 +287,7 @@ const NavItem = ({ item }: { item: NavItem }) => {
           cursor:          "pointer",
           height:          "100%",
           boxSizing:       "border-box",
-          fontFamily:      "Cormorant Garamond",
+          fontFamily:      FONT,
           textShadow:      "0 1px 3px rgba(0,0,0,0.4)",
         }}
       >
@@ -305,6 +307,7 @@ const NavItem = ({ item }: { item: NavItem }) => {
 
       {item.dropdown && (
         <div
+          suppressHydrationWarning
           style={{
             position:      "fixed",
             top:           NAVBAR_H,
@@ -320,6 +323,7 @@ const NavItem = ({ item }: { item: NavItem }) => {
           onMouseLeave={leave}
         >
           <div
+            suppressHydrationWarning
             style={{
               backgroundColor: "#ffffff",
               border:          "1px solid #d0d0d0",
@@ -327,7 +331,7 @@ const NavItem = ({ item }: { item: NavItem }) => {
               boxShadow:       "0 8px 32px rgba(0,0,0,0.18)",
               overflowY:       "auto",
               maxHeight:       "calc(100vh - 70px)",
-              fontFamily:      "Cormorant Garamond",
+              fontFamily:      FONT,
             }}
           >
             <div
@@ -342,7 +346,7 @@ const NavItem = ({ item }: { item: NavItem }) => {
                 color:           "#9a7b3c",
                 backgroundColor: "#ffffff",
                 borderBottom:    "1px solid #e0e0e0",
-                fontFamily:      "Cormorant Garamond",
+                fontFamily:      FONT,
               }}
             >
               {item.name}
@@ -378,7 +382,7 @@ const NavItem = ({ item }: { item: NavItem }) => {
                                 whiteSpace:     "nowrap",
                                 overflow:       "hidden",
                                 textOverflow:   "ellipsis",
-                                fontFamily:     "Cormorant Garamond",
+                                fontFamily:     FONT,
                                 transition:     "color 0.15s, font-weight 0.15s",
                               }}
                             >

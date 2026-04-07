@@ -22,7 +22,7 @@ export default function ProjectsLoading() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {[1, 2, 3, 4, 5, 6].map((i) => (
             <div key={i} className="bg-white border border-gray-200 rounded-lg overflow-hidden">
-              <div className="aspect-[4/3] bg-gray-200 relative animate-pulse">
+              <div className="aspect-4/3 bg-gray-200 relative animate-pulse">
                 <div className="absolute top-4 left-4">
                   <div className="h-6 bg-gray-300 rounded-full w-20 animate-pulse"></div>
                 </div>

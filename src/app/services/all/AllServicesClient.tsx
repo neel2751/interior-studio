@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { ArrowRight, Home, Building2, Utensils, Briefcase, ChevronDown } from 'lucide-react';
-import Button from '@/components/common/Button';
 
 interface SubService {
   slug: string;
@@ -65,12 +64,47 @@ export default function AllServicesClient({ data }: { data: AllServicesData }) {
             residential, commercial, hospitality, and office spaces.
           </p>
           <div className="flex flex-wrap gap-4 justify-center items-center">
-            <Button href="/contact" size="lg" showArrow>
-              Book a Consultation
-            </Button>
-            <Button href="/projects" variant="outline" size="lg" showArrow>
+            <Link 
+              href="/projects" 
+              className="inline-flex items-center gap-2 px-8 py-4 text-xs font-semibold tracking-widest uppercase transition-all duration-300 border rounded-sm"
+              style={{ 
+                background: 'var(--gold)', 
+                color: '#0a0a0a', 
+                borderColor: 'var(--gold)',
+                fontFamily: 'var(--font-body)'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'transparent';
+                e.currentTarget.style.color = 'var(--gold)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'var(--gold)';
+                e.currentTarget.style.color = '#0a0a0a';
+              }}
+            >
               View Our Portfolio
-            </Button>
+            </Link>
+            <Link 
+              href="/contact" 
+              className="inline-flex items-center gap-2 px-8 py-4 text-xs font-semibold tracking-widest uppercase transition-all duration-300 border rounded-sm"
+              style={{ 
+                background: 'transparent', 
+                color: 'rgba(255,255,255,0.8)', 
+                borderColor: 'rgba(255,255,255,0.25)',
+                fontFamily: 'var(--font-body)'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = 'var(--gold)';
+                e.currentTarget.style.color = 'var(--gold)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = 'rgba(255,255,255,0.25)';
+                e.currentTarget.style.color = 'rgba(255,255,255,0.8)';
+              }}
+            >
+              Book a Consultation
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            </Link>
           </div>
         </div>
       </section>
@@ -231,12 +265,47 @@ export default function AllServicesClient({ data }: { data: AllServicesData }) {
             Schedule a free consultation to discuss your requirements.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
-            <Button href="/contact" size="lg" showArrow>
-              Free Consultation
-            </Button>
-            <Button href="tel:+919876543210" variant="secondary" size="lg" showArrow>
-              Call Us
-            </Button>
+            <Link 
+              href="/projects" 
+              className="inline-flex items-center gap-2 px-8 py-4 text-xs font-semibold tracking-widest uppercase transition-all duration-300 border rounded-sm"
+              style={{ 
+                background: 'var(--gold)', 
+                color: '#0a0a0a', 
+                borderColor: 'var(--gold)',
+                fontFamily: 'var(--font-body)'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'transparent';
+                e.currentTarget.style.color = 'var(--gold)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'var(--gold)';
+                e.currentTarget.style.color = '#0a0a0a';
+              }}
+            >
+              View Our Portfolio
+            </Link>
+            <Link 
+              href="/contact" 
+              className="inline-flex items-center gap-2 px-8 py-4 text-xs font-semibold tracking-widest uppercase transition-all duration-300 border rounded-sm"
+              style={{ 
+                background: 'transparent', 
+                color: 'rgba(255,255,255,0.8)', 
+                borderColor: 'rgba(255,255,255,0.25)',
+                fontFamily: 'var(--font-body)'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = 'var(--gold)';
+                e.currentTarget.style.color = 'var(--gold)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = 'rgba(255,255,255,0.25)';
+                e.currentTarget.style.color = 'rgba(255,255,255,0.8)';
+              }}
+            >
+              Book a Consultation
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            </Link>
           </div>
         </div>
       </section>

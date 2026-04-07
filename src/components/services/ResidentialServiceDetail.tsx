@@ -45,30 +45,60 @@ const ResidentialServiceDetail = ({ service }: ResidentialServiceDetailProps) =>
             title="Service Overview"
             subtitle={service.detailedDescription}
           />
-          
+
           <div className="flex flex-wrap gap-4">
-            <Button href="/contact" size="lg" showArrow>
+            <Button
+              href="/contact"
+              size="lg"
+              showArrow
+              className="
+                bg-amber-500 text-white
+                border-2 border-amber-500
+                px-8 py-3
+                text-sm font-semibold tracking-widest uppercase
+                rounded-full
+                shadow-lg shadow-amber-500/20
+                hover:bg-transparent hover:text-amber-400 hover:border-amber-400
+                transition-all duration-300 ease-in-out
+                hover:scale-105
+              "
+            >
               Get Started
             </Button>
-            <Button href="/projects" variant="ghost" size="lg">
+
+            <Button
+              href="/projects"
+              variant="ghost"
+              size="lg"
+              className="
+                bg-transparent text-white
+                border-2 border-white/40
+                px-8 py-3
+                text-sm font-semibold tracking-widest uppercase
+                rounded-full
+                hover:border-amber-400 hover:text-amber-400
+                transition-all duration-300 ease-in-out
+                hover:scale-105
+              "
+            >
               View Projects
             </Button>
           </div>
         </div>
-        
+
         <div className="space-y-6">
           <div className="bg-gray-50 p-6 rounded-lg text-center">
             <Clock className="w-8 h-8 text-gray-900 mx-auto mb-3" />
             <h3 className="font-semibold text-gray-900 mb-2">Timely Delivery</h3>
             <p className="text-sm text-gray-600">Projects completed on schedule</p>
           </div>
-          
+
           <div className="bg-gray-50 p-6 rounded-lg text-center">
             <Users className="w-8 h-8 text-gray-900 mx-auto mb-3" />
             <h3 className="font-semibold text-gray-900 mb-2">Expert Team</h3>
             <p className="text-sm text-gray-600">Skilled designers and architects</p>
           </div>
-          
+
           <div className="bg-gray-50 p-6 rounded-lg text-center">
             <Award className="w-8 h-8 text-gray-900 mx-auto mb-3" />
             <h3 className="font-semibold text-gray-900 mb-2">Quality Assured</h3>
@@ -123,9 +153,24 @@ const ResidentialServiceDetail = ({ service }: ResidentialServiceDetailProps) =>
             </Badge>
           ))}
         </div>
-        
+
         <div className="text-center mt-8">
-          <Button href="/projects" variant="secondary" size="lg" showArrow>
+          <Button
+            href="/projects"
+            variant="secondary"
+            size="lg"
+            showArrow
+            className="
+              bg-transparent text-amber-400
+              border-2 border-amber-400
+              px-8 py-3
+              text-sm font-semibold tracking-widest uppercase
+              rounded-full
+              hover:bg-amber-400 hover:text-black
+              transition-all duration-300 ease-in-out
+              hover:scale-105
+            "
+          >
             View All Projects
           </Button>
         </div>
@@ -138,7 +183,22 @@ const ResidentialServiceDetail = ({ service }: ResidentialServiceDetailProps) =>
         <p className="text-gray-300 max-w-2xl mx-auto">
           Let&apos;s discuss your project requirements and create a space that exceeds your expectations.
         </p>
-        <Button href="/contact" size="lg" showArrow className="bg-white text-gray-900 hover:bg-gray-100">
+        <Button
+          href="/contact"
+          size="lg"
+          showArrow
+          className="
+            bg-white text-gray-900
+            border-2 border-white
+            px-8 py-3
+            text-sm font-semibold tracking-widest uppercase
+            rounded-full
+            hover:bg-transparent hover:text-white hover:border-white
+            transition-all duration-300 ease-in-out
+            hover:scale-105
+            shadow-lg shadow-white/10
+          "
+        >
           Start Your Project
         </Button>
       </div>
