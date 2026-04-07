@@ -225,7 +225,7 @@ const NAV_ITEMS: NavItem[] = [
 const PANEL_WIDTH = 700;
 const NAVBAR_H    = 56;
 
-const FONT = "var(--font-display, 'Cormorant Garamond', serif)";
+const FONT = "var(--font-body, 'Montserrat', sans-serif)";
 
 const NavItem = ({ item }: { item: NavItem }) => {
   const [open,   setOpen]   = useState(false);
