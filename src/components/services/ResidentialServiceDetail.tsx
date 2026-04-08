@@ -32,7 +32,7 @@ const ResidentialServiceDetail = ({ service }: ResidentialServiceDetailProps) =>
                 className="w-8 h-8"
               />
             </div>
-            <h1 className="text-3xl md:text-4xl font-bold">
+            <h1 className="text-3xl md:text-4xl font-extrabold">
               {service.title}
             </h1>
           </div>

@@ -350,7 +350,7 @@ export default function AboutPage() {
           </nav>
 
           <p suppressHydrationWarning style={{ fontFamily: 'var(--font-body)', fontSize: 10, letterSpacing: 4, textTransform: 'uppercase', color: 'var(--gold)', marginBottom: 20, ...fade(100) }}>Our Story</p>
-          <h1 suppressHydrationWarning style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(44px,6vw,84px)', fontWeight: 300, color: '#fff', lineHeight: 1.05, marginBottom: 24, maxWidth: 800, ...fade(200) }}>
+          <h1 suppressHydrationWarning style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(44px,6vw,84px)', fontWeight: 600, color: '#fff', lineHeight: 1.05, marginBottom: 24, maxWidth: 800, ...fade(200) }}>
             Designing Spaces That<br /><em style={{ fontStyle: 'italic', color: 'var(--gold-light)' }}>Define Lives</em>
           </h1>
           <p suppressHydrationWarning style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(15px,2vw,20px)', fontWeight: 300, fontStyle: 'italic', color: 'rgba(255,255,255,0.55)', maxWidth: 580, marginBottom: 48, ...fade(340) }}>
@@ -358,7 +358,7 @@ export default function AboutPage() {
           </p>
           <div suppressHydrationWarning style={{ display: 'flex', gap: 16, flexWrap: 'wrap', ...fade(460) }}>
             <AnimBtn href="#team" variant="primary" size="lg" showArrow>Meet the Team</AnimBtn>
-            <AnimBtn href="/contact" variant="ghost" size="lg">Work With Us</AnimBtn>
+            <AnimBtn href="/contact" variant="ghost" size="lg">Book a Consultation</AnimBtn>
           </div>
         </div>
       </section>
@@ -538,7 +538,7 @@ export default function AboutPage() {
                 <SectionLabel>Design Gallery</SectionLabel>
                 <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px,3.5vw,44px)', fontWeight: 300, color: '#fff', lineHeight: 1.15 }}>A Glimpse of Our Work</h2>
                   </div>
-              <AnimBtn href="/projects" variant="ghost" size="lg">Full Portfolio</AnimBtn>
+              <AnimBtn href="/projects" variant="ghost" size="lg">View Projects</AnimBtn>
             </div>
           </AnimatedSection>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 2 }}>
@@ -644,8 +644,8 @@ export default function AboutPage() {
               Whether you have a project in mind or simply want to learn more about how we work, we&apos;d love to hear from you.
             </p>
             <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
-              <AnimBtn href="/contact" variant="primary" size="xl" showArrow>Contact Us</AnimBtn>
-              <AnimBtn href="/projects" variant="ghost" size="xl">View Our Work</AnimBtn>
+              <AnimBtn href="/contact" variant="primary" size="lg" showArrow>Book a Consultation</AnimBtn>
+              <AnimBtn href="/projects" variant="ghost" size="lg">View Projects</AnimBtn>
             </div>
           </AnimatedSection>
         </div>

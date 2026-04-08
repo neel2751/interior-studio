@@ -31,9 +31,9 @@ const FeaturedProjects = () => {
           <div>
             <h2
               style={{
-                fontFamily: 'var(--font-display)',
+                fontFamily: 'var(--font-body)',
                 fontSize:   'clamp(28px, 3.5vw, 42px)',
-                fontWeight: 300,
+                fontWeight: 500,
                 color:      'var(--black)',
                 marginBottom: 8,
                 letterSpacing: 0.5,
@@ -204,9 +204,9 @@ const ProjectCard = ({
       >
         <p
           style={{
-            fontFamily:    'var(--font-display)',
+            fontFamily:    'var(--font-body)',
             fontSize:      14,
-            fontWeight:    400,
+            fontWeight:    500,
             letterSpacing: 0.3,
             color:         '#ffffff',
             lineHeight:    1.4,

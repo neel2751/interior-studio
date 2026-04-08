@@ -174,7 +174,7 @@ const ServiceDetail = ({ service }: ServiceDetailProps) => {
             {categoryLabel[service.slug] ?? 'Interior Design'}
           </p>
 
-          <h1 className="sd-f3" style={{ fontFamily:'var(--font-display)', fontSize:'clamp(36px, 5.5vw, 72px)', fontWeight:300, color:'#ffffff', lineHeight:1.1, marginBottom:24, maxWidth:800 }}>
+          <h1 className="sd-f3" style={{ fontFamily:'var(--font-display)', fontSize:'clamp(36px, 5.5vw, 72px)', fontWeight:600, color:'#ffffff', lineHeight:1.1, marginBottom:24, maxWidth:800 }}>
             {service.title}
           </h1>
 
@@ -307,11 +307,11 @@ const ServiceDetail = ({ service }: ServiceDetailProps) => {
             Let&apos;s discuss your {service.title.toLowerCase()} project. Our team is ready to bring your vision to life.
           </p>
           <div style={{ display:'flex', gap:16, justifyContent:'center', flexWrap:'wrap' }}>
-            <Link href="/projects" className="sd-cta-btn sd-cta-primary">
-              View Our Portfolio
-            </Link>
-            <Link href="/contact" className="sd-cta-btn sd-cta-ghost">
+            <Link href="/contact" className="sd-cta-btn sd-cta-primary">
               Book a Consultation
+            </Link>
+            <Link href="/projects" className="sd-cta-btn sd-cta-ghost">
+              View Our Projects
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
             </Link>
           </div>

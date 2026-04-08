@@ -42,7 +42,7 @@ const ServicesPreview = () => {
             <p style={{ fontFamily: 'var(--font-body)', fontSize: 10, fontWeight: 600, letterSpacing: 3, textTransform: 'uppercase', color: 'var(--gold)', marginBottom: 12 }}>
               What We Do
             </p>
-            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px, 3.5vw, 48px)', fontWeight: 300, color: '#ffffff', letterSpacing: 1 }}>
+            <h2 style={{ fontFamily: 'var(--font-body)', fontSize: 'clamp(28px, 3.5vw, 48px)', fontWeight: 500, color: '#ffffff', letterSpacing: 1 }}>
               Our Services
             </h2>
           </div>
@@ -92,10 +92,10 @@ const ServiceTile = ({ service }: { service: typeof services[number] }) => {
       <div className="sp-dim" style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.35)', transition: 'background 0.5s ease' }} />
 
       <div style={{ position: 'absolute', inset: 0, padding: '32px 28px', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', zIndex: 2 }}>
-        <p style={{ fontFamily: 'var(--font-display)', fontSize: 11, fontWeight: 300, letterSpacing: 2, color: 'var(--gold)', marginBottom: 12 }}>
+        <p style={{ fontFamily: 'var(--font-body)', fontSize: 11, fontWeight: 500, letterSpacing: 2, color: 'var(--gold)', marginBottom: 12 }}>
           {service.number}
         </p>
-        <h3 className="sp-title" style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(17px, 1.8vw, 22px)', fontWeight: 300, color: 'rgba(255,255,255,0.9)', letterSpacing: 0.5, lineHeight: 1.3, marginBottom: 14, transition: 'color 0.3s ease' }}>
+        <h3 className="sp-title" style={{ fontFamily: 'var(--font-body)', fontSize: 'clamp(17px, 1.8vw, 22px)', fontWeight: 500, color: 'rgba(255,255,255,0.9)', letterSpacing: 0.5, lineHeight: 1.3, marginBottom: 14, transition: 'color 0.3s ease' }}>
           {service.title}
         </h3>
         <div style={{ width: 40, height: 1, background: 'var(--gold)', marginBottom: 16, opacity: 0.7 }} />

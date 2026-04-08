@@ -186,7 +186,7 @@ function RelatedCard({ project, index }: { project: Project; index: number }) {
           </div>
           <div style={{ padding: '20px 20px 24px', background: '#111' }}>
             <p style={{ fontFamily: 'var(--font-body)', fontSize: 9, letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: 8 }}>{project.location}</p>
-            <h4 style={{ fontFamily: 'var(--font-display)', fontSize: 18, fontWeight: 300, color: hov ? 'var(--gold-light)' : '#fff', transition: 'color 0.3s ease', lineHeight: 1.2 }}>{project.title}</h4>
+            <h4 style={{ fontFamily: 'var(--font-body)', fontSize: 18, fontWeight: 500, color: hov ? 'var(--gold-light)' : '#fff', transition: 'color 0.3s ease', lineHeight: 1.2 }}>{project.title}</h4>
           </div>
         </div>
       </Link>
@@ -244,7 +244,7 @@ export default function ProjectPageClient({ project, related }: Props) {
             {project.featured && <span style={{ fontFamily: 'var(--font-body)', fontSize: 9, letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--gold)', background: 'rgba(201,169,110,0.15)', border: '1px solid rgba(201,169,110,0.3)', padding: '4px 12px' }}>Featured</span>}
           </div>
 
-          <h1 suppressHydrationWarning style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(36px,5.5vw,72px)', fontWeight: 300, color: '#fff', lineHeight: 1.05, marginBottom: 20, maxWidth: 800, ...fade(200) }}>
+          <h1 suppressHydrationWarning style={{ fontFamily: 'var(--font-body)', fontSize: 'clamp(36px,5.5vw,72px)', fontWeight: 500, color: '#fff', lineHeight: 1.05, marginBottom: 20, maxWidth: 800, ...fade(200) }}>
             {project.title}
           </h1>
 
@@ -357,7 +357,7 @@ export default function ProjectPageClient({ project, related }: Props) {
 
               <div style={{ background: 'linear-gradient(135deg, #1a1508 0%, #2a2010 100%)', border: '1px solid rgba(201,169,110,0.2)', padding: '32px', textAlign: 'center' }}>
                 <p style={{ fontFamily: 'var(--font-body)', fontSize: 9, letterSpacing: '2.5px', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: 16 }}>Inspired?</p>
-                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 22, fontWeight: 300, color: '#fff', lineHeight: 1.3, marginBottom: 12 }}>Transform Your Space</h3>
+                <h3 style={{ fontFamily: 'var(--font-body)', fontSize: 22, fontWeight: 500, color: '#fff', lineHeight: 1.3, marginBottom: 12 }}>Transform Your Space</h3>
                 <p style={{ fontFamily: 'var(--font-body)', fontSize: 13, lineHeight: 1.7, color: 'rgba(255,255,255,0.5)', marginBottom: 28 }}>
                   Let&apos;s create something extraordinary together.
                 </p>
@@ -377,7 +377,7 @@ export default function ProjectPageClient({ project, related }: Props) {
             <AnimatedSection delay={0}>
               <div style={{ marginBottom: 56 }}>
                 <p style={{ fontFamily: 'var(--font-body)', fontSize: 10, letterSpacing: 4, textTransform: 'uppercase', color: 'var(--gold)', marginBottom: 16 }}>Continue Exploring</p>
-                <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px,3.5vw,44px)', fontWeight: 300, color: '#fff', lineHeight: 1.15 }}>Related Projects</h2>
+                <h2 style={{ fontFamily: 'var(--font-body)', fontSize: 'clamp(28px,3.5vw,44px)', fontWeight: 500, color: '#fff', lineHeight: 1.15 }}>Related Projects</h2>
               </div>
             </AnimatedSection>
             <div className="ppg-related" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 2 }}>
@@ -398,7 +398,7 @@ export default function ProjectPageClient({ project, related }: Props) {
         <div style={{ position: 'relative', maxWidth: 600, margin: '0 auto' }}>
           <AnimatedSection delay={0}>
             <p style={{ fontFamily: 'var(--font-body)', fontSize: 10, letterSpacing: 4, textTransform: 'uppercase', color: 'var(--gold)', marginBottom: 24 }}>Begin Your Project</p>
-            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(32px,4vw,52px)', fontWeight: 300, color: '#fff', lineHeight: 1.15, marginBottom: 20 }}>
+            <h2 style={{ fontFamily: 'var(--font-body)', fontSize: 'clamp(32px,4vw,52px)', fontWeight: 500, color: '#fff', lineHeight: 1.15, marginBottom: 20 }}>
               Transform Your Space Like This
             </h2>
             <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, lineHeight: 1.8, color: 'rgba(255,255,255,0.5)', marginBottom: 48 }}>

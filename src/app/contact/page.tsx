@@ -230,7 +230,7 @@ export default function ContactPage() {
           <p suppressHydrationWarning style={{ fontFamily: 'var(--font-body)', fontSize: 10, letterSpacing: 4, textTransform: 'uppercase', color: 'var(--gold)', marginBottom: 20, ...fade(100) }}>
             Get In Touch
           </p>
-          <h1 suppressHydrationWarning style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(40px,6vw,80px)', fontWeight: 300, color: '#ffffff', lineHeight: 1.05, marginBottom: 24, maxWidth: 700, ...fade(200) }}>
+          <h1 suppressHydrationWarning style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(40px,6vw,80px)', fontWeight: 600, color: '#ffffff', lineHeight: 1.05, marginBottom: 24, maxWidth: 700, ...fade(200) }}>
             Let&apos;s Create Something <em style={{ fontStyle: 'italic', color: 'var(--gold-light)' }}>Extraordinary</em>
           </h1>
           <p suppressHydrationWarning style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(15px,2vw,20px)', fontWeight: 300, fontStyle: 'italic', color: 'rgba(255,255,255,0.55)', maxWidth: 500, marginBottom: 48, ...fade(340) }}>
@@ -238,7 +238,7 @@ export default function ContactPage() {
           </p>
           <div suppressHydrationWarning style={{ display: 'flex', gap: 16, flexWrap: 'wrap', ...fade(460) }}>
             <AnimBtn href="#contact-form" variant="primary" size="lg" showArrow>Book a Consultation</AnimBtn>
-            <AnimBtn href="/projects" variant="ghost" size="lg">View Our Work</AnimBtn>
+            <AnimBtn href="/projects" variant="ghost" size="lg">View Projects</AnimBtn>
           </div>
         </div>
       </section>

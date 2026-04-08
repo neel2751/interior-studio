@@ -230,7 +230,7 @@ export default function OfficeServiceClient({ service, related }: OfficeServiceC
           <p suppressHydrationWarning style={{ fontFamily: "var(--font-body)", fontSize: 10, letterSpacing: 4, textTransform: "uppercase", color: "var(--gold)", marginBottom: 20, ...fade(120) }}>
             Office Interior Design
           </p>
-          <h1 suppressHydrationWarning style={{ fontFamily: "var(--font-display)", fontSize: "clamp(36px, 5.5vw, 72px)", fontWeight: 300, color: "#ffffff", lineHeight: 1.1, marginBottom: 24, maxWidth: 800, ...fade(240) }}>
+          <h1 suppressHydrationWarning style={{ fontFamily: "var(--font-display)", fontSize: "clamp(36px, 5.5vw, 72px)", fontWeight: 600, color: "#ffffff", lineHeight: 1.1, marginBottom: 24, maxWidth: 800, ...fade(240) }}>
             {service.title}
           </h1>
           <p suppressHydrationWarning style={{ fontFamily: "var(--font-display)", fontSize: "clamp(16px, 2vw, 22px)", fontWeight: 300, fontStyle: "italic", color: "rgba(255,255,255,0.6)", maxWidth: 560, marginBottom: 48, ...fade(360) }}>
@@ -239,7 +239,7 @@ export default function OfficeServiceClient({ service, related }: OfficeServiceC
 
           <div suppressHydrationWarning style={{ display: "flex", gap: 14, flexWrap: "wrap", ...fade(480) }}>
             <AnimBtn href="/contact" variant="primary" size="lg">Book a Consultation</AnimBtn>
-            <AnimBtn href="/projects" variant="ghost" size="lg">View Portfolio</AnimBtn>
+            <AnimBtn href="/projects" variant="ghost" size="lg">View Projects</AnimBtn>
           </div>
         </div>
       </section>
@@ -288,7 +288,7 @@ export default function OfficeServiceClient({ service, related }: OfficeServiceC
                 </motion.div>
               ))}
             </div>
-            <AnimBtn href="/projects" variant="ghost" size="md">See Our Work</AnimBtn>
+            <AnimBtn href="/projects" variant="ghost" size="md">View Projects</AnimBtn>
           </AnimatedSection>
         </div>
       </section>
@@ -349,8 +349,8 @@ export default function OfficeServiceClient({ service, related }: OfficeServiceC
             </div>
             <AnimatedSection delay={200}>
               <div style={{ marginTop: 48, textAlign: "center" }}>
-                <AnimBtn href="/projects?category=commercial" variant="ghost" size="lg">
-                  View All Office Projects
+                <AnimBtn href="/projects" variant="ghost" size="lg">
+                  View All Projects
                 </AnimBtn>
               </div>
             </AnimatedSection>
@@ -372,7 +372,7 @@ export default function OfficeServiceClient({ service, related }: OfficeServiceC
             </p>
             <div style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
               <AnimBtn href="/contact" variant="primary" size="xl">Book a Consultation</AnimBtn>
-              <AnimBtn href="/projects" variant="ghost" size="xl">View Our Portfolio</AnimBtn>
+              <AnimBtn href="/projects" variant="ghost" size="xl">View Our Projects</AnimBtn>
             </div>
           </AnimatedSection>
         </div>

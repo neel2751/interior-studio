@@ -243,11 +243,11 @@ export default function ResidentialServiceClient({
             Residential Design
           </p>
 
-          <h1 className="sd-f3" style={{ fontFamily:'var(--font-display)', fontSize:'clamp(36px, 5.5vw, 72px)', fontWeight:300, color:'#ffffff', lineHeight:1.1, marginBottom:24, maxWidth:800 }}>
+          <h1 className="sd-f3" style={{ fontFamily:'var(--font-body)', fontSize:'clamp(36px, 5.5vw, 72px)', fontWeight:500, color:'#ffffff', lineHeight:1.1, marginBottom:24, maxWidth:800 }}>
             {service.title}
           </h1>
 
-          <p className="sd-f4" style={{ fontFamily:'var(--font-display)', fontSize:'clamp(16px, 2vw, 22px)', fontWeight:300, fontStyle:'italic', color:'rgba(255,255,255,0.6)', maxWidth:580, marginBottom: 48 }}>
+          <p className="sd-f4" style={{ fontFamily:'var(--font-body)', fontSize:'clamp(16px, 2vw, 22px)', fontWeight:400, color:'rgba(255,255,255,0.6)', maxWidth:580, marginBottom: 48 }}>
             {service.description}
           </p>
 
@@ -271,7 +271,7 @@ export default function ResidentialServiceClient({
             { value:'100%', label:'Client Satisfaction' },
           ].map((stat) => (
             <div key={stat.label} className="sd-stat-card">
-              <p style={{ fontFamily:'var(--font-display)', fontSize:'clamp(28px,4vw,44px)', fontWeight:300, color:'var(--gold)', lineHeight:1, marginBottom:10 }}>{stat.value}</p>
+              <p style={{ fontFamily:'var(--font-body)', fontSize:'clamp(28px,4vw,44px)', fontWeight:500, color:'var(--gold)', lineHeight:1, marginBottom:10 }}>{stat.value}</p>
               <p style={{ fontFamily:'var(--font-body)', fontSize:10, letterSpacing:2.5, textTransform:'uppercase', color:'rgba(255,255,255,0.4)' }}>{stat.label}</p>
             </div>
           ))}
@@ -305,12 +305,12 @@ export default function ResidentialServiceClient({
               </div>
               <div style={{ marginBottom:64 }}>
                 <p style={{ fontFamily:'var(--font-body)', fontSize:10, letterSpacing:4, textTransform:'uppercase', color:'var(--gold)', marginBottom:20 }}>How We Work</p>
-                <h2 style={{ fontFamily:'var(--font-display)', fontSize:'clamp(24px,3vw,36px)', fontWeight:300, color:'#ffffff', lineHeight:1.15, marginBottom:40 }}>Our Process</h2>
+                <h2 style={{ fontFamily:'var(--font-body)', fontSize:'clamp(24px,3vw,36px)', fontWeight:500, color:'#ffffff', lineHeight:1.15, marginBottom:40 }}>Our Process</h2>
                 <div className="sd-two-col" style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'0 40px' }}>
                   {service.process.map((step, i) => (
                     <div key={i} className="sd-step">
                       <div style={{ flexShrink:0, width:36, height:36, border:'1px solid rgba(201,169,110,0.4)', display:'flex', alignItems:'center', justifyContent:'center' }}>
-                        <span style={{ fontFamily:'var(--font-display)', fontSize:14, fontWeight:300, color:'var(--gold)' }}>
+                        <span style={{ fontFamily:'var(--font-body)', fontSize:14, fontWeight:500, color:'var(--gold)' }}>
                           {String(i + 1).padStart(2, '0')}
                         </span>
                       </div>
@@ -335,53 +335,29 @@ export default function ResidentialServiceClient({
 
             <div style={{ position:'sticky', top:100, height:'fit-content' }}>
               <div style={{ background:'rgba(255,255,255,0.02)', border:'1px solid rgba(255,255,255,0.06)', padding:32, marginBottom:24 }}>
-                <div style={{ display:'flex', alignItems:'center', gap:16, marginBottom:24, paddingBottom:24, borderBottom:'1px solid rgba(255,255,255,0.06)' }}>
-                  <div style={{ width:48, height:48, border:'1px solid rgba(201,169,110,0.3)', display:'flex', alignItems:'center', justifyContent:'center' }}>
-                    <span style={{ fontFamily:'var(--font-display)', fontSize:20, color:'var(--gold)' }}>10+</span>
-                  </div>
-                  <div>
-                    <p style={{ fontFamily:'var(--font-body)', fontSize:11, letterSpacing:2, textTransform:'uppercase', color:'rgba(255,255,255,0.4)', marginBottom:4 }}>Experience</p>
-                    <p style={{ fontFamily:'var(--font-body)', fontSize:14, color:'rgba(255,255,255,0.8)' }}>Years of Excellence</p>
-                  </div>
-                </div>
 
-                <div style={{ display:'flex', alignItems:'center', gap:16, marginBottom:24, paddingBottom:24, borderBottom:'1px solid rgba(255,255,255,0.06)' }}>
-                  <div style={{ minWidth:80, padding:'0 8px', height:48, border:'1px solid rgba(201,169,110,0.3)', display:'flex', alignItems:'center', justifyContent:'center' }}>
-                    <span style={{ fontFamily:'var(--font-display)', fontSize:13, color:'var(--gold)', whiteSpace:'nowrap' }}>{service.duration || '4-8 wks'}</span>
-                  </div>
-                  <div>
-                    <p style={{ fontFamily:'var(--font-body)', fontSize:11, letterSpacing:2, textTransform:'uppercase', color:'rgba(255,255,255,0.4)', marginBottom:4 }}>Duration</p>
-                    <p style={{ fontFamily:'var(--font-body)', fontSize:14, color:'rgba(255,255,255,0.8)' }}>Project Timeline</p>
-                  </div>
-                </div>
+              <h1 className="sd-f3" style={{ fontFamily:'var(--font-body)', fontSize:'clamp(36px, 5.5vw, 72px)', fontWeight:500, color:'#ffffff', lineHeight:1.1, marginBottom:24, maxWidth:800 }}>
+                {service.title}
+              </h1>
 
-                <div style={{ display:'flex', alignItems:'center', gap:16 }}>
-                  <div style={{ width:48, height:48, border:'1px solid rgba(201,169,110,0.3)', display:'flex', alignItems:'center', justifyContent:'center' }}>
-                    <span style={{ fontFamily:'var(--font-display)', fontSize:16, color:'var(--gold)' }}>★</span>
-                  </div>
-                  <div>
-                    <p style={{ fontFamily:'var(--font-body)', fontSize:11, letterSpacing:2, textTransform:'uppercase', color:'rgba(255,255,255,0.4)', marginBottom:4 }}>Quality</p>
-                    <p style={{ fontFamily:'var(--font-body)', fontSize:14, color:'rgba(255,255,255,0.8)' }}>Premium Materials</p>
-                  </div>
-                </div>
-              </div>
+              <p className="sd-f4" style={{ fontFamily:'var(--font-body)', fontSize:'clamp(16px, 2vw, 22px)', fontWeight:400, color:'rgba(255,255,255,0.6)', maxWidth:580, marginBottom: 48 }}>
+                {service.description}
+              </p>
 
-              <div style={{ background:'linear-gradient(135deg, #1a1a1a 0%, #2a2010 100%)', border:'1px solid rgba(201,169,110,0.15)', padding:32, textAlign:'center' }}>
-                <p style={{ fontFamily:'var(--font-body)', fontSize:10, letterSpacing:3, textTransform:'uppercase', color:'var(--gold)', marginBottom:16 }}>Get Started</p>
-                <h3 style={{ fontFamily:'var(--font-display)', fontSize:20, fontWeight:300, color:'#ffffff', marginBottom:24 }}>
-                  Ready to transform your space?
-                </h3>
-                <Link href="/projects" className="sd-cta-btn sd-cta-primary sd-cta-full" style={{ marginBottom:12 }}>
-                  <span>View Our Portfolio</span>
+              <div className="sd-f4" style={{ display:'flex', gap:16, flexWrap:'wrap' }}>
+                <Link href="/contact" className="sd-cta-btn sd-cta-primary sd-cta-lg">
+                  <span style={{ fontFamily:'var(--font-body)' }}>Book a Consultation</span>
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
                 </Link>
-                <Link href="/contact" className="sd-cta-btn sd-cta-ghost sd-cta-full" style={{ marginBottom:16 }}>
-                  <span>Book a Consultation</span>
+                <Link href="/projects" className="sd-cta-btn sd-cta-ghost sd-cta-lg">
+                  <span style={{ fontFamily:'var(--font-body)' }}>View Portfolio</span>
                   <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
                 </Link>
                 <p style={{ fontFamily:'var(--font-body)', fontSize:11, color:'rgba(255,255,255,0.3)', letterSpacing:1 }}>
                   Free initial consultation
                 </p>
               </div>
+            </div>
             </div>
           </div>
         </div>
@@ -392,7 +368,7 @@ export default function ResidentialServiceClient({
           <div style={{ maxWidth:1200, margin:'0 auto' }}>
             <div style={{ marginBottom:56 }}>
               <p style={{ fontFamily:'var(--font-body)', fontSize:10, letterSpacing:4, textTransform:'uppercase', color:'var(--gold)', marginBottom:16 }}>Portfolio</p>
-              <h2 style={{ fontFamily:'var(--font-display)', fontSize:'clamp(28px,3.5vw,44px)', fontWeight:300, color:'#ffffff', lineHeight:1.15 }}>Gallery</h2>
+              <h2 style={{ fontFamily:'var(--font-body)', fontSize:'clamp(28px,3.5vw,44px)', fontWeight:500, color:'#ffffff', lineHeight:1.15 }}>Gallery</h2>
             </div>
             <div className="sd-three-col" style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:2 }}>
               {service.gallery.map((img, i) => (
@@ -400,7 +376,7 @@ export default function ResidentialServiceClient({
                   <img src={img} alt={`${service.title} gallery ${i + 1}`} loading="lazy" />
                   <div className="sd-project-overlay">
                     <div>
-                      <p style={{ fontFamily:'var(--font-display)', fontSize:20, fontWeight:300, color:'#ffffff' }}>Image {i + 1}</p>
+                      <p style={{ fontFamily:'var(--font-body)', fontSize:20, fontWeight:500, color:'#ffffff' }}>Image {i + 1}</p>
                     </div>
                   </div>
                 </div>
@@ -414,7 +390,7 @@ export default function ResidentialServiceClient({
         <div style={{ maxWidth:1200, margin:'0 auto' }}>
           <div style={{ marginBottom:56 }}>
             <p style={{ fontFamily:'var(--font-body)', fontSize:10, letterSpacing:4, textTransform:'uppercase', color:'var(--gold)', marginBottom:16 }}>Our Work</p>
-            <h2 style={{ fontFamily:'var(--font-display)', fontSize:'clamp(28px,3.5vw,44px)', fontWeight:300, color:'#ffffff', lineHeight:1.15 }}>Related Projects</h2>
+            <h2 style={{ fontFamily:'var(--font-body)', fontSize:'clamp(28px,3.5vw,44px)', fontWeight:500, color:'#ffffff', lineHeight:1.15 }}>Related Projects</h2>
           </div>
 
           <div className="sd-three-col" style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:2 }}>
@@ -424,7 +400,7 @@ export default function ResidentialServiceClient({
                 <div className="sd-project-overlay">
                   <div>
                     <p style={{ fontFamily:'var(--font-body)', fontSize:10, letterSpacing:2, textTransform:'uppercase', color:'var(--gold)', marginBottom:6 }}>{project.location}</p>
-                    <p style={{ fontFamily:'var(--font-display)', fontSize:20, fontWeight:300, color:'#ffffff' }}>{project.title}</p>
+                    <p style={{ fontFamily:'var(--font-body)', fontSize:20, fontWeight:500, color:'#ffffff' }}>{project.title}</p>
                   </div>
                 </div>
               </Link>
@@ -445,7 +421,7 @@ export default function ResidentialServiceClient({
         <div style={{ position:'absolute', top:'50%', left:'50%', transform:'translate(-50%,-50%)', width:400, height:400, border:'1px solid rgba(201,169,110,0.08)', borderRadius:'50%', pointerEvents:'none' }} />
         <div style={{ position:'relative', maxWidth:640, margin:'0 auto' }}>
           <p style={{ fontFamily:'var(--font-body)', fontSize:10, letterSpacing:4, textTransform:'uppercase', color:'var(--gold)', marginBottom:24 }}>Begin Your Project</p>
-          <h2 style={{ fontFamily:'var(--font-display)', fontSize:'clamp(32px,4vw,52px)', fontWeight:300, color:'#ffffff', lineHeight:1.15, marginBottom:20 }}>
+          <h2 style={{ fontFamily:'var(--font-body)', fontSize:'clamp(32px,4vw,52px)', fontWeight:500, color:'#ffffff', lineHeight:1.15, marginBottom:20 }}>
             Ready to Transform Your Space?
           </h2>
           <p style={{ fontFamily:'var(--font-body)', fontSize:14, lineHeight:1.8, color:'rgba(255,255,255,0.5)', marginBottom:48 }}>

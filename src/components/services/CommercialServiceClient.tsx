@@ -396,7 +396,7 @@ export default function ServiceSubPageClient({ service, related, breadcrumbLabel
             {service.categoryLabel}
           </p>
 
-          <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(36px,5.5vw,72px)', fontWeight: 300, color: '#fff', lineHeight: 1.05, marginBottom: 24, maxWidth: 800, ...fade(220) }}>
+          <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(36px,5.5vw,72px)', fontWeight: 600, color: '#fff', lineHeight: 1.05, marginBottom: 24, maxWidth: 800, ...fade(220) }}>
             {service.title}
           </h1>
 

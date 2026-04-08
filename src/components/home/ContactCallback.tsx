@@ -49,9 +49,9 @@ const ContactCallback = () => {
           <div style={{ flex: 1, minWidth: 280 }}>
             <h2
               style={{
-                fontFamily: 'var(--font-display)',
+                fontFamily: 'var(--font-body)',
                 fontSize: 'clamp(26px, 3vw, 38px)',
-                fontWeight: 400,
+                fontWeight: 500,
                 color: 'var(--black)',
                 lineHeight: 1.25,
                 marginBottom: 10,

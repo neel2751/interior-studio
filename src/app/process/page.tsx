@@ -265,7 +265,7 @@ export default function ProcessPage() {
           <p suppressHydrationWarning style={{ fontFamily: 'var(--font-body)', fontSize: 10, letterSpacing: 4, textTransform: 'uppercase', color: 'var(--gold)', marginBottom: 20, ...fade(100) }}>
             How We Work
           </p>
-          <h1 suppressHydrationWarning style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(44px,6vw,84px)', fontWeight: 300, color: '#ffffff', lineHeight: 1.05, marginBottom: 24, maxWidth: 700, ...fade(200) }}>
+          <h1 suppressHydrationWarning style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(44px,6vw,84px)', fontWeight: 600, color: '#ffffff', lineHeight: 1.05, marginBottom: 24, maxWidth: 700, ...fade(200) }}>
             The Design<br /><em style={{ fontStyle: 'italic', color: 'var(--gold-light)' }}>Journey</em>
           </h1>
           <p suppressHydrationWarning style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(15px,2vw,20px)', fontWeight: 300, fontStyle: 'italic', color: 'rgba(255,255,255,0.55)', maxWidth: 540, marginBottom: 48, ...fade(340) }}>

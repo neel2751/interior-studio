@@ -242,7 +242,7 @@ export default function ProjectsPage() {
             <span style={{ color:'var(--gold)' }}>Projects</span>
           </nav>
           <p suppressHydrationWarning style={{ fontFamily:'var(--font-body)', fontSize:10, letterSpacing:4, textTransform:'uppercase', color:'var(--gold)', marginBottom:20, opacity:heroVisible?1:0, transform:heroVisible?'translateY(0)':'translateY(25px)', transition:'opacity 0.7s ease 100ms,transform 0.7s ease 100ms' }}>Our Portfolio</p>
-          <h1 suppressHydrationWarning style={{ fontFamily:'var(--font-display)', fontSize:'clamp(44px,6vw,84px)', fontWeight:300, color:'#ffffff', lineHeight:1.05, marginBottom:24, maxWidth:800, opacity:heroVisible?1:0, transform:heroVisible?'translateY(0)':'translateY(32px)', transition:'opacity 0.8s ease 200ms,transform 0.8s ease 200ms' }}>
+          <h1 suppressHydrationWarning style={{ fontFamily:'var(--font-display)', fontSize:'clamp(44px,6vw,84px)', fontWeight:600, color:'#ffffff', lineHeight:1.05, marginBottom:24, maxWidth:800, opacity:heroVisible?1:0, transform:heroVisible?'translateY(0)':'translateY(32px)', transition:'opacity 0.8s ease 200ms,transform 0.8s ease 200ms' }}>
             Spaces That Tell<br /><em style={{ fontStyle:'italic', color:'var(--gold-light)' }}>Extraordinary</em> Stories
           </h1>
           <p suppressHydrationWarning style={{ fontFamily:'var(--font-display)', fontSize:'clamp(16px,2vw,22px)', fontWeight:300, fontStyle:'italic', color:'rgba(255,255,255,0.55)', maxWidth:540, marginBottom:48, opacity:heroVisible?1:0, transform:heroVisible?'translateY(0)':'translateY(32px)', transition:'opacity 0.8s ease 340ms,transform 0.8s ease 340ms' }}>
@@ -250,7 +250,7 @@ export default function ProjectsPage() {
           </p>
           <div suppressHydrationWarning style={{ display:'flex', gap:16, flexWrap:'wrap', opacity:heroVisible?1:0, transform:heroVisible?'translateY(0)':'translateY(32px)', transition:'opacity 0.8s ease 460ms,transform 0.8s ease 460ms' }}>
             <AnimBtn href="#projects" variant="ghost" size="lg" showArrow>Explore Projects</AnimBtn>
-            <AnimBtn href="/contact" variant="primary" size="lg">Start Your Project</AnimBtn>
+            <AnimBtn href="/contact" variant="primary" size="lg">Book a Consultation</AnimBtn>
           </div>
         </div>
       </section>
@@ -335,8 +335,8 @@ export default function ProjectsPage() {
               Let&apos;s collaborate to create a space that reflects your vision and exceeds every expectation.
             </p>
             <div style={{ display:'flex', gap:16, justifyContent:'center', flexWrap:'wrap' }}>
-              <AnimBtn href="/contact" variant="ghost" size="xl">Start Your Project</AnimBtn>
-              <AnimBtn href="/services" variant="primary" size="xl">Our Services</AnimBtn>
+              <AnimBtn href="/contact" variant="primary" size="xl">Book a Consultation</AnimBtn>
+              <AnimBtn href="/services" variant="ghost" size="xl">Our Services</AnimBtn>
             </div>
           </AnimatedSection>
         </div>

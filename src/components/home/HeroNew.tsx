@@ -65,17 +65,11 @@ const FloatingElement = ({
 }) => {
   return (
     <div
+      className="floating-element"
       style={{
-        animation: `float ${duration}s ease-in-out ${delay}s infinite`,
         transform: `translate(${xOffset}px, ${yOffset}px)`,
       }}
     >
-      <style>{`
-        @keyframes float {
-          0%, 100% { transform: translate(${xOffset}px, ${yOffset}px) translateY(0px); }
-          50% { transform: translate(${xOffset}px, ${yOffset}px) translateY(-15px); }
-        }
-      `}</style>
       {children}
     </div>
   );

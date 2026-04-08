@@ -27,9 +27,9 @@ const AboutSection = () => {
             <FadeInSection direction="right" delay={0}>
               <h2
                 style={{
-                  fontFamily: 'var(--font-display)',
+                  fontFamily: 'var(--font-body)',
                   fontSize: 'clamp(28px, 3.5vw, 42px)',
-                  fontWeight: 400,
+                  fontWeight: 500,
                   color: 'var(--black)',
                   marginBottom: 28,
                 }}
@@ -93,9 +93,9 @@ const AboutSection = () => {
               <div style={{ marginBottom: 32 }}>
                 <p
                   style={{
-                    fontFamily: 'var(--font-display)',
+                    fontFamily: 'var(--font-body)',
                     fontSize: 15,
-                    fontStyle: 'italic',
+                    fontWeight: 500,
                     color: 'var(--gold)',
                     marginBottom: 4,
                   }}

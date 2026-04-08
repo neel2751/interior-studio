@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  allowedDevOrigins: ['127.0.0.1', 'localhost'],
   images: {
     remotePatterns: [
       { protocol: 'http', hostname: 'localhost' },
@@ -13,7 +14,6 @@ const nextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384, 512],
   },
 
-  // Experimental features
   experimental: {
     optimizePackageImports: ['lucide-react'],
     optimizeCss: true,

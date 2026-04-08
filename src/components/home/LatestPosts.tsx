@@ -118,9 +118,9 @@ const LatestPosts = () => {
           >
             <h2
               style={{
-                fontFamily: 'var(--font-display)',
+                fontFamily: 'var(--font-body)',
                 fontSize: 'clamp(24px, 3vw, 38px)',
-                fontWeight: 400,
+                fontWeight: 500,
                 color: 'var(--black)',
               }}
             >
@@ -237,9 +237,9 @@ const LatestPosts = () => {
           >
             <h2
               style={{
-                fontFamily: 'var(--font-display)',
+                fontFamily: 'var(--font-body)',
                 fontSize: 'clamp(24px, 3vw, 38px)',
-                fontWeight: 400,
+                fontWeight: 500,
                 color: 'var(--black)',
               }}
             >
@@ -333,7 +333,7 @@ const LatestPosts = () => {
                     >
                       <span
                         style={{
-                          fontFamily: 'var(--font-display)',
+                          fontFamily: 'var(--font-body)',
                           fontSize: 10,
                           fontWeight: 700,
                           letterSpacing: 2,

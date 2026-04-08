@@ -389,7 +389,7 @@ export default function ServiceSubPageClient({ service, related, breadcrumbLabel
           <p suppressHydrationWarning style={{ fontFamily: 'var(--font-body)', fontSize: 10, letterSpacing: 4, textTransform: 'uppercase', color: 'var(--gold)', marginBottom: 20, ...fade(100) }}>
             {service.categoryLabel}
           </p>
-          <h1 suppressHydrationWarning style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(36px,5.5vw,72px)', fontWeight: 300, color: '#fff', lineHeight: 1.05, marginBottom: 24, maxWidth: 800, ...fade(220) }}>
+          <h1 suppressHydrationWarning style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(36px,5.5vw,72px)', fontWeight: 600, color: '#fff', lineHeight: 1.05, marginBottom: 24, maxWidth: 800, ...fade(220) }}>
             {service.title}
           </h1>
           <p suppressHydrationWarning style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(16px,2vw,22px)', fontWeight: 300, fontStyle: 'italic', color: 'rgba(255,255,255,0.58)', maxWidth: 580, marginBottom: 48, ...fade(360) }}>

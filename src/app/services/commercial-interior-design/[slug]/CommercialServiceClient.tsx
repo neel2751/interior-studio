@@ -233,7 +233,7 @@ export default function CommercialServiceClient({ service, related }: Commercial
           <p suppressHydrationWarning style={{ fontFamily: "var(--font-body)", fontSize: 10, letterSpacing: 4, textTransform: "uppercase", color: "var(--gold)", marginBottom: 20, ...fade(120) }}>
             Commercial Interior Design
           </p>
-          <h1 suppressHydrationWarning style={{ fontFamily: "var(--font-display)", fontSize: "clamp(36px, 5.5vw, 72px)", fontWeight: 300, color: "#ffffff", lineHeight: 1.1, marginBottom: 24, maxWidth: 800, ...fade(240) }}>
+          <h1 suppressHydrationWarning style={{ fontFamily: "var(--font-display)", fontSize: "clamp(36px, 5.5vw, 72px)", fontWeight: 600, color: "#ffffff", lineHeight: 1.1, marginBottom: 24, maxWidth: 800, ...fade(240) }}>
             {service.title}
           </h1>
           <p suppressHydrationWarning style={{ fontFamily: "var(--font-display)", fontSize: "clamp(16px, 2vw, 22px)", fontWeight: 300, fontStyle: "italic", color: "rgba(255,255,255,0.6)", maxWidth: 560, marginBottom: 48, ...fade(360) }}>

@@ -1,30 +1,10 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 
-const SLIDES = [
-  {
-    src: '/images/hero/hero-slide-1.png',
-    fallback: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1600&q=80',
-    alt: 'Luxury Living Room',
-  },
-  {
-    src: '/images/hero/Use-AI-Image-Mar-26-2026-21_05_37.png',
-    fallback: 'https://images.unsplash.com/photo-1600210492493-0946911123ea?w=1600&q=80',
-    alt: 'Modern Interior Design',
-  },
-  {
-    src: '/images/projects/modern-villa-ahmedabad/cover.png',
-    fallback: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1600&q=80',
-    alt: 'Modern Villa Ahmedabad',
-  },
-  {
-    src: '/images/projects/boutique-hotel-goa/cover.png',
-    fallback: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1600&q=80',
-    alt: 'Boutique Hotel Goa',
-  },
-];
+const VIDEO_SRC = '/videos/hero/hero-bg.mp4';
+const FALLBACK_IMAGE = '/images/hero/Use-AI-Image-Mar-26-2026-21_05_37.png';
 
 const STATS = [
   { value: '15+',       label: 'YEARS IN BUSINESS' },
@@ -33,85 +13,60 @@ const STATS = [
   { value: '100%',      label: 'FULL TURNKEY' },
 ];
 
-const AUTOPLAY_INTERVAL = 5000;
-
 export default function Hero() {
-  const [mounted, setMounted]     = useState(false);
-  const [current, setCurrent]     = useState(0);
-  const [animating, setAnimating] = useState(false);
-
-  useEffect(() => { setMounted(true); }, []);
-
-  const goTo = useCallback((index: number) => {
-    if (animating) return;
-    setAnimating(true);
-    setCurrent(index);
-    setTimeout(() => setAnimating(false), 900);
-  }, [animating]);
-
-  const next = useCallback(() => goTo((current + 1) % SLIDES.length), [current, goTo]);
-  const prev = useCallback(() => goTo((current - 1 + SLIDES.length) % SLIDES.length), [current, goTo]);
+  const [videoError, setVideoError] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    const t = setInterval(() => setCurrent(c => (c + 1) % SLIDES.length), AUTOPLAY_INTERVAL);
-    return () => clearInterval(t);
+    const video = videoRef.current;
+    if (video) {
+      video.play().catch(() => setVideoError(true));
+    }
   }, []);
 
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowLeft') prev();
-      if (e.key === 'ArrowRight') next();
-    };
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, [prev, next]);
-
-  // Server renders a dark placeholder — no dynamic content, no mismatch
-  if (!mounted) {
-    return (
-      <section style={{ position: 'relative', height: '100vh', minHeight: 700, overflow: 'hidden', background: '#0a0805' }}>
-        <img
-          src={SLIDES[0].fallback}
-          alt={SLIDES[0].alt}
-          style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', opacity: 0.5 }}
-        />
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(10,8,5,0.9) 0%, rgba(10,8,5,0.5) 100%)' }} />
-      </section>
-    );
-  }
-
   return (
-    <section style={{ position: 'relative', height: '100vh', minHeight: 700, overflow: 'hidden' }}>
+    <section suppressHydrationWarning style={{ position: 'relative', height: '100vh', minHeight: 700, overflow: 'hidden', background: '#0a0805' }}>
 
-      {/* ── Background slides ── */}
-      {SLIDES.map((slide, i) => (
-        <div
-          key={i}
-          style={{
-            position: 'absolute',
-            inset: 0,
-            zIndex: i === current ? 2 : 1,
-            opacity: i === current ? 1 : 0,
-            transition: 'opacity 1.2s cubic-bezier(0.4,0,0.2,1)',
-          }}
-        >
+      <div
+        suppressHydrationWarning
+        style={{
+          position: 'absolute',
+          inset: 0,
+          zIndex: 1,
+        }}
+      >
+        {videoError ? (
           <img
-            src={slide.src}
-            alt={slide.alt}
+            src={FALLBACK_IMAGE}
+            alt="Interior Design"
             style={{
               width: '100%',
               height: '100%',
               objectFit: 'cover',
               objectPosition: 'center',
-              transform: i === current ? 'scale(1)' : 'scale(1.06)',
-              transition: 'transform 10s ease-out',
             }}
-            onError={(e) => { (e.currentTarget as HTMLImageElement).src = slide.fallback; }}
           />
-        </div>
-      ))}
+        ) : (
+          <video
+            ref={videoRef}
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster={FALLBACK_IMAGE}
+            onError={() => setVideoError(true)}
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              objectPosition: 'center',
+            }}
+          >
+            <source src={VIDEO_SRC} type="video/mp4" />
+          </video>
+        )}
+      </div>
 
-      {/* ── Gradient overlays ── */}
       <div style={{
         position: 'absolute', inset: 0, zIndex: 3, pointerEvents: 'none',
         background: 'linear-gradient(to right, rgba(10,8,5,0.88) 0%, rgba(10,8,5,0.55) 55%, rgba(10,8,5,0.2) 100%)',
@@ -122,7 +77,6 @@ export default function Hero() {
         background: 'linear-gradient(to top, rgba(10,8,5,0.75) 0%, transparent 100%)',
       }} />
 
-      {/* ── Main content ── */}
       <div style={{
         position: 'absolute', inset: 0, zIndex: 4,
         display: 'flex', flexDirection: 'column', justifyContent: 'center',
@@ -213,26 +167,6 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* ── Phone card ── */}
-      <div style={{
-        position: 'absolute', bottom: 100, right: 'clamp(24px, 5vw, 56px)',
-        zIndex: 6,
-        background: 'rgba(10,8,5,0.75)', backdropFilter: 'blur(10px)',
-        border: '1px solid rgba(201,169,110,0.3)',
-        padding: '18px 28px',
-        display: 'flex', flexDirection: 'column', gap: 4,
-        opacity: 0,
-        animation: 'heroFadeUp 0.8s ease-out 1.0s forwards',
-      }}>
-        <span style={{ fontFamily: 'var(--font-body)', fontSize: '9px', letterSpacing: '3px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)' }}>
-          CALL OR WHATSAPP
-        </span>
-        <a href="tel:+919876543210" style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(18px, 2vw, 24px)', fontWeight: 700, color: '#ffffff', textDecoration: 'none' }}>
-          +91 98765 43210
-        </a>
-      </div>
-
-      {/* ── Stats bar ── */}
       <div style={{
         position: 'absolute', bottom: 0, left: 0, right: 0, zIndex: 5,
         display: 'flex',
@@ -248,58 +182,13 @@ export default function Hero() {
             opacity: 0,
             animation: `heroFadeUp 0.8s ease-out ${1.1 + i * 0.1}s forwards`,
           }}>
-            <div style={{ fontFamily: 'var(--font-display)', fontSize: '26px', fontWeight: 600, color: 'var(--gold, #c9a96e)', marginBottom: '6px' }}>
+            <div style={{ fontFamily: 'var(--font-body)', fontSize: '26px', fontWeight: 600, color: 'var(--gold, #c9a96e)', marginBottom: '6px' }}>
               {stat.value}
             </div>
             <div style={{ fontFamily: 'var(--font-body)', fontSize: '9px', letterSpacing: '2px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.55)' }}>
               {stat.label}
             </div>
           </div>
-        ))}
-      </div>
-
-      {/* ── Arrows ── */}
-      {([
-        { label: 'Previous', side: 'left'  as const, onClick: prev, points: '18,4 8,14 18,24' },
-        { label: 'Next',     side: 'right' as const, onClick: next, points: '10,4 20,14 10,24' },
-      ]).map(({ label, side, onClick, points }) => (
-        <button
-          key={label}
-          onClick={onClick}
-          aria-label={`${label} slide`}
-          style={{
-            position: 'absolute', [side]: 20, top: '50%', transform: 'translateY(-50%)',
-            zIndex: 10, background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(255,255,255,0.2)',
-            cursor: 'pointer', padding: '14px 10px',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            opacity: 0.7, transition: 'all 0.3s ease',
-          }}
-          onMouseEnter={(e) => { e.currentTarget.style.opacity = '1'; e.currentTarget.style.background = 'rgba(0,0,0,0.6)'; }}
-          onMouseLeave={(e) => { e.currentTarget.style.opacity = '0.7'; e.currentTarget.style.background = 'rgba(0,0,0,0.3)'; }}
-        >
-          <svg width="22" height="22" viewBox="0 0 28 28" fill="none">
-            <polyline points={points} stroke="#fff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        </button>
-      ))}
-
-      {/* ── Dots ── */}
-      <div style={{
-        position: 'absolute', bottom: 80, left: '50%', transform: 'translateX(-50%)',
-        zIndex: 10, display: 'flex', gap: 10, alignItems: 'center',
-      }}>
-        {SLIDES.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => goTo(i)}
-            aria-label={`Go to slide ${i + 1}`}
-            style={{
-              width: i === current ? 40 : 10, height: 3,
-              background: i === current ? 'var(--gold, #c9a96e)' : 'rgba(255,255,255,0.35)',
-              border: 'none', cursor: 'pointer', padding: 0,
-              transition: 'width 0.4s ease, background 0.4s ease',
-            }}
-          />
         ))}
       </div>
 
