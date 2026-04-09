@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans } from "next/font/google";
+import {Google_Sans_Code } from "next/font/google";
 import "./globals.css";
 import NavbarClient from "@/components/common/NavbarClient";
 import Footer from "@/components/common/Footer";
 import FloatingElements from "@/components/common/FloatingElements";
 
-const googleSans = Plus_Jakarta_Sans({
+const googleSans = Google_Sans_Code({
   subsets: ["latin"],
   weight: ["400", "500", "700"],
   variable: "--font-display",

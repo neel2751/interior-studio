@@ -88,8 +88,8 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ['Montserrat', 'system-ui', 'sans-serif'],
-        display: ['Montserrat', 'system-ui', 'sans-serif'],
+        sans: ['google-sans', 'system-ui', 'sans-serif'],
+        display: ['google-sans', 'system-ui', 'sans-serif'],
         mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
       },
       fontSize: {

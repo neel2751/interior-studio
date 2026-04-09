@@ -2,9 +2,9 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import { Phone, Mail, MapPin, Clock } from 'lucide-react';
-import { AlertCircle } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, AlertCircle } from 'lucide-react';
 import { useForm } from 'react-hook-form';
+import Button from '@/components/common/Button';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { CONTACT_INFO, BUSINESS_HOURS } from '@/lib/constants';
@@ -23,98 +23,6 @@ function useInView(threshold = 0.15) {
     return () => obs.disconnect();
   }, [threshold]);
   return { ref, inView };
-}
-
-function AnimBtn({
-  href,
-  onClick,
-  type,
-  variant,
-  size = 'md',
-  disabled = false,
-  showArrow = false,
-  children,
-}: {
-  href?: string;
-  onClick?: () => void;
-  type?: 'button' | 'submit';
-  variant: 'primary' | 'ghost';
-  size?: 'sm' | 'md' | 'lg' | 'xl';
-  disabled?: boolean;
-  showArrow?: boolean;
-  children: React.ReactNode;
-}) {
-  const [hov, setHov] = useState(false);
-
-  const sizeMap = {
-    sm: { padding: '12px 24px', fontSize: 10, letterSpacing: '2px' },
-    md: { padding: '16px 28px', fontSize: 11, letterSpacing: '2px' },
-    lg: { padding: '18px 36px', fontSize: 11, letterSpacing: '2px' },
-    xl: { padding: '20px 44px', fontSize: 11, letterSpacing: '2px' },
-  };
-
-  const variantStyles: Record<string, React.CSSProperties> = {
-    primary: {
-      background: disabled ? 'rgba(201,169,110,0.3)' : hov ? 'transparent' : 'var(--gold)',
-      color: disabled ? 'rgba(201,169,110,0.5)' : hov ? 'var(--gold)' : '#0a0a0a',
-      border: `1.5px solid ${disabled ? 'rgba(201,169,110,0.3)' : 'var(--gold)'}`,
-    },
-    ghost: {
-      background: 'transparent',
-      color: hov ? 'var(--gold)' : 'rgba(255,255,255,0.9)',
-      border: hov ? '1.5px solid var(--gold)' : '1.5px solid rgba(255,255,255,0.3)',
-    },
-  };
-
-  const baseStyle: React.CSSProperties = {
-    display: 'inline-flex',
-    alignItems: 'center',
-    gap: 10,
-    fontFamily: 'var(--font-body)',
-    fontWeight: 600,
-    textTransform: 'uppercase',
-    textDecoration: 'none',
-    whiteSpace: 'nowrap',
-    cursor: disabled ? 'not-allowed' : 'pointer',
-    opacity: disabled ? 0.6 : 1,
-    transition: 'all 0.25s ease',
-    ...sizeMap[size],
-    ...variantStyles[variant],
-  };
-
-  const inner = (
-    <>
-      <span>{children}</span>
-      {showArrow && !disabled && (
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <path d="M5 12h14M12 5l7 7-7 7" />
-        </svg>
-      )}
-    </>
-  );
-
-  if (href) {
-    return (
-      <Link href={href}
-        onMouseEnter={() => setHov(true)}
-        onMouseLeave={() => setHov(false)}
-        style={baseStyle}>
-        {inner}
-      </Link>
-    );
-  }
-
-  return (
-    <button
-      type={type ?? 'button'}
-      disabled={disabled}
-      onMouseEnter={() => { if (!disabled) setHov(true); }}
-      onMouseLeave={() => setHov(false)}
-      onClick={onClick}
-      style={{ ...baseStyle, border: baseStyle.border }}>
-      {inner}
-    </button>
-  );
 }
 
 function AnimatedSection({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
@@ -237,8 +145,8 @@ export default function ContactPage() {
             Book a free consultation and let&apos;s bring your vision to life.
           </p>
           <div suppressHydrationWarning style={{ display: 'flex', gap: 16, flexWrap: 'wrap', ...fade(460) }}>
-            <AnimBtn href="#contact-form" variant="primary" size="lg" showArrow>Book a Consultation</AnimBtn>
-            <AnimBtn href="/projects" variant="ghost" size="lg">View Projects</AnimBtn>
+            <Button href="#contact-form" variant="default" size="lg" showArrow>Book a Consultation</Button>
+            <Button href="/projects" variant="secondary" size="lg">View Projects</Button>
           </div>
         </div>
       </section>
@@ -269,7 +177,7 @@ export default function ContactPage() {
                     <p style={{ fontSize: 40, marginBottom: 16 }}>✓</p>
                     <p style={{ fontFamily: 'var(--font-display)', fontSize: 26, fontWeight: 300, color: 'var(--gold)', marginBottom: 12 }}>Thank You!</p>
                     <p style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'rgba(255,255,255,0.6)', marginBottom: 32, lineHeight: 1.7 }}>We&apos;ve received your enquiry and will be in touch within 24 hours.</p>
-                    <AnimBtn onClick={() => setSubmitted(false)} variant="ghost" size="sm">Send Another</AnimBtn>
+                    <Button onClick={() => setSubmitted(false)} variant="secondary" size="sm">Send Another</Button>
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit(onSubmit)} noValidate style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
@@ -320,9 +228,9 @@ export default function ContactPage() {
                     )}
 
                     <div style={{ display: 'flex', alignItems: 'center', gap: 20, flexWrap: 'wrap', marginTop: 8 }}>
-                      <AnimBtn type="submit" variant="primary" size="lg" disabled={isSubmitting}>
+                      <Button type="submit" variant="default" size="lg" isLoading={isSubmitting}>
                         {isSubmitting ? 'Sending...' : 'Send Enquiry'}
-                      </AnimBtn>
+                      </Button>
                       <p style={{ fontFamily: 'var(--font-body)', fontSize: 11, color: 'rgba(255,255,255,0.35)', letterSpacing: 1 }}>We respond within 24 hours</p>
                     </div>
                   </form>
@@ -391,8 +299,8 @@ export default function ContactPage() {
               Discover the spaces we&apos;ve crafted — from modern villas to boutique hotels across India.
             </p>
             <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
-              <AnimBtn href="/projects" variant="primary" size="xl" showArrow>View Projects</AnimBtn>
-              <AnimBtn href="/services" variant="ghost" size="xl">Our Services</AnimBtn>
+              <Button href="/projects" variant="default" size="xl" showArrow>View Projects</Button>
+              <Button href="/services" variant="secondary" size="xl">Our Services</Button>
             </div>
           </AnimatedSection>
         </div>

@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { CONTACT_INFO } from '@/lib/constants';
+import Button from '@/components/common/Button';
 
 function useInView(threshold = 0.12) {
   const ref = useRef<HTMLDivElement>(null);
@@ -18,93 +19,6 @@ function useInView(threshold = 0.12) {
     return () => obs.disconnect();
   }, [threshold]);
   return { ref, inView };
-}
-
-function AnimBtn({
-  href,
-  onClick,
-  variant,
-  size = 'md',
-  showArrow = false,
-  style: extraStyle = {},
-  children,
-}: {
-  href?: string;
-  onClick?: () => void;
-  variant: 'primary' | 'ghost';
-  size?: 'sm' | 'md' | 'lg';
-  showArrow?: boolean;
-  style?: React.CSSProperties;
-  children: React.ReactNode;
-}) {
-  const [hov, setHov] = useState(false);
-
-  const sizeMap = {
-    sm: { padding: '12px 24px', fontSize: 10, letterSpacing: '2px' },
-    md: { padding: '16px 28px', fontSize: 11, letterSpacing: '2px' },
-    lg: { padding: '18px 36px', fontSize: 11, letterSpacing: '2px' },
-  };
-
-  const variantStyles: Record<string, React.CSSProperties> = {
-    primary: {
-      background: hov ? 'transparent' : 'var(--gold)',
-      color: hov ? 'var(--gold)' : '#0a0a0a',
-      border: '1.5px solid var(--gold)',
-    },
-    ghost: {
-      background: 'transparent',
-      color: hov ? 'var(--gold)' : 'rgba(255,255,255,0.9)',
-      border: hov ? '1.5px solid var(--gold)' : '1.5px solid rgba(255,255,255,0.3)',
-    },
-  };
-
-  const baseStyle: React.CSSProperties = {
-    display: 'inline-flex',
-    alignItems: 'center',
-    gap: 10,
-    fontFamily: 'var(--font-body)',
-    fontWeight: 600,
-    textTransform: 'uppercase',
-    textDecoration: 'none',
-    whiteSpace: 'nowrap',
-    cursor: 'pointer',
-    transition: 'all 0.25s ease',
-    ...sizeMap[size],
-    ...variantStyles[variant],
-    ...extraStyle,
-  };
-
-  const inner = (
-    <>
-      <span>{children}</span>
-      {showArrow && (
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <path d="M5 12h14M12 5l7 7-7 7" />
-        </svg>
-      )}
-    </>
-  );
-
-  if (href) {
-    return (
-      <Link href={href}
-        onMouseEnter={() => setHov(true)}
-        onMouseLeave={() => setHov(false)}
-        style={baseStyle}>
-        {inner}
-      </Link>
-    );
-  }
-
-  return (
-    <button
-      onMouseEnter={() => setHov(true)}
-      onMouseLeave={() => setHov(false)}
-      onClick={onClick}
-      style={{ ...baseStyle, border: baseStyle.border }}>
-      {inner}
-    </button>
-  );
 }
 
 function AnimatedSection({ children, delay = 0, style = {} }: { children: React.ReactNode; delay?: number; style?: React.CSSProperties }) {
@@ -248,9 +162,7 @@ function CareerCard({ job, i }: { job: (typeof CAREERS)[0]; i: number }) {
         <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 22, fontWeight: 300, color: '#fff', marginBottom: 8, lineHeight: 1.2 }}>{job.role}</h3>
         <p style={{ fontFamily: 'var(--font-body)', fontSize: 13, lineHeight: 1.7, color: 'rgba(255,255,255,0.5)' }}>{job.desc}</p>
       </div>
-      <AnimBtn href={`/contact?role=${encodeURIComponent(job.role)}`} variant="ghost" size="sm" style={{ flexShrink: 0 }}>
-        Apply Now
-      </AnimBtn>
+      <Button href={`/contact?role=${encodeURIComponent(job.role)}`} variant="secondary" size="sm">Apply Now</Button>
     </div>
   );
 }
@@ -276,9 +188,7 @@ function BlogCard({ post, i }: { post: (typeof BLOG_POSTS)[0]; i: number }) {
       </div>
       <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(18px,2vw,24px)', fontWeight: 300, color: hov ? 'var(--gold-light)' : '#fff', lineHeight: 1.3, marginBottom: 14, transition: 'color 0.3s ease' }}>{post.title}</h3>
       <p style={{ fontFamily: 'var(--font-body)', fontSize: 13, lineHeight: 1.8, color: 'rgba(255,255,255,0.5)', marginBottom: 20 }}>{post.excerpt}</p>
-      <AnimBtn href={`/blog/${post.title.toLowerCase().replace(/ /g, '-')}`} variant="primary" size="sm" showArrow>
-        Read More
-      </AnimBtn>
+      <Button href={`/blog/${post.title.toLowerCase().replace(/ /g, '-')}`} variant="default" size="sm" showArrow>Read More</Button>
     </div>
   );
 }
@@ -357,8 +267,8 @@ export default function AboutPage() {
             Founded in Ahmedabad, Interior Studio Ltd has spent over a decade transforming residential and commercial spaces across India — with a commitment to craftsmanship, authenticity, and the belief that great design changes how people live.
           </p>
           <div suppressHydrationWarning style={{ display: 'flex', gap: 16, flexWrap: 'wrap', ...fade(460) }}>
-            <AnimBtn href="#team" variant="primary" size="lg" showArrow>Meet the Team</AnimBtn>
-            <AnimBtn href="/contact" variant="ghost" size="lg">Book a Consultation</AnimBtn>
+            <Button href="#team" variant="default" size="lg" showArrow>Meet the Team</Button>
+            <Button href="/contact" variant="secondary" size="lg">Book a Consultation</Button>
           </div>
         </div>
       </section>
@@ -407,7 +317,7 @@ export default function AboutPage() {
               <p style={{ fontFamily: 'var(--font-body)', fontSize: 15, lineHeight: 1.9, color: 'rgba(255,255,255,0.6)', marginBottom: 40 }}>
                 Based in Ahmedabad with projects across India, we are a team of designers, architects, and project managers united by a passion for exceptional interiors and a commitment to delivering them without compromise.
               </p>
-              <AnimBtn href="/process" variant="ghost" size="lg">Our Process</AnimBtn>
+              <Button href="/process" variant="secondary" size="lg">Our Process</Button>
             </AnimatedSection>
             <AnimatedSection delay={150}>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 2 }}>
@@ -427,7 +337,7 @@ export default function AboutPage() {
           <AnimatedSection delay={0}>
             <div style={{ marginBottom: 64 }}>
               <SectionLabel>Meet the Team</SectionLabel>
-              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px,3.5vw,44px)', fontWeight: 300, color: '#fff', lineHeight: 1.15 }}>The People Behind the Work</h2>
+              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px,3.5vw,44px)', fontWeight: 300, color: '#fff', lineHeight: 1.15, marginBottom: 20 }}>The People Behind the Work</h2>
             </div>
           </AnimatedSection>
           <div className="abt-grid-3" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 2 }}>
@@ -441,7 +351,7 @@ export default function AboutPage() {
           <AnimatedSection delay={0}>
             <div style={{ marginBottom: 64 }}>
               <SectionLabel>Client Reviews</SectionLabel>
-              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px,3.5vw,44px)', fontWeight: 300, color: '#fff', lineHeight: 1.15 }}>What Our Clients Say</h2>
+              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px,3.5vw,44px)', fontWeight: 300, color: '#fff', lineHeight: 1.15, marginBottom: 20 }}>What Our Clients Say</h2>
             </div>
           </AnimatedSection>
           <div className="abt-grid-3" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 2 }}>
@@ -501,7 +411,7 @@ export default function AboutPage() {
           <AnimatedSection delay={0}>
             <div style={{ marginBottom: 64 }}>
               <SectionLabel>Join Us</SectionLabel>
-              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px,3.5vw,44px)', fontWeight: 300, color: '#fff', lineHeight: 1.15 }}>Current Openings</h2>
+              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px,3.5vw,44px)', fontWeight: 300, color: '#fff', lineHeight: 1.15, marginBottom: 20 }}>Current Openings</h2>
             </div>
           </AnimatedSection>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
@@ -521,7 +431,7 @@ export default function AboutPage() {
           <AnimatedSection delay={0}>
             <div style={{ marginBottom: 64, textAlign: 'center' }}>
               <SectionLabel>Our Clients</SectionLabel>
-              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px,3.5vw,44px)', fontWeight: 300, color: '#fff', lineHeight: 1.15 }}>Trusted By India&apos;s Best</h2>
+              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px,3.5vw,44px)', fontWeight: 300, color: '#fff', lineHeight: 1.15, marginBottom: 20 }}>Trusted By India&apos;s Best</h2>
             </div>
           </AnimatedSection>
           <div className="abt-grid-4" style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 2 }}>
@@ -536,9 +446,9 @@ export default function AboutPage() {
             <div style={{ marginBottom: 56, display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', flexWrap: 'wrap', gap: 20 }}>
               <div>
                 <SectionLabel>Design Gallery</SectionLabel>
-                <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px,3.5vw,44px)', fontWeight: 300, color: '#fff', lineHeight: 1.15 }}>A Glimpse of Our Work</h2>
-                  </div>
-              <AnimBtn href="/projects" variant="ghost" size="lg">View Projects</AnimBtn>
+                <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px,3.5vw,44px)', fontWeight: 300, color: '#fff', lineHeight: 1.15, marginBottom: 20 }}>A Glimpse of Our Work</h2>
+              </div>
+              <Button href="/projects" variant="secondary" size="lg">View Projects</Button>
             </div>
           </AnimatedSection>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 2 }}>
@@ -552,7 +462,7 @@ export default function AboutPage() {
           <AnimatedSection delay={0}>
             <div style={{ marginBottom: 64 }}>
               <SectionLabel>Insights</SectionLabel>
-              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px,3.5vw,44px)', fontWeight: 300, color: '#fff', lineHeight: 1.15 }}>From the Studio</h2>
+              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px,3.5vw,44px)', fontWeight: 300, color: '#fff', lineHeight: 1.15, marginBottom: 20 }}>From the Studio</h2>
             </div>
           </AnimatedSection>
           <div className="abt-grid-2" style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: 2 }}>
@@ -561,7 +471,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-    <section id="location" className="abt-sec" style={{ background: '#0d0d0d', padding: '96px 48px' }}>
+      <section id="location" className="abt-sec" style={{ background: '#0d0d0d', padding: '96px 48px' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
           <div className="abt-grid-2" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '64px 80px' }}>
             <AnimatedSection delay={0}>
@@ -605,9 +515,7 @@ export default function AboutPage() {
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" strokeWidth="1.2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
                   </div>
                   <p style={{ fontFamily: 'var(--font-body)', fontSize: 11, letterSpacing: '2px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: 16 }}>Ahmedabad, Gujarat</p>
-                  <AnimBtn href={`https://maps.google.com/?q=${encodeURIComponent(CONTACT_INFO.address)}`} variant="ghost" size="sm">
-                    Open in Maps
-                  </AnimBtn>
+                  <Button href={`https://maps.google.com/?q=${encodeURIComponent(CONTACT_INFO.address)}`} variant="secondary" size="sm">Open in Maps</Button>
                 </div>
               </div>
 
@@ -631,7 +539,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-  <section style={{ background: 'linear-gradient(135deg, #1a1a1a 0%, #2a2010 50%, #1a1a1a 100%)', padding: '96px 48px', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
+      <section style={{ background: 'linear-gradient(135deg, #1a1a1a 0%, #2a2010 50%, #1a1a1a 100%)', padding: '96px 48px', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 600, height: 600, border: '1px solid rgba(201,169,110,0.06)', borderRadius: '50%', pointerEvents: 'none' }} />
         <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 400, height: 400, border: '1px solid rgba(201,169,110,0.08)', borderRadius: '50%', pointerEvents: 'none' }} />
         <div style={{ position: 'relative', maxWidth: 640, margin: '0 auto' }}>
@@ -644,8 +552,8 @@ export default function AboutPage() {
               Whether you have a project in mind or simply want to learn more about how we work, we&apos;d love to hear from you.
             </p>
             <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
-              <AnimBtn href="/contact" variant="primary" size="lg" showArrow>Book a Consultation</AnimBtn>
-              <AnimBtn href="/projects" variant="ghost" size="lg">View Projects</AnimBtn>
+              <Button href="/contact" variant="default" size="lg" showArrow>Book a Consultation</Button>
+              <Button href="/projects" variant="secondary" size="lg">View Projects</Button>
             </div>
           </AnimatedSection>
         </div>
