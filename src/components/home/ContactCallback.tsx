@@ -232,7 +232,7 @@ const ContactCallback = () => {
           >
             <div style={{ position: 'relative', width: '100%', height: 360 }}>
               <Image
-                src="/images/hero/hero-slide-1.png"
+                src="/images/hero/hero-slide-1.png.png"
                 alt="Interior Studio — Design Studio"
                 fill
                 className="object-contain object-center"

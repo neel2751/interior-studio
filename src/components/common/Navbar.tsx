@@ -225,12 +225,13 @@ const NAV_ITEMS: NavItem[] = [
 const PANEL_WIDTH = 700;
 const NAVBAR_H    = 56;
 
-const FONT = "var(--font-body, 'Montserrat', sans-serif)";
+// ✅ Updated to Google Sans
+const FONT = "'Google Sans', 'Roboto', sans-serif";
 
 const NavItem = ({ item }: { item: NavItem }) => {
   const [open,   setOpen]   = useState(false);
   const [hovIdx, setHovIdx] = useState<number | null>(null);
-  const [left,   setLeft]   = useState(0);
+  const [left,   setLeft]   = useState<number | null>(null);
   const ref   = useRef<HTMLDivElement>(null);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -248,12 +249,13 @@ const NavItem = ({ item }: { item: NavItem }) => {
   const leave = () => { timer.current = setTimeout(() => setOpen(false), 130); };
 
   useEffect(() => {
+    calcLeft();
     const h = (e: MouseEvent) => {
       if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
     };
     document.addEventListener("mousedown", h);
     return () => document.removeEventListener("mousedown", h);
-  }, []);
+  }, [calcLeft]);
 
   const rows = item.dropdown
     ? Array.from({ length: Math.ceil(item.dropdown.length / 3) })
@@ -273,9 +275,9 @@ const NavItem = ({ item }: { item: NavItem }) => {
           display:         "flex",
           alignItems:      "center",
           gap:             5,
-          padding:         "0 14px",
+          padding:         "0 12px",
           color:           "#ffffff",
-          fontSize:        18,
+          fontSize:        16,
           fontWeight:      600,
           letterSpacing:   "0.06em",
           textTransform:   "uppercase",
@@ -311,7 +313,7 @@ const NavItem = ({ item }: { item: NavItem }) => {
           style={{
             position:      "fixed",
             top:           NAVBAR_H,
-            left:          left,
+            left:          left ?? 0,
             width:         PANEL_WIDTH,
             zIndex:        99999,
             opacity:       open ? 1 : 0,
@@ -324,6 +326,7 @@ const NavItem = ({ item }: { item: NavItem }) => {
         >
           <div
             suppressHydrationWarning
+            className="scrollbar-hide"
             style={{
               backgroundColor: "#ffffff",
               border:          "1px solid #d0d0d0",
@@ -331,6 +334,7 @@ const NavItem = ({ item }: { item: NavItem }) => {
               boxShadow:       "0 8px 32px rgba(0,0,0,0.18)",
               overflowY:       "auto",
               maxHeight:       "calc(100vh - 70px)",
+              scrollbarWidth:  "none",
               fontFamily:      FONT,
             }}
           >
@@ -442,10 +446,28 @@ const Navbar = () => {
         transition:      "background-color 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease",
       }}
     >
-      <div style={{ display: "flex", alignItems: "stretch", justifyContent: "center", height: NAVBAR_H, padding: "0" }}>
-        {NAV_ITEMS.map((item) => (
-          <NavItem key={item.name} item={item} />
-        ))}
+      <div style={{ display: "flex", alignItems: "stretch", justifyContent: "space-between", height: NAVBAR_H, padding: "0 0px 0 0" }}>
+        <Link
+          href="/"
+          suppressHydrationWarning
+          style={{
+            display: "flex",
+            alignItems: "center",
+            padding: "0 16px",
+            textDecoration: "none",
+          }}
+        >
+          <img
+            src="https://www.interiorstudioltd.com/images/logo.svg"
+            alt="Interior Studio"
+            style={{ height: 52, width: "auto", filter: "brightness(0) invert(1)" }}
+          />
+        </Link>
+        <div style={{ display: "flex", alignItems: "stretch" }}>
+          {NAV_ITEMS.map((item) => (
+            <NavItem key={item.name} item={item} />
+          ))}
+        </div>
       </div>
     </nav>
   );

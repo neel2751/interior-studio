@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 
 const VIDEO_SRC = '/videos/hero/hero-bg.mp4';
-const FALLBACK_IMAGE = '/images/hero/Use-AI-Image-Mar-26-2026-21_05_37.png';
+const FALLBACK_IMAGE = 'Use-AI-Image-Mar-26-2026-21_05_37.png';
 
 const STATS = [
   { value: '15+',       label: 'YEARS IN BUSINESS' },
@@ -13,11 +13,36 @@ const STATS = [
   { value: '100%',      label: 'FULL TURNKEY' },
 ];
 
+// CSS injected once on mount — keeps animations out of inline styles
+// so server HTML and client first-render are always identical.
+const ANIMATION_CSS = `
+@keyframes heroFadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-fade-1 { animation: heroFadeUp 0.8s ease-out 0.2s forwards; }
+.hero-fade-2 { animation: heroFadeUp 0.8s ease-out 0.4s forwards; }
+.hero-fade-3 { animation: heroFadeUp 0.8s ease-out 0.6s forwards; }
+.hero-fade-4 { animation: heroFadeUp 0.8s ease-out 0.8s forwards; }
+.hero-stat-0 { animation: heroFadeUp 0.8s ease-out 1.1s  forwards; }
+.hero-stat-1 { animation: heroFadeUp 0.8s ease-out 1.2s  forwards; }
+.hero-stat-2 { animation: heroFadeUp 0.8s ease-out 1.3s  forwards; }
+.hero-stat-3 { animation: heroFadeUp 0.8s ease-out 1.4s  forwards; }
+`;
+
 export default function Hero() {
   const [videoError, setVideoError] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
+    // Inject keyframe CSS once
+    if (!document.getElementById('hero-anim-css')) {
+      const style = document.createElement('style');
+      style.id = 'hero-anim-css';
+      style.textContent = ANIMATION_CSS;
+      document.head.appendChild(style);
+    }
+
     const video = videoRef.current;
     if (video) {
       video.play().catch(() => setVideoError(true));
@@ -25,26 +50,21 @@ export default function Hero() {
   }, []);
 
   return (
-    <section suppressHydrationWarning style={{ position: 'relative', height: '100vh', minHeight: 700, overflow: 'hidden', background: '#0a0805' }}>
+    <section style={{
+      position: 'relative',
+      height: '100vh',
+      minHeight: 700,
+      overflow: 'hidden',
+      background: '#0a0805',
+    }}>
 
-      <div
-        suppressHydrationWarning
-        style={{
-          position: 'absolute',
-          inset: 0,
-          zIndex: 1,
-        }}
-      >
+      {/* ── Background video / fallback image ── */}
+      <div suppressHydrationWarning style={{ position: 'absolute', inset: 0, zIndex: 1 }}>
         {videoError ? (
           <img
             src={FALLBACK_IMAGE}
             alt="Interior Design"
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              objectPosition: 'center',
-            }}
+            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}
           />
         ) : (
           <video
@@ -55,18 +75,14 @@ export default function Hero() {
             playsInline
             poster={FALLBACK_IMAGE}
             onError={() => setVideoError(true)}
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              objectPosition: 'center',
-            }}
+            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}
           >
             <source src={VIDEO_SRC} type="video/mp4" />
           </video>
         )}
       </div>
 
+      {/* ── Gradient overlays ── */}
       <div style={{
         position: 'absolute', inset: 0, zIndex: 3, pointerEvents: 'none',
         background: 'linear-gradient(to right, rgba(10,8,5,0.88) 0%, rgba(10,8,5,0.55) 55%, rgba(10,8,5,0.2) 100%)',
@@ -77,52 +93,51 @@ export default function Hero() {
         background: 'linear-gradient(to top, rgba(10,8,5,0.75) 0%, transparent 100%)',
       }} />
 
+      {/* ── Hero copy ── */}
       <div style={{
         position: 'absolute', inset: 0, zIndex: 4,
         display: 'flex', flexDirection: 'column', justifyContent: 'center',
         padding: '0 8vw', maxWidth: 900,
       }}>
 
-        <p style={{
+        {/* opacity:0 is the static starting state — same on server & client.
+            The CSS class adds the animation after hydration. */}
+        <p className="hero-fade-1" style={{
           fontFamily: 'var(--font-body)',
           fontSize: '11px', letterSpacing: '3px',
           textTransform: 'uppercase',
           color: 'var(--gold, #c9a96e)',
           marginBottom: '20px',
           opacity: 0,
-          animation: 'heroFadeUp 0.8s ease-out 0.2s forwards',
         }}>
           INTERIOR DESIGN · FIT-OUT · INDIA
         </p>
 
-        <h1 style={{
+        <h1 className="hero-fade-2" style={{
           fontFamily: 'var(--font-display)',
           fontSize: 'clamp(36px, 5vw, 62px)',
           fontWeight: 700, lineHeight: 1.12,
           color: '#ffffff', marginBottom: '24px',
           opacity: 0,
-          animation: 'heroFadeUp 0.8s ease-out 0.4s forwards',
         }}>
           Design, Build, Fit-Out<br />
           Villas &amp; Apartments<br />
           Across India
         </h1>
 
-        <p style={{
+        <p className="hero-fade-3" style={{
           fontFamily: 'var(--font-body)',
           fontSize: '15px', lineHeight: 1.7,
           color: 'rgba(255,255,255,0.75)',
           maxWidth: 420, marginBottom: '36px',
           opacity: 0,
-          animation: 'heroFadeUp 0.8s ease-out 0.6s forwards',
         }}>
           Full turnkey services for residential and commercial projects across India.
         </p>
 
-        <div style={{
+        <div className="hero-fade-4" style={{
           display: 'flex', gap: '16px', flexWrap: 'wrap',
           opacity: 0,
-          animation: 'heroFadeUp 0.8s ease-out 0.8s forwards',
         }}>
           <Link
             href="/contact"
@@ -167,6 +182,7 @@ export default function Hero() {
         </div>
       </div>
 
+      {/* ── Stats bar ── */}
       <div style={{
         position: 'absolute', bottom: 0, left: 0, right: 0, zIndex: 5,
         display: 'flex',
@@ -175,13 +191,16 @@ export default function Hero() {
         backdropFilter: 'blur(10px)',
       }}>
         {STATS.map((stat, i) => (
-          <div key={i} style={{
-            flex: 1, padding: '24px 16px',
-            borderRight: i < STATS.length - 1 ? '1px solid rgba(255,255,255,0.1)' : 'none',
-            textAlign: 'center',
-            opacity: 0,
-            animation: `heroFadeUp 0.8s ease-out ${1.1 + i * 0.1}s forwards`,
-          }}>
+          <div
+            key={i}
+            className={`hero-stat-${i}`}
+            style={{
+              flex: 1, padding: '24px 16px',
+              borderRight: i < STATS.length - 1 ? '1px solid rgba(255,255,255,0.1)' : 'none',
+              textAlign: 'center',
+              opacity: 0,
+            }}
+          >
             <div style={{ fontFamily: 'var(--font-body)', fontSize: '26px', fontWeight: 600, color: 'var(--gold, #c9a96e)', marginBottom: '6px' }}>
               {stat.value}
             </div>

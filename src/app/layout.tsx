@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import NavbarClient from "@/components/common/NavbarClient";
 import Footer from "@/components/common/Footer";
 import FloatingElements from "@/components/common/FloatingElements";
 
-const montserrat = Montserrat({
+const googleSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "500", "700"],
   variable: "--font-display",
   display: "swap",
 });
@@ -56,7 +56,7 @@ export default function RootLayout({
     <html
       lang="en"
       data-scroll-behavior="smooth"
-      className={`${montserrat.variable} h-full antialiased`}
+      className={`${googleSans.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col" style={{ fontFamily: "var(--font-body)" }}>
         <div>

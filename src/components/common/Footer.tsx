@@ -230,6 +230,7 @@ const Footer = () => {
         >
           <Link
             href="/"
+            suppressHydrationWarning
             style={{
               textDecoration: 'none',
               display: 'flex',
@@ -238,76 +239,11 @@ const Footer = () => {
               flexShrink: 0,
             }}
           >
-            <svg
-              width="40"
-              height="44"
-              viewBox="0 0 48 52"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <text
-                x="24"
-                y="22"
-                textAnchor="middle"
-                fontFamily="var(--font-display, serif)"
-                fontSize="20"
-                fontWeight="300"
-                letterSpacing="3"
-                fill="#ffffff"
-              >
-                LU
-              </text>
-              <line
-                x1="8"
-                y1="27"
-                x2="40"
-                y2="27"
-                stroke="#ffffff"
-                strokeWidth="0.6"
-                opacity="0.4"
-              />
-              <text
-                x="24"
-                y="44"
-                textAnchor="middle"
-                fontFamily="var(--font-display, serif)"
-                fontSize="16"
-                fontWeight="300"
-                letterSpacing="4"
-                fill="#ffffff"
-              >
-                XII
-              </text>
-            </svg>
-            <div suppressHydrationWarning>
-              <p
-                suppressHydrationWarning
-                style={{
-                  fontFamily: 'var(--font-display)',
-                  fontSize: '20px',
-                  fontWeight: '300',
-                  letterSpacing: '4px',
-                  textTransform: 'uppercase',
-                  color: 'rgba(255,255,255,0.9)',
-                }}
-              >
-                Lumi XII
-              </p>
-              <p
-                suppressHydrationWarning
-                style={{
-                  fontFamily: 'var(--font-body)',
-                  fontSize: '14px',
-                  letterSpacing: '3px',
-                  textTransform: 'uppercase',
-                  color: 'var(--gold)',
-                  marginTop: '3px',
-                  opacity: '0.9',
-                }}
-              >
-                Interior Studio
-              </p>
-            </div>
+            <img
+              src="https://www.interiorstudioltd.com/images/logo.svg"
+              alt="Interior Studio"
+              style={{ height: 70, width: 'auto', filter: 'brightness(0) invert(1)' }}
+            />
           </Link>
 
           <p

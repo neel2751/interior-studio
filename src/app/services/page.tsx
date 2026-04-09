@@ -18,9 +18,9 @@ export default function ServicesPage() {
       >
         <div className="max-w-6xl mx-auto">
           <FadeInSection direction="up" delay={0}>
-            <div className="relative w-full h-[400px] md:h-[500px] rounded-sm overflow-hidden">
+            <div className="relative w-full h-100 md:h-125 rounded-sm overflow-hidden">
               <Image
-                src="/images/hero/hero-slide-1.png"
+                src="/images/hero/hero-slide-1.png.png"
                 alt="Our Services"
                 fill
                 className="object-cover"

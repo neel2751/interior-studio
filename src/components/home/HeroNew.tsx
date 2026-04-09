@@ -5,12 +5,12 @@ import Link from 'next/link';
 
 const SLIDES = [
   {
-    src: '/images/hero/hero-slide-1.png',
+    src: '/images/hero/hero-slide-1.png.png',
     fallback: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1600&q=80',
     alt: 'Luxury Living Room',
   },
   {
-    src: '/images/hero/Use-AI-Image-Mar-26-2026-21_05_37.png',
+    src: 'Use-AI-Image-Mar-26-2026-21_05_37.png',
     fallback: 'https://images.unsplash.com/photo-1600210492493-0946911123ea?w=1600&q=80',
     alt: 'Modern Interior Design',
   },
